@@ -12,6 +12,7 @@ class Blog extends Model
         'blogs_name',
         'blogs_author',
         'blogs_desc',
-        'blogs_image'
+        'blogs_image',
+        'blogs_slug'
       ];
 }

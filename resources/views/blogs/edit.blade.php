@@ -25,6 +25,10 @@
         <input type="text" name="blogs_name" value="{{$blog->blogs_name ?? ''}}">
         </div>
         <div>
+            <label class="form-label">Blog Slug</label>
+            <input type="text" class="form-control" name="blogs_slug" value="{{$blog->blogs_slug??''}}">
+            </div>
+        <div>
         <label>Description</label>
         <textarea name="blogs_desc">{{$blog->blogs_desc ?? ''}}</textarea>
         </div>
