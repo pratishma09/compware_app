@@ -29,11 +29,6 @@ class BlogRequest extends FormRequest
             'blogs_name'=>['required','string',Rule::unique('blogs', 'blogs_name')->ignore($id, 'id'),
         ],
             'blogs_desc'=>'required',
-            'blogs_slug' => [
-                'required',
-                'string',
-                'max:255'
-            ],
             'blogs_author'=>'required',
             'blogs_image' => [
                 $this->isMethod('post') ? 'required' : 'sometimes',

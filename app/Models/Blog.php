@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Blog extends Model
 {
@@ -13,6 +14,13 @@ class Blog extends Model
         'blogs_author',
         'blogs_desc',
         'blogs_image',
-        'blogs_slug'
       ];
+      protected static function boot()
+      {
+          parent::boot();
+  
+          static::creating(function ($blog) {
+              $blog->blogs_slug = Str::slug($blog->blogs_name);
+          });
+      }
 }

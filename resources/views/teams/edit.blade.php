@@ -1,7 +1,7 @@
 @extends('template')
 @section('title','Blogs Today')
 @section('content')
-    <h1>Create a blog post.</h1>
+    <h1>Add team</h1>
     <div>
         @if($errors->any())
         <ul>

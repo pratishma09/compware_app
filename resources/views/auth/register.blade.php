@@ -1,57 +1,57 @@
 @extends('template')
 
 @section('content')
-    <div class="container">
-        <div class="card login-card">
-            <div class="row no-gutters">
-                <div class="col-md-5">
-                    <img src="/img/login.jpg" alt="login" class="login-card-img">
+    <div class="">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <img src="/img/login.jpg" alt="login" class="">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
-                            <img src="/img/logo.png" alt="logo" class="logo">
+                            <img src="/img/logo.png" alt="logo" class="">
                         </div>
-                        <p class="login-card-description">Register a new account</p>
+                        <p class="">Register a new account</p>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="name" class="sr-only">Name</label>
+                                <label for="name" class="">Name</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
 
                             </div>
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
                             <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
+                                <label for="email" class="">Email</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email address">
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group mb-4">
-                                <label for="password" class="sr-only">Password</label>
+                                <label for="password" class="">Password</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group mb-4">
+                            <div class="">
                                 <label for="password" class="sr-only">Password</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password">
+                                <input id="password-confirm" type="password" class="" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password">
                             </div>
-                            <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Register">
+                            <input name="register" id="register" class="" type="submit" value="Register">
                         </form>
-                        <a href="#!" class="forgot-password-link">Forgot password?</a>
-                        <p class="login-card-footer-text">Alredy have an account? <a href="{{ route('login') }}" class="text-reset">Login here</a></p>
-                        <nav class="login-card-footer-nav">
+                        <a href="#!" class="">Forgot password?</a>
+                        <p class="login-card-footer-text">Alredy have an account? <a href="{{ route('login') }}" class="">Login here</a></p>
+                        <nav class="">
                             <a href="#!">Terms of use.</a>
                             <a href="#!">Privacy policy</a>
                         </nav>
