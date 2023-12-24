@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 
 use Exception;
@@ -38,21 +40,21 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        //
+        
         try{
             $data=$request->validated();
 
             if($request->hasFile('team_image')){
-                $filenameI = time() . '.' . $request->file('team_image')->getClientOriginalExtension();
-            $request->file('team_image')->move(public_path('assets'), $filenameI);
-            $data['team_image'] = $filenameI;
+                $filenameI = 'team_image_' . uniqid() . '_' . time() . '.' . $request->file('team_image')->getClientOriginalExtension();
+                $request->file('team_image')->move(public_path('assets'), $filenameI);
+                $data['team_image'] = $filenameI;
             }
             if($request->hasFile('team_signature')){
-                $filenameS = time() . '.' . $request->file('team_signature')->getClientOriginalExtension();
-            $request->file('team_signature')->move(public_path('assets'), $filenameS);
-            $data['team_signature'] = $filenameS;
+                $filenameS = 'team_signature_' . uniqid() . '_' . time() . '.' . $request->file('team_signature')->getClientOriginalExtension();
+                $request->file('team_signature')->move(public_path('assets'), $filenameS);
+                $data['team_signature'] = $filenameS;
             }
             $team = Team::create($data);
 
@@ -86,7 +88,7 @@ class TeamController extends Controller
     public function edit($id)
     {
         //
-        $team=Team::where('id',$id)->first();
+        $teams=Team::where('id',$id)->first();
         return view('teams.edit')->with(compact('teams'));
     }
 
@@ -112,7 +114,7 @@ class TeamController extends Controller
                 }
     
                 // Upload and save the new image
-                $filenameI = time() . '.' . $request->file('team_image')->getClientOriginalExtension();
+                $filenameI = 'team_image_' . uniqid() . '_' . time() . '.' . $request->file('team_image')->getClientOriginalExtension();
                 $request->file('team_image')->move(public_path('assets'), $filenameI);
                 $team->update(['team_image' => $filenameI]);
             }
@@ -120,8 +122,8 @@ class TeamController extends Controller
                 if ($team->team_signature && file_exists(public_path('assets/' . $team->team_signature))) {
                     unlink(public_path('assets/' . $team->team_signature));
                 }
-                $filenameS = time() . '.' . $request->file('team_signature')->getClientOriginalExtension();
-            $request->file('team_signature')->move(public_path('assets'), $filenameS);
+                $filenameS = 'team_signature_' . uniqid() . '_' . time() . '.' . $request->file('team_signature')->getClientOriginalExtension();
+                $request->file('team_signature')->move(public_path('assets'), $filenameS);            
             $team->update(['team_signature' => $filenameS]);
             }
     

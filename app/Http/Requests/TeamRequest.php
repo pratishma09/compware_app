@@ -26,7 +26,7 @@ class TeamRequest extends FormRequest
         return [
             //
             'team_name' => 'required|string|max:255',
-            'team_post' => 'required|string|max:255',
+            'team_post' => 'required|string|max:255|in:Team,Trainer',
             'team_role' => 'required|string|max:255',
             'team_email' => 'required|email|max:255',
             'team_description' => 'required|string',
