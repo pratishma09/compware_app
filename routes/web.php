@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PlacementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,17 @@ Route::post('/team',[TeamController::class,'store'])->name('team.store');
 Route::get('/team/{id}/edit',[TeamController::class,'edit'])->name('team.edit');
 Route::put('/team/{id}/update',[TeamController::class,'update'])->name('team.update');
 Route::get('/team/{id}/destroy',[TeamController::class,'destroy'])->name('team.destroy');
+
+Route::get('/client',[ClientController::class,'index'])->name('client.index');
+Route::get('/client/create',[ClientController::class,'create'])->name('client.create');
+Route::post('/client',[ClientController::class,'store'])->name('client.store');
+Route::get('/client/{id}/edit',[ClientController::class,'edit'])->name('client.edit');
+Route::put('/client/{id}/update',[ClientController::class,'update'])->name('client.update');
+Route::get('/client/{id}/destroy',[ClientController::class,'destroy'])->name('client.destroy');
+
+Route::get('/placement',[PlacementController::class,'index'])->name('placement.index');
+Route::get('/placement/create',[PlacementController::class,'create'])->name('placement.create');
+Route::post('/placement',[PlacementController::class,'store'])->name('placement.store');
+Route::get('/placement/{id}/edit',[PlacementController::class,'edit'])->name('placement.edit');
+Route::put('/placement/{id}/update',[PlacementController::class,'update'])->name('placement.update');
+Route::get('/placement/{id}/destroy',[PlacementController::class,'destroy'])->name('placement.destroy');

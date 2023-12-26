@@ -7,7 +7,6 @@ use App\Models\Team;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -19,7 +18,6 @@ class TeamController extends Controller
     public function index()
     {
         $teams=Team::all();
-        // Return a view called 'teams.index' and pass the 'teams' variable to the view
         return view('teams.index')->with(compact('teams'));
     }
 
@@ -58,7 +56,7 @@ class TeamController extends Controller
             }
             $team = Team::create($data);
 
-        return redirect(route('team.index'))->with('success', 'Team created successfully!');
+            return redirect(route('team.index'))->with('success', 'Team created successfully!');
         }
         catch(ModelNotFoundException $e){
             return response()->json(['error'=>'Teams not found'],404);
@@ -99,7 +97,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamRequest $request, $id)
     {
         //
         try {
@@ -110,7 +108,7 @@ class TeamController extends Controller
             if ($request->hasFile('team_image')) {
                 // Delete the existing image if it exists
                 if ($team->team_image && file_exists(public_path('assets/' . $team->team_image))) {
-                    unlink(public_path('assets/' . $team->blogs_image));
+                    unlink(public_path('assets/' . $team->team_image));
                 }
     
                 // Upload and save the new image
@@ -126,11 +124,7 @@ class TeamController extends Controller
                 $request->file('team_signature')->move(public_path('assets'), $filenameS);            
             $team->update(['team_signature' => $filenameS]);
             }
-    
             // Update other fields
-            
-            //dd($blog->blogs_image);
-    
             return redirect(route('team.index'))->with('success', 'Team updated successfully');
         } catch (Exception $e) {
             return response()->json(['error' => 'Database error'], 500);
@@ -146,8 +140,13 @@ class TeamController extends Controller
     public function destroy($id)
     {
         //
+        try{
         $team=Team::where('id',$id)->first();
         $team->delete();
         return redirect(route('team.index'))->with('success','Team deleted successfully');
+        }
+        catch(Exception $e){
+            return response()->json(['error' => 'Database error'], 500);
+        }
     }
 }

@@ -31,7 +31,7 @@ class TeamRequest extends FormRequest
             'team_email' => 'required|email|max:255',
             'team_description' => 'required|string',
             'team_signature' => [ $this->isMethod('post') ? 'required' : 'sometimes',
-            'mimes:jpg,jpeg,png','max:2048'],
+            'mimes:png','max:2048'],
             'team_image' => [ $this->isMethod('post') ? 'required' : 'sometimes',
             'mimes:jpg,jpeg,png','max:2048'], // Adjust based on your image requirements
         ];

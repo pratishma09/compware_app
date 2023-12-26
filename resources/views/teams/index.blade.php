@@ -10,16 +10,16 @@
         @endif
         <h1 class="text-5xl font-normal text-center py-8 text-blue">Meet Our Team</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 px-16 py-3">
+        <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($teams as $team)
                 @if ($team->team_post == 'team')
-                <div class="group relative">
+                <div class="group relative justify-self-center">
                     <div class="h-64">
                         <div class="bg-gray-100 h-32">
                             <img class="h-54 w-64 absolute" src="assets/{{ $team->team_image }}" />
                         </div>
                         <div
-                            class="bg-blue rounded-t-xl h-32 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
+                            class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
                         </div>
                     </div>
                     <div class="text-center w-60 h-20 pt-2">
@@ -39,6 +39,7 @@
                         <div
                             class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md w-3/5 h-4/5 overflow-y-scroll relative">
                             <!-- Close Button Icon using Blade UI Kit's x-icon component -->
+                            
                             <button type="button"
                                 class="text-blue hover:underline cursor-pointer absolute top-2 right-2 close-popup-btn"
                                 data-popup-id="{{ $team->id }}">
@@ -51,8 +52,10 @@
                                 <h3 class="font-light text-xs pb-3">{{ $team->team_role }}</h3>
                             </div>
                             <p>{!! nl2br(e($team->team_description)) !!}</p>
+                            <div class="flex items-end justify-end">
                             <img
-                                class="w-40 h-10" src="assets/{{ $team->team_signature }} alt={{ $team->team_signature }}" />
+                                class="w-30 h-10" src="assets/{{ $team->team_signature }}" alt={{ $team->team_signature }} />
+                            </div>
                         </div>
 
                     </div>
@@ -64,16 +67,16 @@
     </div>
     <div class="bg-gray-100">
         <h1 class="text-5xl font-normal text-center py-8 text-blue">Meet Our Trainers</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:gap-4 2xl:grid-cols-6 px-16 py-3">
+        <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($teams as $team)
                 @if ($team->team_post == 'trainer')
-                    <div class="group relative">
+                    <div class="group relative justify-self-center">
                         <div class="h-64">
                             <div class="bg-gray-100 h-32">
                                 <img class="h-54 w-64 absolute" src="assets/{{ $team->team_image }}" />
                             </div>
                             <div
-                                class="bg-blue rounded-t-xl h-32 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
+                                class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
                             </div>
                         </div>
                         <div class="text-center w-60 h-20 pt-2">
@@ -105,8 +108,10 @@
                                     <h3 class="font-light text-xs pb-3">{{ $team->team_role }}</h3>
                                 </div>
                                 <p>{!! nl2br(e($team->team_description)) !!}</p>
-                                <img
-                                    class="w-40 h-10" src="assets/{{ $team->team_signature }} alt={{ $team->team_signature }}" />
+                                <div class="flex items-end justify-end">
+                                    <img
+                                        class="w-30 h-10 mt-5" src="assets/{{ $team->team_signature }}" alt={{ $team->team_signature }} />
+                                    </div>
                             </div>
 
                         </div>

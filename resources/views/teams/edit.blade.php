@@ -3,7 +3,7 @@
 
 @section('content')
 <body>
-    <h1>Edit the blog post.</h1>
+    <h1>Edit the team post.</h1>
     <div>
         @if($errors->any())
         <ul>
