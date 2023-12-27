@@ -1,5 +1,5 @@
 @extends('template')
-@section('title', 'Our team')
+@section('title', 'Our clients')
 @section('content')
     <h1>Edit the client post.</h1>
     <div>

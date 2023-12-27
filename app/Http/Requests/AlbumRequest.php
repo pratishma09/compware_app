@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class PlacementRequest extends FormRequest
+class AlbumRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class PlacementRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +23,8 @@ class PlacementRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('id');
         return [
             //
-            'placement_name'=>['required','string',Rule::unique('placements', 'placement_name')->ignore($id, 'id')],
-            'placement_image' => [ $this->isMethod('post') ? 'required' : 'sometimes',
-            'mimes:jpg,jpeg,png','max:1000']
         ];
     }
 }

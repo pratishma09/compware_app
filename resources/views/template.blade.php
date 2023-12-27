@@ -15,9 +15,11 @@
     
     @vite('resources/css/app.css')
 </head>
-<body>
+<body class="roboto">
+        
 <div id="app">
     <main>
+        @yield('navbar')
         @yield('content')
     </main>
 </div>
