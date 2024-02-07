@@ -18,4 +18,9 @@ class Team extends Model
         'team_signature',
         'team_image'
     ];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\View;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
         //
     }
+
 
     /**
      * Bootstrap any application services.
@@ -36,23 +38,26 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function(){
             return view(view:'auth.login');
         });
-        Fortify::registerView(function(){
-            return view(view:'auth.register');
-        });
+        // Fortify::registerView(function(){
+        //     return view(view:'auth.register');
+        // });
         Fortify::requestPasswordResetLinkView(function(){
             return view(view:'auth.forgot-password');
         });
-        Fortify::resetPasswordView(function ($request){
-            return view('auth.reset-password',['request'=>$request]);
+        // Fortify::resetPasswordView(function ($request){
+        //     return view('admin.change')->with(['request' => $request]);
+        // });
+        Fortify::resetPasswordView(function ($request) {
+            return view('admin.change', ['token' => $request->route('token')]);
         });
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
-
             return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+        
     }
 }

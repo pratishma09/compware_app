@@ -25,8 +25,6 @@
         <div class="container lg:w-2/6 sm:w-1/2 pr-10">
             <h1 class="text-blue pl-6 pt-5 text-2xl">Recent Blogs</h1>
             @foreach($blogs as $recentBlog)
-          
-
                     <div class="pl-6">
                         <a href="{{ route('blog.show', $recentBlog->blogs_slug) }}">
                             <div class="h-64 w-auto">

@@ -143,4 +143,11 @@ class ClientController extends Controller
             return response()->json(['error'=>'Internal server error'],500);
         }
     }
+
+    public function search()
+{
+    $clients = Client::all();
+    return $clients;
+}
+
 }

@@ -1,58 +1,49 @@
 @extends('template')
 
 @section('content')
-    <div class=">
-        <div class="">
-            <div class="">
-                <div class="">
-                    <img src="/img/login.jpg" alt="login" class="">
+    <div class="w-full my-10">
+        <div class="lg:w-1/3 m-10 lg:m-auto my-10 py-10 shadow-gray shadow-xl px-10">
+            <p class="text-center text-4xl text-blue">Login</p>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="border border-blue rounded mt-2 flex">
+
+                    <input type="email" name="email" id="email" class="py-3 px-2 outline-none" placeholder="Email*">
+                    <i class="fa-solid fa-envelope py-3 pl-16 lg:pt-4 lg:pl-28"></i>
                 </div>
-                <div class="">
-                    @if($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <h1>{{ $error }}</h1>
-                        @endforeach
-                    @endif
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                    <div class="">
-                        <div class="">
-                            <img src="/img/logo.png" alt="logo" class="">
-                        </div>
-                        <p class="">Sign into your account</p>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                                @error('email')
-                                <span class="" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="">
-                                <label for="password" class="">Password</label>
-                                <input type="password" name="password" id="password" class="" placeholder="***********">
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <input name="login" id="login" class="" type="submit" value="Login">
-                        </form>
-                        <a href="#!" class="">Forgot password?</a>
-                        <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register') }}" class="">Register here</a></p>
-                        <nav class="">
-                            <a href="#!">Terms of use.</a>
-                            <a href="#!">Privacy policy</a>
-                        </nav>
-                    </div>
+                <div class="border border-blue rounded mt-2 flex">
+                    <input type="password" name="password" id="password" class="py-3 px-2 outline-none"
+                        placeholder="Password*">
+                    <i class="fa-solid fa-eye py-3 pl-16 lg:pt-4 lg:pl-28" onclick="togglePassword('password')"></i>
+                    <i class="fa-solid fa-eye-slash pl-16 py-3 lg:pt-4 lg:pl-28" style="display:none"
+                        onclick="togglePassword('password')"></i>
                 </div>
-            </div>
+
+                <div class="bg-blue my-2 mt-5 rounded">
+                    <button name="login" id="login" class="text-white text-sm text-center w-full uppercase py-2"
+                        type="submit" value="Login">
+                        Login
+                    </button>
+                </div>
+            </form>
+            <a href="#!" class="">Forgot password?</a>
         </div>
-@endsection
+    @endsection
+    <script>
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = document.querySelector(`#${inputId} ~ .fa-eye`);
+            const eyeSlashIcon = document.querySelector(`#${inputId} ~ .fa-eye-slash`);
+    
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.style.display = "none";
+                eyeSlashIcon.style.display = "block";
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.style.display = "block";
+                eyeSlashIcon.style.display = "none";
+            }
+        }
+    </script>
+    

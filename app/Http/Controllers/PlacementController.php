@@ -20,7 +20,7 @@ class PlacementController extends Controller
     {
         //
         $placements=Placement::all();
-        return view('placements.index')->with(compact('placements'));
+        return $placements;
     }
 
     /**
