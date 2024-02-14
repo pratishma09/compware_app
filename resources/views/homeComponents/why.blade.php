@@ -2,7 +2,7 @@
     <h1 class="text-4xl font-medium text-center pt-8 text-blue">Why Deerwalk Training Center?</h1>
     <p class="text-gray-300 text-center pt-3 text-lg font-medium">Deerwalk Training Center cultivates expertise in IT and Management
         through specialized training programs.</p>
-    <div class="grid grid-cols-2 grid-rows-2 gap-4 py-4 mx-20 mr-20">
+    <div class="lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-4 lg:py-4 mx-20 mr-20">
         <div data-aos="fade-right">
             <i class="fa-solid fa-code text-blue mb-1 text-xl"></i>
             <p class="text-xl pb-2">Hands-On Learning</p>

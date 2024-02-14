@@ -16,7 +16,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Deerwalk Training Center') }}</title>
 </head>
 <body class="roboto">
     <div id="app">

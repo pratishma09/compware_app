@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-
-use App\Models\Contact;
-use App\Http\Requests\ContactRequest;
-use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Course;
 
-class ContactController extends Controller
+class NavbarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +15,8 @@ class ContactController extends Controller
     public function index()
     {
         //
-        $contacts=Contact::all();
-        $courses =Course::all();
+        $courses = Course::all();
         dd($courses);
-        return view('contacts.index')->with(compact('contacts', 'courses'));
     }
 
     /**
@@ -34,7 +27,6 @@ class ContactController extends Controller
     public function create()
     {
         //
-        return view('contacts.create')->with('success','Contacts created successfully');
     }
 
     /**
@@ -43,21 +35,9 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
         //
-        try{
-            $data=$request->validated();
-            $contact = Contact::create($data);
-
-            return redirect(route('contact.index'))->with('success', 'Contacted successfully!');
-        }
-        catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Teams not found'],404);
-        }
-        catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
-        }
     }
 
     /**

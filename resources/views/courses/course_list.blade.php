@@ -21,15 +21,15 @@
                                 <a href="{{ route('course.show', [$course->course_slug]) }}">Read More</a>
                             </button>
                             <button type="button"
-                                class="text-white bg-blue hover:shadow-xl rounded px-4 py-2 shadow-sm text-md uppercase learn-more-btn"
-                                data-popup-id="{{ $course->id }}">
+                                class="text-white bg-blue hover:shadow-xl rounded px-4 py-2 shadow-sm text-md uppercase learn-more-btns"
+                                data-popups-id="{{ $course->id }}">
                                 Enroll
                             </button>
                         </div>
                     </div>
                 </div>
             </div><!--/ card-->
-            <div id="popup-{{ $course->id }}"
+            <div id="popups-{{ $course->id }}"
                 class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
                 <div class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md h-4/5 overflow-y-scroll relative">
                     <!-- Close Button Icon using Blade UI Kit's x-icon component -->
@@ -108,14 +108,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll('.learn-more-btn');
+        const buttons = document.querySelectorAll('.learn-more-btns');
         const closeButtons = document.querySelectorAll('.close-popup-btn');
         let openPopupId = null;
 
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                const popupId = button.getAttribute('data-popup-id');
-                const popup = document.getElementById(`popup-${popupId}`);
+                const popupId = button.getAttribute('data-popups-id');
+                const popup = document.getElementById(`popups-${popupId}`);
                 openPopupId = popupId;
                 document.body.style.overflow = 'hidden'; // Disable scrolling on the body
                 popup.classList.remove('hidden');
@@ -137,7 +137,7 @@
 
         function closePopup() {
             if (openPopupId !== null) {
-                const popup = document.getElementById(`popup-${openPopupId}`);
+                const popup = document.getElementById(`popups-${openPopupId}`);
                 openPopupId = null;
                 document.body.style.overflow = ''; // Enable scrolling on the body
                 popup.classList.add('hidden');

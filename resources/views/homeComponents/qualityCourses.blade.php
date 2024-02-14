@@ -37,10 +37,12 @@
                 $randomCourses = $courses->shuffle();
             @endphp
             @foreach($randomCourses as $course)
+            <div class=" hover:border-blue hover:border-2 mr-5">
                 <a href="{{ route('course.show', [$course->course_slug]) }}">
                     <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
                     <p class="text-xl text-blue capitalize text-center">{{$course->course_name}}</p>
                 </a>
+            </div>
             @endforeach
         </div>
     </div>
@@ -49,10 +51,12 @@
             $anotherRandomCourses = $courses->shuffle();
         @endphp
         @foreach($anotherRandomCourses as $course)
+        <div class=" hover:border-blue hover:border-2 mr-5">
             <a href="{{ route('course.show', [$course->course_slug]) }}">
                 <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
                 <p class="text-xl text-blue capitalize text-center">{{$course->course_name}}</p>
             </a>
+        </div>
         @endforeach
     </div>
 </div>

@@ -13,6 +13,9 @@ use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PasswordUpdateController;
+use App\Http\Controllers\StudentCertificateController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\RequestCertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,13 +52,15 @@ Route::get('/home', function () {
     $clientController = new ClientController();
     $placementController=new PlacementController();
     $enrollController=new EnrollController();
+    $testimonialController=new TestimonialController();
 
     $courses = $courseController->search();
     $clients = $clientController->search();
     $placements= $placementController->index();
     $enrolls=$enrollController->index();
+    $testimonials=$testimonialController->index();
 
-    return view('home', compact('courses', 'clients','placements','enrolls'));
+    return view('home', compact('courses', 'clients','placements','enrolls','testimonials'));
 });
 
 Route::get('/blog',[BlogController::class,'index'])->name('blog.index'); //index function in blog controller
@@ -126,3 +131,26 @@ Route::get('/enroll/create',[EnrollController::class,'create'])->name('enroll.cr
 Route::post('/enroll',[EnrollController::class,'store'])->name('enroll.store');
 
 Route::view('/terms', 'terms.terms')->name('terms');
+
+Route::get('/testimonial',[TestimonialController::class,'index'])->name('testimonial.index');
+Route::get('/testimonial/create',[TestimonialController::class,'create'])->name('testimonial.create');
+Route::post('/testimonial',[TestimonialController::class,'store'])->name('testimonial.store');
+Route::get('/testimonial/{id}/edit',[TestimonialController::class,'edit'])->name('testimonial.edit');
+Route::put('/testimonial/{id}/update',[TestimonialController::class,'update'])->name('testimonial.update');
+Route::get('/testimonial/{id}/destroy',[TestimonialController::class,'destroy'])->name('testimonial.destroy');
+
+Route::get('/studentcertificate',[StudentCertificateController::class,'index'])->name('studentcertificate.index');
+Route::get('/studentcertificate/create',[StudentCertificateController::class,'create'])->name('studentcertificate.create');
+Route::post('/studentcertificate',[StudentCertificateController::class,'store'])->name('studentcertificate.store');
+Route::get('/studentcertificate/{id}/edit',[StudentCertificateController::class,'edit'])->name('studentcertificate.edit');
+Route::put('/studentcertificate/{id}/update',[StudentCertificateController::class,'update'])->name('studentcertificate.update');
+Route::get('/studentcertificate/{id}/destroy',[StudentCertificateController::class,'destroy'])->name('studentcertificate.destroy');
+Route::get('/studentcertificate/{verificationId}',[StudentCertificateController::class,'show'])->name('studentcertificate.show');
+Route::get('/studentcertificate/pdf/{id}', [StudentCertificateController::class, 'showPDF'])->name('studentcertificate.pdf');
+
+Route::get('/requestcertificate',[RequestCertificateController::class,'index'])->name('requestcertificate.index');
+Route::get('/requestcertificate/create',[RequestCertificateController::class,'create'])->name('requestcertificate.create');
+Route::post('/requestcertificate',[RequestCertificateController::class,'store'])->name('requestcertificate.store');
+Route::get('/requestcertificate/{id}/edit',[RequestCertificateController::class,'edit'])->name('requestcertificate.edit');
+Route::put('/requestcertificate/{id}/update',[RequestCertificateController::class,'update'])->name('requestcertificate.update');
+Route::get('/requestcertificate/{id}/destroy',[RequestCertificateController::class,'destroy'])->name('requestcertificate.destroy');

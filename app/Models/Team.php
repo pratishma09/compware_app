@@ -23,4 +23,14 @@ class Team extends Model
     {
         return $this->hasMany(Course::class);
     }
+    public function teams()
+    {
+        return $this->hasMany(Course::class);
+    }
+    public function studentcertificates(){
+        return $this->belongsToMany(StudentCertificate::class);
+    }
+    public function requestcertificates(){
+        return $this->belongsToMany(RequestCertificate::class);
+    }
 }

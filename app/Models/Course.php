@@ -31,6 +31,18 @@ class Course extends Model
     {
         return $this->belongsTo(Coursecategory::class, 'coursecategory_id', 'id');
     }
+
+    public function testimonials(){
+        return $this->belongsToMany(Testimonial::class);
+    }
+
+    public function studentcertificates(){
+        return $this->belongsToMany(StudentCertificate::class);
+    }
+
+    public function requestcertificates(){
+        return $this->belongsToMany(RequestCertificate::class);
+    }
     public function enrolls()
     {
         return $this->hasMany(Enroll::class);

@@ -1,4 +1,4 @@
-{{-- @extends('template')
+@extends('template')
 @section('title', 'Our courses')
 @section('content')
     <h1>Create a team post.</h1>
@@ -78,4 +78,4 @@
 </script>
 @endsection
 
-  --}}
+ 
