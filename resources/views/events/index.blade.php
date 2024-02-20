@@ -6,31 +6,21 @@
         <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($events as $event)
                 @if ($event->event_role == 'Panelist')
-                    <div class="group relative justify-self-center">
-                        <div class="h-64">
-                            <div class="bg-gray-100 h-32">
-                                <img class="h-54 w-64 absolute" src="assets/{{ $event->event_image }}" />
-                            </div>
-                            <div
-                                class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
-                            </div>
-                        </div>
-                        <div class="text-center w-60 h-20 pt-2">
-                            <h3 class="text-blue">{{ $event->event_name }}</h3>
-                        </div>
-                        <div class="text-center w-60">
-                            <button type="button"
-                                class="text-blue uppercase border border-blue hover:bg-gray-200 font-medium rounded-lg text-sm px-3.5 py-2 mt-5 my-2 learn-more-btn"
-                                data-popup-id="{{ $event->id }}">Learn
-                                more</button>
-                        </div>
+                    <div class="justify-self-center">
+                        <button type="button" class="rounded-md bg-zinc-500 text-sm w-60 font-medium group-hover:w-64 learn-more-btn"
+                            data-popup-id="{{ $event->id }}">
+                            <div class=" my-5 flex flex-col justify-center items-center">
 
-                        <!-- Unique Popup Content -->
+                                <img class="rounded-full w-20" src="assets/{{ $event->event_image }}" />
+                                <h3 class="text-white mt-4">{{ $event->event_name }}</h3>
+                            </div>
+                        </button>
+
+
                         <div id="popup-{{ $event->id }}"
                             class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
                             <div
                                 class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md w-3/5 h-4/5 overflow-y-scroll relative">
-                                <!-- Close Button Icon using Blade UI Kit's x-icon component -->
 
                                 <button type="button"
                                     class="text-blue hover:underline cursor-pointer absolute top-2 right-2 close-popup-btn"
@@ -43,50 +33,35 @@
                                     <h3 class="text-blue">{{ $event->event_name }}</h3>
                                     <h3 class="font-light text-xs pb-3">{{ $event->event_role }}</h3>
                                 </div>
-                                <p>{!! nl2br(e($event->event_description)) !!}</p>
-                                <div class="flex items-end justify-end">
-                                    <img class="w-30 h-10" src="assets/{{ $event->event_signature }}"
-                                        alt={{ $event->event_signature }} />
-                                </div>
+                                <p>{!! $event->event_desc !!}</p>
                             </div>
-
                         </div>
-
                     </div>
                 @endif
             @endforeach
-        </div>
+    </div>
     </div>
     <div class="pl-20">
         <h1 class="text-2xl font-medium py-8">Host & Moderator</h1>
         <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($events as $event)
                 @if ($event->event_role == 'Host & Moderator')
-                    <div class="group relative justify-self-center">
-                        <div class="h-64">
-                            <div class="bg-gray-100 h-32">
-                                <img class="h-54 w-64 absolute" src="assets/{{ $event->event_image }}" />
+                    <div class="justify-self-center">
+                        <button type="button" class="rounded-md bg-zinc-500 text-sm w-60 hover:scale-110 font-medium learn-more-btn"
+                            data-popup-id="{{ $event->id }}">
+                            <div class=" my-5 flex flex-col justify-center items-center">
+
+                                <img class="rounded-full w-20" src="assets/{{ $event->event_image }}" />
+                                <h3 class="text-white mt-4">{{ $event->event_name }}</h3>
                             </div>
-                            <div
-                                class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400">
-                            </div>
-                        </div>
-                        <div class="text-center w-60 h-20 pt-2">
-                            <h3 class="text-blue">{{ $event->event_name }}</h3>
-                            <h3 class="">{{ $event->event_role }}</h3>
-                        </div>
-                        <div class="text-center w-60">
-                            <button type="button"
-                                class="text-blue uppercase border border-blue hover:bg-gray-200 font-medium rounded-lg text-sm px-3.5 py-2 mt-5 my-2 learn-more-btn"
-                                data-popup-id="{{ $event->id }}">Learn
-                                more</button>
-                        </div>
+                        </button>
+
 
                         <div id="popup-{{ $event->id }}"
                             class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
                             <div
                                 class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md w-3/5 h-4/5 overflow-y-scroll relative">
-                                <!-- Close Button Icon using Blade UI Kit's x-icon component -->
+
                                 <button type="button"
                                     class="text-blue hover:underline cursor-pointer absolute top-2 right-2 close-popup-btn"
                                     data-popup-id="{{ $event->id }}">
@@ -98,15 +73,9 @@
                                     <h3 class="text-blue">{{ $event->event_name }}</h3>
                                     <h3 class="font-light text-xs pb-3">{{ $event->event_role }}</h3>
                                 </div>
-                                <p>{!! nl2br(e($event->event_description)) !!}</p>
-                                <div class="flex items-end justify-end">
-                                    <img class="w-30 h-10 mt-5" src="assets/{{ $event->event_signature }}"
-                                        alt={{ $event->event_signature }} />
-                                </div>
+                                <p>{!! $event->event_desc !!}</p>
                             </div>
-
                         </div>
-
                     </div>
                 @endif
             @endforeach

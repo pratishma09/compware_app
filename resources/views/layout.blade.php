@@ -23,10 +23,26 @@
         <main>
             @include('events.bg')
             @yield('layout')
+            @include('events.question')
             @include('events.footer')
         </main>
     </div>
-    @yield('scripts')
-    @stack('scripts')
+    <script>
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            const question = document.getElementById("question" + id.slice(-1)); // Extract question number
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                answer.style.maxHeight = '0';
+                question.classList.remove('rounded-b-md');
+                question.classList.add('rounded-md');
+            } else {
+                answer.classList.add('show');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                question.classList.remove('rounded-md');
+                question.classList.add('rounded-t-md');
+            }
+        }
+    </script>
 </body>
 </html>
