@@ -32,7 +32,7 @@ class EventController extends Controller
     public function create()
     {
         //
-        return view('events.create')->with('success', 'Event created successfully');
+        return view('admin.events.create')->with('success', 'Event created successfully');
     }
 
     /**
@@ -55,10 +55,9 @@ class EventController extends Controller
 
             $event = Event::create($data);
 
-            return redirect(route('event.index'))->with('success', 'Event created successfully!');
+            return redirect(route('admin.events.list'))->with('success', 'Event created successfully!');
         } catch (Exception $e) {
-            // Something went wrong
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -83,7 +82,7 @@ class EventController extends Controller
     {
         //
         $event = Event::where('id', $id)->first();
-        return view('events.edit', ['event' => $event]);
+        return view('admin.events.edit', ['event' => $event]);
     }
 
     /**
@@ -113,12 +112,12 @@ class EventController extends Controller
                 $request->file('event_image')->move(public_path('assets'), $filename);
                 $event->update(['event_image' => $filename]);
             }
-            return redirect(route('event.index'))->with('success', 'Event updated successfully');
+            return redirect(route('admin.events.list'))->with('success', 'Event updated successfully');
         }catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Event not found'], 404);
+            return back()->with('error', 'Database error!');
         } 
         catch (Exception $e) {
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -134,13 +133,20 @@ class EventController extends Controller
         try{
             $event=Event::where('id',$id)->first();
             $event->delete();
-            return redirect(route('event.index'))->with('success','Event deleted successfully');
+            return redirect(route('admin.events.list'))->with('success','Event deleted successfully');
             }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Event not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function adminShow()
+    {
+        //
+        $events = Event::all();
+        return view('admin.events.list')->with(compact('events'));
     }
 }

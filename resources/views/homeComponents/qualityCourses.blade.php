@@ -1,11 +1,11 @@
 <style>
     .left-to-right-animation-wrapper {
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        width: 100vw; /* Ensure the wrapper spans the entire screen width */
+        overflow-x: hidden;
+        width: 100vw; 
     }
 
     .another-left-to-right-animation-wrapper{
-        overflow-x: hidden; /* Prevent horizontal scrolling */
+        overflow-x: hidden;
         width: 100vw;
     }
 
@@ -14,7 +14,7 @@
     }
 
     .another-left-to-right-animation {
-        animation: leftToRightMove 20s linear infinite;
+        animation: rightToLeftMove 20s linear infinite;
     }
 
     @keyframes leftToRightMove {
@@ -26,9 +26,19 @@
             transform: translateX(100%);
         }
     }
+
+    @keyframes rightToLeftMove {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(0%);
+        }
+    }
 </style>
 
-<h1 class="text-4xl font-medium text-center pt-8 text-blue">Quality Courses For Our Students</h1>
+<h1 class="text-3xl font-normal text-center py-8 text-blue">Quality Courses For Our Students</h1>
 
 <div class="w-screen">
     <div class="left-to-right-animation-wrapper">

@@ -18,33 +18,33 @@
         </div>
 
         <div class="hidden md:flex space-x-1 justify-around items-center">
-            <a href="/home" class="text-blue hover:bg-slate-100 p-2 pr-4">Home</a>
+            <a href="/home" class="text-blue hover:bg-slate-200 p-2 mr-2">Home</a>
             <div class="relative group">
-                <a href="#" class="text-blue hover:bg-slate-100 p-2">About</a>
+                <a class="text-blue hover:bg-slate-200 p-2">About</a>
                 <div
                     class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a href="/team" class="block">Our Team</a>
-                    <a href="/blog" class="block">Blogs</a>
-                    <a href="/eventgallery" class="block">Gallery</a>
+                    <a href="/team" class="block hover:bg-slate-200">Our Team</a>
+                    <a href="/blog" class="block hover:bg-slate-200">Blogs</a>
+                    <a href="/eventgallery" class="block hover:bg-slate-200">Gallery</a>
                 </div>
             </div>
 
-            <a href="/course" class="text-blue hover:bg-slate-100 p-2">Courses</a>
-            <a href="/contact/create" class="text-blue hover:bg-slate-100 p-2">Contact</a>
+            <a href="/course" class="text-blue hover:bg-slate-200 p-2">Courses</a>
+            <a href="/contact/create" class="text-blue hover:bg-slate-200 p-2">Contact</a>
             <div class="relative group">
-                <a href="#" class="text-blue hover:bg-slate-100 p-2">Event</a>
+                <a class="text-blue hover:bg-slate-200 p-2">Event</a>
                 <div
                     class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a href="#" class="block pt-4">Episode I</a>
-                    <a href="#" class="block">Episode II</a>
+                    <a href="{{ route('event.store') }}" class="block mt-4 hover:bg-slate-200">Episode I</a>
+                    <a href="{{ route('event.store') }}" class="block hover:bg-slate-200">Episode II</a>
                 </div>
             </div>
             <div class="relative group">
-                <a href="#" class="text-blue hover:bg-slate-100 p-2">Certificate</a>
+                <a class="text-blue hover:bg-slate-200 p-2">Certificate</a>
                 <div
                     class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a class="block pt-4"><button class="request">Request</button></a>
-                    <a class="block"><button class="verify">Verify</button></a>
+                    <a class="block mt-4 hover:bg-slate-200"><button class="request">Request</button></a>
+                    <a class="block hover:bg-slate-200"><button class="verify">Verify</button></a>
                 </div>
             </div>
 
@@ -59,9 +59,6 @@
     </div>
 </nav>
 
-
-
-<!-- Mobile Menu (hidden by default) -->
 <div id="mobile-menu"
     class="md:hidden mx-auto flex flex-col items-center text-blue bg-white py-2 px-3 fixed inset-y-0 left-0 z-50 hidden w-1/2 space-y-2 uppercase font-medium">
     <a href="/home"
@@ -84,16 +81,16 @@
         <a class="text-blue hover:bg-slate-100 p-2">Event</a>
         <div
             class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-            <a class="block pt-4">Episode I</a>
-            <a class="block">Episode II</a>
+            <a href="{{ route('event.store') }}" class="block pt-4">Episode I</a>
+            <a href="{{ route('event.store') }}" class="block">Episode II</a>
         </div>
     </div>
     <div class="relative group">
         <a class="text-blue hover:bg-slate-100 p-2">Certificate</a>
         <div
             class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-            <a href="/verify" class="block pt-4">Verify</a>
-            <a href="/request" class="block">Request</a>
+            <a class="block pt-4"><button class="request">Request</button></a>
+            <a class="block"><button class="verify">Verify</button></a>
         </div>
     </div>
     <a href="/login" class="text-blue py-2 px-3 border border-blue rounded">Enroll</a>
@@ -125,66 +122,65 @@
     });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const requestButtons = document.querySelectorAll('.request');
-    const requestForm = document.getElementById('requestForm');
-    const popup = document.getElementById('popup');
-    const closeBtn = document.getElementById('closeBtn');
+    document.addEventListener("DOMContentLoaded", function() {
+        const requestButtons = document.querySelectorAll('.request');
+        const requestForm = document.getElementById('requestForm');
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('closeBtn');
 
-    requestButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            document.body.style.overflow = 'hidden';
-            popup.classList.remove('hidden');
+        requestButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.body.style.overflow = 'hidden';
+                popup.classList.remove('hidden');
+            });
         });
-    });
 
-    closeBtn.addEventListener('click', () => {
-        popup.classList.add('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('popup-overlay')) {
+        closeBtn.addEventListener('click', () => {
             popup.classList.add('hidden');
-        }
-    });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('popup-overlay')) {
+                popup.classList.add('hidden');
+            }
+        });
 
         requestForm.addEventListener('submit', function(event) {
             console.log("submitted");
         });
-});
+    });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const verifyButtons = document.querySelectorAll('.verify');
-    const verifyForm = document.getElementById('verifyForm');
-    const popup = document.getElementById('popups');
-    const closeBtn = document.getElementById('closeButn');
+    document.addEventListener("DOMContentLoaded", function() {
+        const verifyButtons = document.querySelectorAll('.verify');
+        const verifyForm = document.getElementById('verifyForm');
+        const popup = document.getElementById('popups');
+        const closeBtn = document.getElementById('closeButn');
 
-    verifyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            document.body.style.overflow = 'hidden';
-            popup.classList.remove('hidden');
+        verifyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.body.style.overflow = 'hidden';
+                popup.classList.remove('hidden');
+            });
+        });
+
+        closeButn.addEventListener('click', () => {
+            popup.classList.add('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('popup-overlay')) {
+                popup.classList.add('hidden');
+            }
+        });
+
+        verifyForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var verificationId = document.getElementById('verificationId').value;
+            var formAction = this.getAttribute('action').replace(':verificationId', verificationId);
+            window.location.href = formAction;
         });
     });
-
-    closeButn.addEventListener('click', () => {
-        popup.classList.add('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('popup-overlay')) {
-            popup.classList.add('hidden');
-        }
-    });
-
-    verifyForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var verificationId = document.getElementById('verificationId').value;
-        var formAction = this.getAttribute('action').replace(':verificationId', verificationId); 
-        window.location.href = formAction;
-    });
-});
-
 </script>
 
 <script>
@@ -228,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         enrollForms.forEach(form => {
             form.addEventListener('submit', function(event) {
-                
+
                 event.preventDefault();
                 closePopup();
             });
@@ -246,65 +242,71 @@ document.addEventListener("DOMContentLoaded", function() {
                 data-popup-id="{{ $course->id }}">
                 <x-icon name="ri-close-line" class="w-5 h-5 text-current" />
             </button>
+            <div class="flex items-center">
+                
+                    <img src={{ asset('static/enroll.svg')}} alt="enroll" class="h-96">
+                
+                <div class="w-96">
+                    <h1 class="text-2xl font-normal text-blue">Register Now</h1>
 
-            <div class="w-96">
-                <h1 class="text-2xl font-normal text-blue">Our Courses</h1>
+                    <form method="post" action="{{ route('enroll.store') }}" id="enrollForm">
+                        @csrf
+                        <input type="hidden" name="course_id" value="{{ $course->id }}">
 
-                <form method="post" action="{{ route('enroll.store') }}" id="enrollForm">
-                    @csrf
-                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                        <div class="mt-4">
+                            <label for="enroll_name" class="block text-gray-700 text-sm font-bold mb-2">Full
+                                Name:</label>
+                            <input type="text" name="enroll_name" id="enroll_name"
+                                class="border border-blue rounded w-full py-2 px-3">
+                        </div>
 
-                    <div class="mt-4">
-                        <label for="enroll_name" class="block text-gray-700 text-sm font-bold mb-2">Full
-                            Name:</label>
-                        <input type="text" name="enroll_name" id="enroll_name"
-                            class="border border-blue rounded w-full py-2 px-3">
-                    </div>
+                        <div class="mt-4">
+                            <label for="enroll_phone"
+                                class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
+                            <input type="text" name="enroll_phone" id="enroll_phone"
+                                class="border border-blue rounded w-full py-2 px-3">
+                        </div>
 
-                    <div class="mt-4">
-                        <label for="enroll_phone" class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
-                        <input type="text" name="enroll_phone" id="enroll_phone"
-                            class="border border-blue rounded w-full py-2 px-3">
-                    </div>
+                        <div class="mt-4">
+                            <label for="enroll_email"
+                                class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                            <input type="email" name="enroll_email" id="enroll_email"
+                                class="border border-blue rounded w-full py-2 px-3">
+                        </div>
 
-                    <div class="mt-4">
-                        <label for="enroll_email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" name="enroll_email" id="enroll_email"
-                            class="border border-blue rounded w-full py-2 px-3">
-                    </div>
+                        <div class="mt-4">
+                            <label for="enroll_schedule"
+                                class="block text-gray-700 text-sm font-bold mb-2">Schedule:</label>
+                            <select name="enroll_schedule" id="enroll_schedule"
+                                class="border border-blue rounded w-full py-2 px-3">
+                                <option value="Morning">Morning</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Afternoon">Afternoon</option>
+                            </select>
+                        </div>
 
-                    <div class="mt-4">
-                        <label for="enroll_schedule"
-                            class="block text-gray-700 text-sm font-bold mb-2">Schedule:</label>
-                        <select name="enroll_schedule" id="enroll_schedule"
-                            class="border border-blue rounded w-full py-2 px-3">
-                            <option value="Morning">Morning</option>
-                            <option value="Evening">Evening</option>
-                            <option value="Afternoon">Afternoon</option>
-                        </select>
-                    </div>
-
-                    <div class="mt-4">
-                        <label for="course_name" class="block text-gray-700 text-sm font-bold mb-2">Course</label>
-                        <select name="course_category" id="enroll_schedule"
-                            class="border border-blue rounded w-full py-2 px-3">
-                            @foreach ($courses as $course)
-                                <option value="{{ $course->course_name }}">{{ $course->course_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="flex pt-3">
-                        <input name="checkbox" type="checkbox" required>
-                        <p class="pl-1">I agree to
-                        <p class="text-blue pl-1"><a href="{{ route('terms') }}"> Terms and
-                                Conditions</a></p>
-                        </p>
-                    </div>
-                    <button type="submit"
-                        class="text-white bg-blue hover:shadow-xl rounded px-3 py-1.5 mt-3 shadow-sm text-sm uppercase">
-                        Register
-                    </button>
-                </form>
+                        <div class="mt-4">
+                            <label for="course_name" class="block text-gray-700 text-sm font-bold mb-2">Course</label>
+                            <select name="course_category" id="enroll_schedule"
+                                class="border border-blue rounded w-full py-2 px-3">
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->course_name }}">{{ $course->course_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex pt-3">
+                            <input name="checkbox" type="checkbox" required>
+                            <p class="pl-1">I agree to
+                            <p class="text-blue pl-1"><a href="{{ route('terms') }}"> Terms and
+                                    Conditions</a></p>
+                            </p>
+                        </div>
+                        <button type="submit"
+                            class="text-white bg-blue hover:shadow-xl rounded px-3 py-1.5 mt-3 shadow-sm text-sm uppercase">
+                            Register
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -322,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         <div class="w-96">
             <h1 class="text-2xl font-normal text-blue">Get Your Certificate</h1>
-            
+
             <form method="post" action="{{ route('requestcertificate.store') }}" id="requestForm">
                 @csrf
                 <div class="mt-4">
@@ -399,11 +401,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         <div class="w-96">
             <h1 class="text-2xl font-normal text-blue">Verify Certificate</h1>
-            
-            <form method="get" action="{{ route('studentcertificate.show', ['verificationId' => ':verificationId']) }}" id="verifyForm">
+
+            <form method="get"
+                action="{{ route('studentcertificate.show', ['verificationId' => ':verificationId']) }}"
+                id="verifyForm">
                 @csrf
                 <div class="mt-4">
-                    <label for="verificationId" class="block text-gray-700 text-sm font-bold mb-2">Verification Id:</label>
+                    <label for="verificationId" class="block text-gray-700 text-sm font-bold mb-2">Verification
+                        Id:</label>
                     <input type="text" name="verificationId" id="verificationId"
                         class="border border-blue rounded w-full py-2 px-3">
                 </div>

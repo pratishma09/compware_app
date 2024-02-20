@@ -28,12 +28,13 @@
     <div id="app">
         <main class="flex">
             @include('admin.component.dashboard')
-            <div class="w-full">
+            <div class="w-screen">
                 @include('admin.component.logout')
                 @yield('admin')
             </div>
         </main>
     </div>
+    @include('sweetalert::alert')
     @yield('scripts')
     @stack('scripts')
 </body>

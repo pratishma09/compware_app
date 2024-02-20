@@ -1,14 +1,7 @@
-@extends('template')
-@section('title', 'Our event')
-
-@section('content')
-    <div class="bg-gray-100 border">
-        @if (session()->has('success'))
-            <div>
-                {{ session('success') }}
-            </div>
-        @endif
-        <h1 class="text-5xl font-normal text-center py-8 text-blue">Panelist</h1>
+@extends('layout')
+@section('layout')
+    <div class="pl-20">
+        <h1 class="text-2xl font-medium py-8">Panelist</h1>
 
         <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($events as $event)
@@ -24,7 +17,6 @@
                         </div>
                         <div class="text-center w-60 h-20 pt-2">
                             <h3 class="text-blue">{{ $event->event_name }}</h3>
-                            <h3 class="">{{ $event->event_role }}</h3>
                         </div>
                         <div class="text-center w-60">
                             <button type="button"
@@ -65,11 +57,11 @@
             @endforeach
         </div>
     </div>
-    <div class="bg-gray-100">
-        <h1 class="text-5xl font-normal text-center py-8 text-blue">Meet Our Trainers</h1>
+    <div class="pl-20">
+        <h1 class="text-2xl font-medium py-8">Host & Moderator</h1>
         <div class="flex flex-cols flex-wrap justify-center items-center space-x-10 px-20 md:flex-rows">
             @foreach ($events as $event)
-                @if ($event->event_post == 'trainer')
+                @if ($event->event_role == 'Host & Moderator')
                     <div class="group relative justify-self-center">
                         <div class="h-64">
                             <div class="bg-gray-100 h-32">
@@ -90,7 +82,6 @@
                                 more</button>
                         </div>
 
-                        <!-- Unique Popup Content -->
                         <div id="popup-{{ $event->id }}"
                             class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
                             <div

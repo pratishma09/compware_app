@@ -29,7 +29,7 @@ class TeamController extends Controller
     public function create()
     {
         //
-        return view('teams.create')->with('success','Teams created successfully');
+        return view('admin.teams.create')->with('success','Teams created successfully');
     }
 
     /**
@@ -56,13 +56,13 @@ class TeamController extends Controller
             }
             $team = Team::create($data);
 
-            return redirect(route('team.index'))->with('success', 'Team created successfully!');
+            return redirect(route('admin.teams.list'))->with('success', 'Team created successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Teams not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -86,8 +86,8 @@ class TeamController extends Controller
     public function edit($id)
     {
         //
-        $teams=Team::where('id',$id)->first();
-        return view('teams.edit')->with(compact('teams'));
+        $team=Team::where('id',$id)->first();
+        return view('admin.teams.edit')->with(compact('team'));
     }
 
     /**
@@ -125,9 +125,9 @@ class TeamController extends Controller
             $team->update(['team_signature' => $filenameS]);
             }
             // Update other fields
-            return redirect(route('team.index'))->with('success', 'Team updated successfully');
+            return redirect(route('admin.teams.list'))->with('success', 'Team updated successfully');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -143,10 +143,16 @@ class TeamController extends Controller
         try{
         $team=Team::where('id',$id)->first();
         $team->delete();
-        return redirect(route('team.index'))->with('success','Team deleted successfully');
+        return redirect(route('admin.teams.list'))->with('success','Team deleted successfully');
         }
         catch(Exception $e){
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function adminShow()
+    {
+        $teams=Team::all();
+        return view('admin.teams.list')->with(compact('teams'));
     }
 }

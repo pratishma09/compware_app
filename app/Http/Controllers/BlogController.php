@@ -7,8 +7,6 @@ use Exception;
 use App\Models\Blog;
 use App\Http\Requests\BlogRequest;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BlogController extends Controller
@@ -21,7 +19,8 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view("blogs.create");
+        $blogs = Blog::all();
+        return view('admin.blogs.create')->with(compact('blogs'));
     }
 
     public function store(BlogRequest $request)
@@ -38,17 +37,16 @@ class BlogController extends Controller
 
             $blog = Blog::create($data);
 
-            return redirect(route('blog.index'))->with('success', 'Blog created successfully!');
+            return redirect(route('admin.blogs.list'))->with('success', 'Blog created successfully!');
         } catch (Exception $e) {
-            // Something went wrong
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
     public function edit($id)
     {
         //
         $blog = Blog::where('id', $id)->first();
-        return view('blogs.edit', ['blog' => $blog]);
+        return view('admin.blogs.edit', ['blog' => $blog]);
     }
 
     public function show($slug)
@@ -60,10 +58,10 @@ class BlogController extends Controller
             return view('blogs.show', ['blog' => $blog, 'blogs' => $blogs]);
         } catch (ModelNotFoundException $e) {
 
-            return response()->json(['error' => 'Blog not found'], 404);
+            return back()->with('error', 'Database error!');
         } catch (Exception $e) {
             // Handle other exceptions
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -87,13 +85,9 @@ class BlogController extends Controller
                 $blog->update(['blogs_image' => $filename]);
             }
 
-            // Update other fields
-
-            //dd($blog->blogs_image);
-
-            return redirect(route('blog.index'))->with('success', 'Blog updated successfully');
+            return redirect(route('admin.blogs.list'))->with('success', 'Blog updated successfully');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Database error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
     public function destroy($id)
@@ -101,6 +95,12 @@ class BlogController extends Controller
         //
         $blog = Blog::where('id', $id)->first();
         $blog->delete();
-        return redirect(route('blog.index'))->with('success', 'Blog deleted successfully');
+        return redirect(route('admin.blogs.list'))->with('success', 'Blog deleted successfully');
+    }
+
+    public function adminShow()
+    {
+        $blogs = Blog::all();
+        return view('admin.blogs.list')->with(compact('blogs'));
     }
 }

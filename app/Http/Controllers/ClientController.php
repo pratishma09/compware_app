@@ -31,7 +31,7 @@ class ClientController extends Controller
     public function create()
     {
         //
-        return view('clients.create')->with('success','Clients created successfully');
+        return view('admin.clients.create')->with('success','Clients created successfully');
     }
 
     /**
@@ -52,13 +52,13 @@ class ClientController extends Controller
             }
             $client = Client::create($data);
 
-            return redirect(route('client.index'))->with('success', 'Client created successfully!');
+            return redirect(route('admin.clients.list'))->with('success', 'Client created successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Clients not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error','$e'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -83,7 +83,7 @@ class ClientController extends Controller
     {
         //
         $clients=Client::where('id',$id)->first();
-        return view('clients.edit')->with(compact('clients'));
+        return view('admin.clients.edit')->with(compact('clients'));
     }
 
     /**
@@ -112,13 +112,13 @@ class ClientController extends Controller
                 $request->file('client_image')->move(public_path('assets'), $filename);
                 $client->update(['client_image' => $filename]);
             }
-            return redirect(route('client.index'))->with('success', 'Client updated successfully');
+            return redirect(route('admin.clients.list'))->with('success', 'Client updated successfully');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Clients not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -134,13 +134,13 @@ class ClientController extends Controller
         try{
             $client=Client::where('id',$id)->first();
             $client->delete();
-            return redirect(route('client.index'))->with('success','Client deleted successfully');
+            return redirect(route('admin.clients.list'))->with('success','Client deleted successfully');
             }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Client not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -149,5 +149,12 @@ class ClientController extends Controller
     $clients = Client::all();
     return $clients;
 }
+
+public function adminShow()
+    {
+        //
+        $clients=Client::all();
+        return view('admin.clients.list')->with(compact('clients'));
+    }
 
 }

@@ -22,7 +22,6 @@ class ContactController extends Controller
         //
         $contacts=Contact::all();
         $courses =Course::all();
-        dd($courses);
         return view('contacts.index')->with(compact('contacts', 'courses'));
     }
 
@@ -34,7 +33,9 @@ class ContactController extends Controller
     public function create()
     {
         //
-        return view('contacts.create')->with('success','Contacts created successfully');
+        $contacts=Contact::all();
+        $courses =Course::all();
+        return view('contacts.create')->with(compact('contacts', 'courses'));
     }
 
     /**
@@ -50,13 +51,14 @@ class ContactController extends Controller
             $data=$request->validated();
             $contact = Contact::create($data);
 
-            return redirect(route('contact.index'))->with('success', 'Contacted successfully!');
+            return redirect(route('contact.create'))->with('success', 'Contact made successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Teams not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            dd($e);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -103,5 +105,20 @@ class ContactController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $contact = Contact::where('id', $id)->first();
+            $contact->delete();
+            return redirect(route('admin.contacts.list'))->with('success', 'Contacts deleted successfully');
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
+
+    public function adminShow()
+    {
+        //
+        $contacts=Contact::all();
+        $courses =Course::all();
+        return view('admin.contacts.list')->with(compact('contacts', 'courses'));
     }
 }

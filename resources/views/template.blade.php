@@ -28,7 +28,7 @@
     
     @include('components.maps')
     @include('components.footer')
-
+    @include('sweetalert::alert')
     @yield('scripts')
     @stack('scripts')
 </body>

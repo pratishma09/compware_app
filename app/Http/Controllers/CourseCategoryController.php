@@ -32,7 +32,7 @@ class CourseCategoryController extends Controller
     public function create()
     {
         //
-        return view('coursecategories.create')->with('success','Course categories created successfully');
+        return view('admin.coursecategories.create')->with('success','Course categories created successfully');
     }
 
     /**
@@ -48,14 +48,13 @@ class CourseCategoryController extends Controller
             
             $data=$request->validated();
             $coursecategory = Coursecategory::create($data);
-            return redirect(route('coursecategory.index'))->with('success', 'CourseCategory created successfully!');
+            return redirect(route('admin.coursecategory.list'))->with('success', 'CourseCategory created successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'CourseCategories not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            dd($e);
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -80,7 +79,7 @@ class CourseCategoryController extends Controller
     {
         //
         $coursecategories=Coursecategory::where('id',$id)->first();
-        return view('coursecategories.edit')->with(compact('coursecategories'));
+        return view('admin.coursecategories.edit')->with(compact('coursecategories'));
     }
 
     /**
@@ -96,13 +95,13 @@ class CourseCategoryController extends Controller
         try{
             $coursecategory = Coursecategory::findOrFail($id);
             $coursecategory->update($request->all());
-            return redirect(route('coursecategory.index'))->with('success', 'Course category updated successfully');
+            return redirect(route('admin.coursecategory.list'))->with('success', 'Course category updated successfully');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Course Category not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -118,13 +117,19 @@ class CourseCategoryController extends Controller
         try{
             $coursecategory=Coursecategory::where('id',$id)->first();
             $coursecategory->delete();
-            return redirect(route('coursecategory.index'))->with('success','Course category deleted successfully');
+            return redirect(route('admin.coursecategory.list'))->with('success','Course category deleted successfully');
             }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Course Category not found'],404);
+            return back()->with('error', 'Database error!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+    public function adminShow()
+    {
+        //
+        $coursecategories=Coursecategory::all();
+        return view('admin.coursecategories.list')->with(compact('coursecategories'));
     }
 }

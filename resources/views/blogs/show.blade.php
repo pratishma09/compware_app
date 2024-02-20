@@ -15,7 +15,9 @@
             
             <p class="text-gray-700 mb-2 font-light text-md">Date: {{ substr($blog->created_at, 0, 10) }}</p>
             </div>
-            <p class="text-gray-700 mb-4">{!! nl2br(e($blog->blogs_desc)) !!}</p>
+            <p class="text-gray-700 mb-4">{!! $blog->blogs_desc !!}</p>
+
+
 
             <div class="flex justify-end">
                 <a href="{{ route('blog.index') }}" class="text-blue-500 hover:underline text-blue">Back to Blogs</a>

@@ -31,7 +31,7 @@ class PlacementController extends Controller
     public function create()
     {
         //
-        return view('placements.create')->with('success','Placements created successfully');
+        return view('admin.placements.create')->with('success','Placements created successfully');
     }
 
     /**
@@ -52,13 +52,13 @@ class PlacementController extends Controller
             }
             $placement = Placement::create($data);
 
-            return redirect(route('placement.index'))->with('success', 'Placement created successfully!');
+            return redirect(route('admin.placements.list'))->with('success', 'Placement created successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Placements not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error','$e'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -83,7 +83,7 @@ class PlacementController extends Controller
     {
         //
         $placements=Placement::where('id',$id)->first();
-        return view('placements.edit')->with(compact('placements'));
+        return view('admin.placements.edit')->with(compact('placements'));
     }
 
     /**
@@ -112,13 +112,13 @@ class PlacementController extends Controller
                 $request->file('placement_image')->move(public_path('assets'), $filename);
                 $placement->update(['placement_image' => $filename]);
             }
-            return redirect(route('placement.index'))->with('success', 'Placement updated successfully');
+            return redirect(route('admin.placements.list'))->with('success', 'Placement updated successfully');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Placament not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -134,13 +134,18 @@ class PlacementController extends Controller
         try{
             $placement=Placement::where('id',$id)->first();
             $placement->delete();
-            return redirect(route('placement.index'))->with('success','Placement deleted successfully');
+            return redirect(route('admin.placements.list'))->with('success','Placement deleted successfully');
             }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Placement not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function adminShow(){
+            $placements=Placement::all();
+            return view('admin.placements.list')->with(compact('placements'));
     }
 }

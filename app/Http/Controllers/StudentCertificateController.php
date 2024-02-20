@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentcertificateRequest;
 use App\Models\Course;
+use App\Models\Image;
 use App\Models\Studentcertificate;
 use App\Models\Team;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use Exception;
 use Imagick;
-use Spatie\PdfToImage\Pdf;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
@@ -40,7 +41,7 @@ class StudentCertificateController extends Controller
         $studentcertificates = Studentcertificate::all();
         $courses = Course::all();
         $teams = Team::all();
-        return view('studentcertificates.create')->with(compact('studentcertificates', 'courses', 'teams'));
+        return view('admin.studentcertificates.create')->with(compact('studentcertificates', 'courses', 'teams'));
     }
 
     /**
@@ -62,12 +63,11 @@ class StudentCertificateController extends Controller
             }
             $studentcertificate = Studentcertificate::create($data);
 
-            return redirect(route('studentcertificate.create'))->with('success', 'StudentCertificate created successfully!');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'StudentCertificate created successfully!');
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Studentcertificates not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
-            dd($e);
-            return response()->json(['error' => 'Internal server error', '$e'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -84,10 +84,9 @@ class StudentCertificateController extends Controller
             $this->generatePDF($studentcertificate);
             return view('studentcertificates.show', ['studentcertificate' => $studentcertificate]);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Student Certificate not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
-            dd($e);
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -103,7 +102,7 @@ class StudentCertificateController extends Controller
         $studentcertificates = Studentcertificate::where('id', $id)->first();
         $courses = Course::all();
         $teams = Team::all();
-        return view('studentcertificates.edit')->with(compact('studentcertificates', 'courses', 'teams'));
+        return view('admin.studentcertificates.edit')->with(compact('studentcertificates', 'courses', 'teams'));
     }
 
     /**
@@ -133,11 +132,11 @@ class StudentCertificateController extends Controller
                 $request->file('image')->move(public_path('assets'), $filename);
                 $studentcertificate->update(['image' => $filename]);
             }
-            return redirect(route('studentcertificate.index'))->with('success', 'studentcertificate updated successfully');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'studentcertificate updated successfully');
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'studentcertificates not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -153,9 +152,9 @@ class StudentCertificateController extends Controller
         try {
             $studentcertificate = Studentcertificate::where('id', $id)->first();
             $studentcertificate->delete();
-            return redirect(route('studentcertificate.index'))->with('success', 'Studentcertificates deleted successfully');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'Studentcertificates deleted successfully');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -165,7 +164,6 @@ class StudentCertificateController extends Controller
     $pdfContent = $this->generatePDF($studentcertificate);
     $imageContent = $this->convertPDFToImage($pdfContent);
 
-    // Return image response
     return response($imageContent, 200, [
         'Content-Type' => 'image/png',
         'Content-Disposition' => 'inline; filename="certificate.png"',
@@ -176,8 +174,6 @@ class StudentCertificateController extends Controller
     private function generatePDF($studentcertificate)
     {
         try {
-
-            // Load the existing PDF template
             $pdf = new Fpdi();
             $pdf->AddPage();
             $pdf->setSourceFile(public_path('assets/Resized_certificate_banner..pdf'));
@@ -189,15 +185,15 @@ class StudentCertificateController extends Controller
                 $filename .= '.png';
             }
             $signatureImagePath = public_path("assets/{$filename}");
-
-            // Add data to the PDF
+            $pdf->SetFont('Arial', '', 18);
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetXY(117, 72);
+            $pdf->Cell(0, 0, strtoupper($studentcertificate->name));
+            $pdf->SetXY(125, 110);
+            $pdf->Cell(0, 0, strtoupper($studentcertificate->course->course_name));
+            $pdf->SetXY(103, 120);
             $pdf->SetFont('Arial', '', 14);
             $pdf->SetTextColor(0, 0, 0);
-            $pdf->SetXY(140, 72);
-            $pdf->Cell(0, 0, $studentcertificate->name);
-            $pdf->SetXY(140, 110);
-            $pdf->Cell(0, 0, $studentcertificate->course->course_name);
-            $pdf->SetXY(103, 120);
             $pdf->Cell(0, 12, $studentcertificate->duration);
             $pdf->SetXY(120, 140);
             $pdf->Cell(0, 2, $studentcertificate->startdate);
@@ -214,45 +210,65 @@ class StudentCertificateController extends Controller
             $pdf->SetXY(240, 189);
             $pdf->Cell(0, 0, $studentcertificate->trainer_title);
 
-            // Output the PDF content
             return $pdf->Output('', 'S');
 
         } catch (ModelNotFoundException $e) {
-            // Handle the case where the Studentcertificate is not found
-            return response()->json(['error' => 'Student certificate not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
-            // Handle other exceptions
-            dd($e);
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
     private function convertPDFToImage($pdfContent)
 {
     try {
-        // Create a temporary file to store the PDF content
-        $tempPdfPath = tempnam(sys_get_temp_dir(), 'pdf_');
-        file_put_contents($tempPdfPath, $pdfContent);
+        $imagick = new Imagick();
+        $imagick->readImageBlob($pdfContent);
 
-        // Instantiate the Pdf class with the PDF file path
-        $pdf = new Pdf($tempPdfPath);
+        foreach ($imagick as $key => $page) {
+            
+            $page->setImageFormat('png');
+        }
 
-        // Convert the PDF to an image (PNG format) and get the image path
-        $imagePath = tempnam(sys_get_temp_dir(), 'image_');
-        $pdf->saveImage($imagePath);
+        $imagick = $imagick->appendImages(true);
 
-        // Read the image content
-        $imageContent = file_get_contents($imagePath);
+        $imageContent = $imagick->getImageBlob();
 
-        // Clean up temporary files
-        unlink($tempPdfPath);
-        unlink($imagePath);
+        $imagick->clear();
+        $imagick->destroy();
 
         return $imageContent;
-
     } catch (Exception $e) {
-        // Handle exceptions
-        dd($e);
-        return response()->json(['error' => 'Internal server error'], 500);
+        return back()->with('error', 'Something went wrong!');
     }
 }
+public function downloadImage($id)
+    {
+        $studentcertificate = StudentCertificate::findOrFail($id);
+        $pdfContent = $this->generatePDF($studentcertificate);
+        $imageContent = $this->convertPDFToImage($pdfContent);
+
+        return response($imageContent)
+            ->header('Content-Type', 'image/png')
+            ->header('Content-Disposition', 'attachment; filename="certificate.png"');
+    }
+
+    public function downloadPDF($id)
+    {
+        $studentcertificate = StudentCertificate::findOrFail($id);
+        $pdfContent = $this->generatePDF($studentcertificate);
+
+        return response($pdfContent)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="certificate.pdf"');
+    }
+
+    public function adminShow()
+    {
+        //
+        $studentcertificates = Studentcertificate::all();
+        $courses = Course::all();
+        $teams = Team::all();
+        return view('admin.studentcertificates.list')->with(compact('studentcertificates', 'courses', 'teams'));
+    }
+
 }

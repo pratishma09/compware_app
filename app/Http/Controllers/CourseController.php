@@ -59,8 +59,7 @@ class CourseController extends Controller
             return view('courses.index')->with(compact('courseListHTML', 'courses', 'teams', 'coursecategories'));
 
         } catch (Exception $e) {
-            dd($e);
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -102,11 +101,11 @@ class CourseController extends Controller
             }
             $course = Course::create($data);
 
-            return redirect(route('course.index'))->with('success', 'Course created successfully!');
+            return redirect(route('admin.courses.list'))->with('success', 'Course created successfully!');
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Courses not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -125,10 +124,10 @@ class CourseController extends Controller
             return view('courses.show', ['courses' => $courses, 'course' => $course])->with(compact('course', 'courses'));
         } catch (ModelNotFoundException $e) {
 
-            return response()->json(['error' => 'course not found'], 404);
+            return back()->with('error', 'Not found!');
         } catch (Exception $e) {
             // Handle other exceptions
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -139,13 +138,17 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-        $courses = Course::where('id', $id)->first();
+{
+    try {
+        $course = Course::findOrFail($id);
         $teams = Team::all();
         $coursecategories = Coursecategory::all();
-        return view('courses.edit')->with(compact('courses', 'teams', 'coursecategories'));
+        return view('admin.courses.edit', compact('course', 'teams', 'coursecategories'));
+    } catch (Exception $e) {
+        return back()->with('error', 'Something went wrong!');
     }
+}
+
 
     /**
      * Update the specified resource in storage.
@@ -182,12 +185,11 @@ class CourseController extends Controller
                 $course->update(['course_pdf' => $filenameS]);
             }
             // Update other fields
-            return redirect(route('course.index'))->with('success', 'Courses updated successfully');
+            return redirect(route('admin.courses.list'))->with('success', 'Courses updated successfully');
         } catch (ModelNotFoundException $e) {
-            dd($e);
-            return response()->json(['error' => 'Courses not found'], 404);
+            return back()->with('error', 'Database error!');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -203,10 +205,9 @@ class CourseController extends Controller
         try {
             $course = Course::where('id', $id)->first();
             $course->delete();
-            return redirect(route('course.index'))->with('success', 'Courses deleted successfully');
+            return redirect(route('admin.courses.list'))->with('success', 'Courses deleted successfully');
         } catch (Exception $e) {
-            dd($e);
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -214,6 +215,13 @@ class CourseController extends Controller
     {
         $courses = Course::all();
         return $courses;
+    }
+
+    public function adminShow(){
+        $courses = Course::all();
+        $teams = Team::all();
+        $coursecategories = Coursecategory::all();
+        return view('admin.courses.list')->with(compact('courses','teams','coursecategories'));
     }
 
 }

@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-4xl font-medium text-center pt-8 text-blue">Find Your Path</h1>
+    <h1 class="text-3xl font-normal text-center py-8 text-blue">Find Your Path</h1>
     <div class="w-1/2 mx-auto flex flex-col lg:w-full lg:grid lg:grid-cols-3 lg:px-20 mt-10 lg:mb-20">
         <div class="flex flex-col mt-20">
             <div data-aos="fade-up-right">
@@ -15,20 +15,8 @@
         </div>
         <div class="hidden lg:flex lg:flex-col lg:justify-between">
 
-            <div class="shadow-2xl bg-white p-5 w-1/5 ml-20 text-center rounded-full">
-                <i class="fa-regular fa-note-sticky text-blue text-4xl"></i>
-            </div>
-            
-            
-            <div class="shadow-2xl bg-white p-5 w-1/5 ml-52 rounded-full">
-                <i class="fa-solid fa-book-open-reader text-blue text-4xl"></i>
-            </div>
-            <div class="shadow-2xl bg-white p-5 w-1/5 ml-20 text-center rounded-full">
-                <i class="fa-solid fa-graduation-cap text-blue text-4xl"></i>
-            </div>
-            <div class="shadow-2xl bg-white pl-5 py-5 pr-10 ml-52 w-1/5 text-center rounded-full">
-                <i class="fa-solid fa-users text-blue text-4xl"></i>
-            </div>
+            <img src="{{ asset('static/path.png')}}" alt="courses" class="w-3/4 mt-5">
+        
         </div>
         <div class="flex flex-col mt-20">
             <div data-aos="fade-up-left">

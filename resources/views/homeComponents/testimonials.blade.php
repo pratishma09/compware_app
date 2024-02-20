@@ -17,7 +17,7 @@
 
     .slide-track {
         display: flex;
-        animation: scroll 20s linear infinite;
+        animation: scroll 40s linear infinite;
     }
 
     .slide {
@@ -26,18 +26,16 @@
 </style>
 
 <div class="w-full">
-    <h1 class="text-4xl font-medium text-center pt-8 text-blue">Testimonials</h1>
+    <h1 class="text-5xl font-normal text-center py-8 text-blue">Testimonials</h1>
     <div class="slider text-center">
         <div class="slide-track md:w-1/2 flex">
             @foreach ($testimonials as $testimonial)
             <div class="flex flex-col justify-between items-center px-10 mx-5 m-5 rounded-lg shadow-lg slide md:w-full">
-                <!-- Icon -->
-                <i class="fa-solid text-blue text-3xl my-2 fa-person-circle-question"></i>
-                <!-- Testimonial Description -->
-                <p>{{ $testimonial->testimonial_desc }}</p>
-                <!-- Testimonial Image and Name -->
+                <i class="fa-solid fa-quote-left text-xl text-blue"></i>
+
+                <p class="w-4/5">{!! $testimonial->testimonial_desc !!}</p>
                 <div class="flex flex-col items-center justify-center">
-                    <i class="fa-solid fa-minus text-gray-400 text-5xl"></i>
+                    <i class="fa-solid fa-minus text-gray-400 text-xl"></i>
                     <img src="assets/{{ $testimonial->testimonial_image }}" class="w-16 rounded-full" alt="Testimonial Image">
                     <p class="text-sm my-1">{{ $testimonial->testimonial_name }}</p>
                 </div>

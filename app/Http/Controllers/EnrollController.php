@@ -54,10 +54,10 @@ class EnrollController extends Controller
             return redirect(route('course.index'))->with('success', 'Enrolled successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Courses not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
         
     }
@@ -108,5 +108,18 @@ class EnrollController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $enroll = Enroll::where('id', $id)->first();
+            $enroll->delete();
+            return redirect(route('admin.enrolls.list'))->with('success', 'Enrolls deleted successfully');
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
+
+    public function adminShow(){
+        $enrolls = Enroll::all();
+        $courses = Course::all();
+        return view('admin.enrolls.list', compact('enrolls','courses'));
     }
 }

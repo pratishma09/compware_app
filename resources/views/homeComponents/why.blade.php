@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-4xl font-medium text-center pt-8 text-blue">Why Deerwalk Training Center?</h1>
+    <h1 class="text-3xl font-normal text-center py-8 text-blue">Why Deerwalk Training Center?</h1>
     <p class="text-gray-300 text-center pt-3 text-lg font-medium">Deerwalk Training Center cultivates expertise in IT and Management
         through specialized training programs.</p>
     <div class="lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-4 lg:py-4 mx-20 mr-20">

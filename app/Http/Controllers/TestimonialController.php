@@ -33,7 +33,7 @@ class TestimonialController extends Controller
     public function create()
     {
         //
-        return view('testimonials.create')->with('success','Created successfully');
+        return view('admin.testimonials.create')->with('success','Created successfully');
     }
 
     /**
@@ -55,14 +55,13 @@ class TestimonialController extends Controller
             }
             $testimonial = Testimonial::create($data);
 
-            return redirect(route('testimonial.create'))->with('success', 'Testimonial created successfully!');
+            return redirect(route('admin.testimonials.list'))->with('success', 'Testimonial created successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Testimonials not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            dd($e);
-            return response()->json(['error'=>'Internal server error','$e'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -88,7 +87,7 @@ class TestimonialController extends Controller
         //
         $testimonials=Testimonial::where('id', $id)->first();
         $courses=Course::all();
-        return view('testimonials.edit')->with(compact('testimonials', 'courses'));
+        return view('admin.testimonials.edit')->with(compact('testimonials', 'courses'));
     }
 
     /**
@@ -115,13 +114,13 @@ class TestimonialController extends Controller
                 $request->file('testimonial_image')->move(public_path('assets'), $filename);
                 $testimonial->update(['testimonial_image' => $filename]);
             }
-            return redirect(route('testimonial.index'))->with('success', 'Testimonial updated successfully');
+            return redirect(route('admin.testimonials.list'))->with('success', 'Testimonial updated successfully');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Testimonials not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -139,7 +138,12 @@ class TestimonialController extends Controller
             $testimonial->delete();
             return redirect(route('testimonial.index'))->with('success', 'Testimonials deleted successfully');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function adminShow(){
+        $testimonials=Testimonial::all();
+        return view('admin.testimonials.list')->with(compact('testimonials'));
     }
 }

@@ -54,14 +54,13 @@ class RequestCertificateController extends Controller
             
             $data=$request->validated();
             $requestcertificate = Requestcertificate::create($data);
-            return redirect(route('requestcertificate.index'))->with('success', 'Requested successfully!');
+            return redirect(route('home'))->with('success', 'Requested successfully!');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'Not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            dd($e);
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -104,13 +103,13 @@ class RequestCertificateController extends Controller
         try{
             $requestcertificate = Requestcertificate::findOrFail($id);
             $requestcertificate->update($request->all());
-            return redirect(route('requestcertificate.index'))->with('success', 'requestcertificate updated successfully');
+            return redirect(route('admin.requestcertificates.list'))->with('success', 'requestcertificate updated successfully');
         }
         catch(ModelNotFoundException $e){
-            return response()->json(['error'=>'requestcertificates not found'],404);
+            return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return response()->json(['error'=>'Internal server error'],500);
+            return back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -126,9 +125,18 @@ class RequestCertificateController extends Controller
         try {
             $requestcertificate = Requestcertificate::where('id', $id)->first();
             $requestcertificate->delete();
-            return redirect(route('requestcertificate.index'))->with('success', 'requestcertificates deleted successfully');
+            return redirect(route('admin.requestcertificates.list'))->with('success', 'requestcertificates deleted successfully');
         } catch (Exception $e) {
-            return response()->json(['error' => 'Internal server error'], 500);
+            return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function adminShow()
+    {
+        //
+        $requestcertificates = Requestcertificate::all();
+        $courses = Course::all();
+        $teams = Team::all();
+        return view('admin.requestcertificates.list')->with(compact('requestcertificates','courses','teams'));
     }
 }

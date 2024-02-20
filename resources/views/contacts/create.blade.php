@@ -12,7 +12,7 @@
         @endif
     </div>
 
-    <h1 class="text-5xl font-normal text-center py-8 text-blue pt-28">Contact Us</h1>
+    <h1 class="text-5xl font-normal text-center py-8 text-blue">Contact Us</h1>
     <div class="flex flex-col lg:flex-row lg:px-48 w-screen">
         <div class="bg-blue rounded-2xl lg:w-1/2 pl-14 pt-8 w-screen text-white">
             <p class="text-medium text-3xl">Contact Info</p>
@@ -24,7 +24,7 @@
             <p class="pl-8"> Near Aradhana Petrol Pump</p>
             <div class="flex pt-8">
                 <i class="fa-solid fa-phone pt-1"></i>
-                <p class="pl-5">01-5913021, 01-4567153</p>
+                <p class="pl-5">01-5913021, 01-4567153, +9779860422021, +9779765355167</p>
             </div>
             <div class="flex pt-14">
                 <i class="fa-solid fa-envelope pt-1"></i>
