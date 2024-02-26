@@ -18,13 +18,11 @@
 
     <title>{{ config('app.name', 'Deerwalk Training Center') }}</title>
 </head>
-<body class="roboto">
+<body class="roboto overflow-x-hidden">
     <div id="app">
-        <main>
-            @include('events.bg')
+        <main class="">
             @yield('layout')
-            @include('events.question')
-            @include('events.footer')
+            @include('events.components.footer')
         </main>
     </div>
     <script>

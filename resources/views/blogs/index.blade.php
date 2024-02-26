@@ -2,16 +2,9 @@
 @section('title', 'Blogs Today')
 
 @section('content')
-<div class="container_section bg-gray-100 border">
+<div class="container_section bg-gray-100 pt-16">
     <div class="h-auto">
         <h1 class="text-5xl font-normal text-center py-8 text-blue">Blog Posts</h1>
-        <div>
-            @if(session()->has('success'))
-                <div>
-                    {{ session('success') }}
-                </div>
-            @endif
-        </div>
         <div class="blog-list">
             @foreach($blogs as $blog)
                 <div class="container w-100 lg:w-4/5 mx-auto flex flex-col">
@@ -34,5 +27,11 @@
             @endforeach
         </div>
     </div>
+    
 </div>
+
+<div class="mt-5 mx-36 text-center">
+    {{ $blogs->links() }}
+</div>
+
 @endsection

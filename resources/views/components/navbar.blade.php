@@ -1,4 +1,4 @@
-<nav class="p-1 sticky text-sm w-full shadow-lg uppercase font-medium bg-white">
+<nav class="p-1 z-50 px-0 lg:px-20 text-sm w-full shadow-lg uppercase font-medium bg-white fixed top-0">
     <div class="container mx-auto flex items-center justify-between">
 
         <!-- Logo -->
@@ -35,8 +35,8 @@
                 <a class="text-blue hover:bg-slate-200 p-2">Event</a>
                 <div
                     class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a href="{{ route('event.store') }}" class="block mt-4 hover:bg-slate-200">Episode I</a>
-                    <a href="{{ route('event.store') }}" class="block hover:bg-slate-200">Episode II</a>
+                    <a href="/event/episode-I" class="block mt-4 hover:bg-slate-200">Episode I</a>
+                    <a href="/event/episode-II" class="block hover:bg-slate-200">Episode II</a>
                 </div>
             </div>
             <div class="relative group">
@@ -61,6 +61,7 @@
 
 <div id="mobile-menu"
     class="md:hidden mx-auto flex flex-col items-center text-blue bg-white py-2 px-3 fixed inset-y-0 left-0 z-50 hidden w-1/2 space-y-2 uppercase font-medium">
+    
     <a href="/home"
         class=" hover:bg-slate-100 border-b-2 text-black font-normal text-sm capitalize text-center">Deerwalk Training
         Center</a>
@@ -81,8 +82,8 @@
         <a class="text-blue hover:bg-slate-100 p-2">Event</a>
         <div
             class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-            <a href="{{ route('event.store') }}" class="block pt-4">Episode I</a>
-            <a href="{{ route('event.store') }}" class="block">Episode II</a>
+            <a href="/event/episode-I" class="block pt-4">Episode I</a>
+            <a href="/event/episode-II" class="block">Episode II</a>
         </div>
     </div>
     <div class="relative group">

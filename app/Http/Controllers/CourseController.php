@@ -17,50 +17,68 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//     public function index(Request $request)
+// {
+//     try {
+//         $teams = Team::all();
+//         $coursecategories = Coursecategory::all();
+
+//         $selectedCategories = $request->input('coursecategory', []);
+
+//         if (!is_array($selectedCategories)) {
+//             $selectedCategories = explode(',', $selectedCategories);
+//         }
+
+//         $selectedCategories = array_filter($selectedCategories);
+
+//         $searchQuery = $request->input('search', '');
+
+//         $query = Course::query();
+
+//         if (!empty($selectedCategories)) {
+//             $query->whereIn('coursecategory_id', $selectedCategories);
+//         }
+
+//         if ($searchQuery) {
+//             $query->where('course_name', 'like', '%' . $searchQuery . '%');
+//         }
+
+//         // Paginate the results
+//         $courses = $query->paginate(10); // Paginate with 10 items per page, adjust as needed
+
+//         // Render the course list HTML separately
+//         $courseListHTML = view('courses.course_list')->with('courses', $courses)->render();
+
+//         return view('courses.index')->with(compact('courseListHTML', 'courses', 'teams', 'coursecategories'));
+
+//     } catch (Exception $e) {
+//         return back()->with('error', 'Something went wrong!');
+//     }
+// }
+
     public function index(Request $request)
     {
         try {
             $teams = Team::all();
             $coursecategories = Coursecategory::all();
-
-            // Get selected categories from the request
-            $selectedCategories = $request->input('coursecategory', []);
-
-            // Ensure $selectedCategories is an array
-            if (!is_array($selectedCategories)) {
-                // If it's not an array, explode it using the comma as a separator
-                $selectedCategories = explode(',', $selectedCategories);
+            $courses=Course::all();
+            if($request->ajax()){
+                $categories = $request->input('categories');
+                if (!empty($categories)) {
+                    $courses=Course::all();
+                    $courses->whereHas('categories', function ($q) use ($categories) {
+                        $q->whereIn('id', $categories);
+                    });
+                    $courses=$courses->query();
+                    dd($courses);
+                }
             }
-
-            // Remove empty values from $selectedCategories
-            $selectedCategories = array_filter($selectedCategories);
-
-            // Get search query from the request
-            $searchQuery = $request->input('search', '');
-
-            // Start with a base query
-            $query = Course::query();
-
-            // Apply category filters
-            if (!empty($selectedCategories)) {
-                $query->whereIn('coursecategory_id', $selectedCategories);
-            }
-
-            // Apply search query filter
-            if ($searchQuery) {
-                $query->where('course_name', 'like', '%' . $searchQuery . '%');
-            }
-
-            // Get the final result
-            $courses = $query->get();
-            $courseListHTML = view('courses.course_list')->with('courses', $courses)->render();
-
-            // If not an AJAX request, return the full view
-            return view('courses.index')->with(compact('courseListHTML', 'courses', 'teams', 'coursecategories'));
-
+            return view('courses.index')->with(compact('courses', 'coursecategories', 'teams'));
         } catch (Exception $e) {
+            dd($e);
             return back()->with('error', 'Something went wrong!');
         }
+        
     }
 
     /**
@@ -138,17 +156,16 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-    try {
-        $course = Course::findOrFail($id);
-        $teams = Team::all();
-        $coursecategories = Coursecategory::all();
-        return view('admin.courses.edit', compact('course', 'teams', 'coursecategories'));
-    } catch (Exception $e) {
-        return back()->with('error', 'Something went wrong!');
+    {
+        try {
+            $course = Course::findOrFail($id);
+            $teams = Team::all();
+            $coursecategories = Coursecategory::all();
+            return view('admin.courses.edit', compact('course', 'teams', 'coursecategories'));
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
+        }
     }
-}
-
 
     /**
      * Update the specified resource in storage.
@@ -164,14 +181,12 @@ class CourseController extends Controller
             $course = Course::findOrFail($id);
             $course->update($request->all());
 
-            // Check if a new image is provided
             if ($request->hasFile('course_logo')) {
-                // Delete the existing image if it exists
+
                 if ($course->course_logo && file_exists(public_path('assets/' . $course->course_logo))) {
                     unlink(public_path('assets/' . $course->course_logo));
                 }
 
-                // Upload and save the new image
                 $filenameI = 'course_logo_' . uniqid() . '_' . time() . '.' . $request->file('course_logo')->getClientOriginalExtension();
                 $request->file('course_logo')->move(public_path('assets'), $filenameI);
                 $course->update(['course_logo' => $filenameI]);
@@ -184,7 +199,6 @@ class CourseController extends Controller
                 $request->file('course_pdf')->move(public_path('assets'), $filenameS);
                 $course->update(['course_pdf' => $filenameS]);
             }
-            // Update other fields
             return redirect(route('admin.courses.list'))->with('success', 'Courses updated successfully');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Database error!');
@@ -211,17 +225,70 @@ class CourseController extends Controller
         }
     }
 
-    public function search()
+    public function home()
     {
         $courses = Course::all();
         return $courses;
     }
 
-    public function adminShow(){
+    public function search(Request $request)
+{
+    try {
+        $teams = Team::all();
+        $coursecategories = Coursecategory::all();
+
+        $search = $request->input('search');
+        if($search){
+            $courses = Course::where('course_name', 'like', "%$search%")->get();
+        }
+        if($request->ajax()){
+            $categories = $request->input('categories');
+            if (!empty($categories)) {
+                $courses=Course::all();
+                $courses->whereHas('categories', function ($q) use ($categories) {
+                    $q->whereIn('id', $categories);
+                });
+                $courses=$courses->query();
+            }
+        }
+        
+        return view('courses.index', compact('courses', 'coursecategories', 'teams'));
+    } catch (Exception $e) {
+        return back()->with('error', 'Something went wrong!');
+    }
+}
+public function coursecategories(Request $request){
+    try {
+        $teams = Team::all();
+        $coursecategories = Coursecategory::all();
+
+        $selectedCategories = $request->input('categories', []);
+
+        $courses = Course::query();
+        if (!empty($selectedCategories)) {
+            $courses->where(function ($query) use ($selectedCategories) {
+                foreach ($selectedCategories as $category) {
+                    $query->orWhere('coursecategory_id', $category);
+                }
+            });
+        }
+        $courses = $courses->get();
+        dd($courses);
+        return view('courses.index', compact('courses', 'coursecategories', 'teams'));
+    } catch (Exception $e) {
+        dd($e);
+        return back()->with('error', 'Something went wrong!');
+    }
+}
+
+
+
+    public function adminShow()
+    {
         $courses = Course::all();
         $teams = Team::all();
         $coursecategories = Coursecategory::all();
-        return view('admin.courses.list')->with(compact('courses','teams','coursecategories'));
+        return view('admin.courses.list')->with(compact('courses', 'teams', 'coursecategories'));
     }
 
 }

@@ -4,7 +4,7 @@
 @extends('template')
 @section('title', 'Client')
 @section('content')
-    <h1 class="text-5xl font-normal text-center py-8 text-blue">{{$eventgallery->gallery_name}}</h1>
+    <h1 class="text-5xl font-normal text-center py-8 text-blue pt-20">{{$eventgallery->gallery_name}}</h1>
     
     <div class="flex flex-wrap justify-center items-center mx-5">
         @foreach ($images as $image)

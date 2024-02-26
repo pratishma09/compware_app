@@ -131,7 +131,7 @@ Route::get('/home', function () {
     $enrollController = new EnrollController();
     $testimonialController = new TestimonialController();
 
-    $courses = $courseController->search();
+    $courses = $courseController->home();
     $clients = $clientController->search();
     $placements = $placementController->index();
     $enrolls = $enrollController->index();
@@ -152,13 +152,16 @@ Route::get('/placement', [PlacementController::class, 'index'])->name('placement
 Route::get('/eventgallery', [EventgalleryController::class, 'index'])->name('eventgallery.index');
 Route::get('/eventgallery/{eventgallery_slug}', [EventgalleryController::class, 'images'])->name('eventgallery.images');
 
-Route::get('/event', [EventController::class, 'index'])->name('event.index');
+Route::get('/event/episode-I', [EventController::class, 'index'])->name('event.index');
+Route::view('/event/episode-II','events.ep');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/course', [CourseController::class, 'index'])->name('course.index');
+Route::get('/course/coursecategories', [CourseController::class, 'coursecategories'])->name('course.coursecategories');
+Route::get('/course/search', [CourseController::class, 'search'])->name('courses.search');
 Route::get('/course/{course_slug}', [CourseController::class, 'show'])->name('course.show');
 
 Route::get('/courseCategory', [CourseCategoryController::class, 'index'])->name('coursecategory.index');

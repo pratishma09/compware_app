@@ -2,7 +2,7 @@
     <div class="bottom-0 left-0 flex flex-col items-center w-full bg-blue  text-white p-10">
         <div class="flex flex-col lg:flex-row justify-around mx-10">
             <div>
-                <img src="public\assets\static\compware-logo.58d15c3415fd7c80e673.png" class="pb-4">
+                <img src="../static/footerlogo.png" class="mb-4 text-center w-36">
                 <ul>
                     <li class="pb-8">
                         <i class="fa fa-solid fa-phone pt-2 pr-5"></i>01-5913021, 01-4567153
@@ -14,12 +14,17 @@
                 </ul>
             </div>
             <div class="px-10">
-                <p class="text-start text-md text-sky-200">
+                <p class="text-start text-sm text-sky-200">
                     Transform your skills, elevate your career, and embrace success with Deerwalk Training Center, we take
                     pride
                     in being recognized as a premier institution, excelling in IT Training and Software Courses.</p>
-                <div>
-                    <img>
+                <div class="mt-20 flex items-center justify-center space-x-5">
+                    <img src="../static/footer/linkedin.svg" class="mb-4 text-center w-6">
+                    <img src="../static/footer/facebook.svg" class="mb-4 text-center w-6">
+                    <img src="../static/footer/insta.svg" class="mb-4 text-center w-6">
+                    <img src="../static/footer/yt.svg" class="mb-4 text-center w-6">
+                    <img src="../static/footer/threads.png" class="mb-4 text-center w-6">
+                    <img src="../static/footer/x.png" class="mb-4 text-center w-6">
                 </div>
             </div>
             <div>

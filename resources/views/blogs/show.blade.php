@@ -2,7 +2,7 @@
 @section('title', 'Blogs Today')
 
 @section('content')
-    <div class="flex flex-col lg:flex-row container mx-auto py-8">
+    <div class="flex flex-col lg:flex-row container mx-auto py-8 pt-16">
         <div class="lg:w-4/5">
         <h1 class="text-5xl mb-4 text-blue pl-6">{{ $blog->blogs_name }}</h1>
 

@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Course;
 use App\Models\Team;
+use Illuminate\Support\Facades\Request;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,10 +30,15 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         View::composer('*', function ($view) {
-            $courses = Course::all(); 
-            $teams=Team::all();
-            $view->with('courses', $courses);
-            $view->with('teams', $teams);
+            if (!Request::is('courses/*') && !Request::is('courses')) {
+                if (!$view->offsetExists('courses')) {
+                    $courses = Course::all(); 
+                    $view->with('courses', $courses);
+                }
+                $teams = Team::all();
+                $view->with('teams', $teams);
+            }
+            
         });
     }
 }

@@ -12,7 +12,7 @@
         @endif
     </div>
 
-    <h1 class="text-5xl font-normal text-center py-8 text-blue">Contact Us</h1>
+    <h1 class="text-5xl font-normal text-center py-8 text-blue pt-20">Contact Us</h1>
     <div class="flex flex-col lg:flex-row lg:px-48 w-screen">
         <div class="bg-blue rounded-2xl lg:w-1/2 pl-14 pt-8 w-screen text-white">
             <p class="text-medium text-3xl">Contact Info</p>

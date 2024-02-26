@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container lg:ml-10 py-8 w-screen lg:max-w-screen-lg">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center pt-20">
             <h1 class="text-5xl mb-4 text-blue">Congratulations {{ $studentcertificate->name }} !</h1>
             <div class="hidden lg:flex">
                 <p class=" text-lg text-blue pr-2">Share: </p>
