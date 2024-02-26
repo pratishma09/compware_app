@@ -268,12 +268,11 @@ public function coursecategories(Request $request){
         if (!empty($selectedCategories)) {
             $courses->where(function ($query) use ($selectedCategories) {
                 foreach ($selectedCategories as $category) {
-                    $query->orWhere('coursecategory_id', $category);
+                    $query->orWhere('coursecategory_id', $category->id);
                 }
             });
         }
         $courses = $courses->get();
-        dd($courses);
         return view('courses.index', compact('courses', 'coursecategories', 'teams'));
     } catch (Exception $e) {
         dd($e);

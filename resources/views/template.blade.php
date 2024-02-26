@@ -46,27 +46,31 @@
                 placeholder: "Select category",
             });
         });
-
+    
         document.getElementById('categoryFilter').addEventListener('change', function() {
             filtercoursecategories();
         });
-
+    
         function filtercoursecategories() {
             var coursecategories = $('#categoryFilter').val();
-
+    
             $.ajax({
                 type: "GET",
-                url: "{{ route('course.coursecategories') }}", // Adjusted the URL here
+                url: "{{ route('course.coursecategories') }}",
                 data: {
                     coursecategories: coursecategories,
                 },
                 success: function(response) {
-                    $('#course-list').html(response);
+                    console.log('Success:', response);
+                    $('#courseList').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
                 }
             });
-            console.log(coursecategories);
         }
     </script>
+    
 </body>
 
 </html>
