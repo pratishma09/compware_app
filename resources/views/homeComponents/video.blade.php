@@ -1,4 +1,4 @@
-<div class="h-1/2 lg:h-screen w-screen relative text-white bg-black bg-opacity-60 pb-10 mt-16">
+<div class="lg:h-screen w-screen relative text-white bg-black bg-opacity-60 pb-10 mt-16">
     <video autoplay muted loop class="absolute inset-0 object-cover w-full h-full" style="z-index: -1;">
         <source src="{{ asset('static/website.mp4') }}" type="video/mp4">
         Your browser does not support the video tag.
