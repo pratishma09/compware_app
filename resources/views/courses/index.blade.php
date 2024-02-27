@@ -19,7 +19,7 @@
                 </form>
             </div>
             <div class="flex items-center justify-center">
-                <select id="categoryFilter" placeholder="Select category" data-placeholder="Select category">
+                <select class="js-example-basic-multiple w-96 " multiple="multiple" data-placeholder="Select category">
                     @foreach ($coursecategories as $coursecategory)
                         <option value="{{ $coursecategory->id }}">{{ $coursecategory->coursecategory_name }}</option>
                     @endforeach

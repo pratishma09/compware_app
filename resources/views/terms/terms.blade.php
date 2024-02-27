@@ -1,7 +1,7 @@
 @extends('template')
 @section('title', 'Blogs Today')
 @section('content')
-    <div class="w-3/4 my-20 mx-40 bg-white shadow-2xl px-10 pb-10">
+    <div class="w-3/4 my-20 mx-20 lg:mx-40 bg-white shadow-2xl px-10 pb-10">
         <h1 class="text-5xl font-normal text-center pt-8 pb-4 text-blue">Terms and Conditions</h1>
         <p class="text-center">By enrolling in our training program, you (referred to as "Student") agree to the following terms
             and conditions:</p>

@@ -23,10 +23,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"></script>
 
-    <title>{{ config('app.name', 'Deerwalk Training Center') }}</title>
+    <title>Deerwalk Training Center</title>
 </head>
 
-<body class="roboto bg-gray-100">
+<body class="roboto bg-gray-100 overflow-x-hidden">
     <div id="app">
         <main>
             @include('components.navbar')

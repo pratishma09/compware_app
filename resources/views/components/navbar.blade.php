@@ -94,7 +94,10 @@
             <a class="block"><button class="verify">Verify</button></a>
         </div>
     </div>
-    <a href="/login" class="text-blue py-2 px-3 border border-blue rounded">Enroll</a>
+    <button class="text-blue py-2 px-3 border border-blue rounded learn-more-btn uppercase"
+                data-popup-id="1">Enroll</button>
+
+            <a href="/login" class="text-blue hover:bg-slate-100 p-2 text-sm">Login</a>
 </div>
 <script>
     const groupButtons = document.querySelectorAll('.group');
