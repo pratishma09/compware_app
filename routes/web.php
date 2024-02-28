@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/event', [EventController::class, 'store'])->name('event.store');
     Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
     Route::put('/event/{id}/update', [EventController::class, 'update'])->name('event.update');
-    Route::get('/event/{id}/destroy', [EventController::class, 'destroy'])->name('event.destroy');
+    Route::delete('/event/{id}/destroy', [EventController::class, 'destroy'])->name('event.destroy');
 });
 
 Route::get('/home',[HomeController::class,'index'])->name('home.index');
