@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-10 mt-5">
+<div class="ml-28 mt-5">
     <h1>Create a gallery category</h1>
     
     <form action="{{ route('eventgalleries.store') }}" method="POST" enctype="multipart/form-data" class="mt-5">

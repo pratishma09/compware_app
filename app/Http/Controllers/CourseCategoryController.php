@@ -32,7 +32,7 @@ class CourseCategoryController extends Controller
     public function create()
     {
         //
-        return view('admin.coursecategories.create')->with('success','Course categories created successfully');
+        return view('admin.coursecategories.create')->with('success','Course Category created successfully');
     }
 
     /**
@@ -48,7 +48,7 @@ class CourseCategoryController extends Controller
             
             $data=$request->validated();
             $coursecategory = Coursecategory::create($data);
-            return redirect(route('admin.coursecategory.list'))->with('success', 'CourseCategory created successfully!');
+            return redirect(route('admin.coursecategory.list'))->with('success', 'Course Category created successfully!');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Database error!');

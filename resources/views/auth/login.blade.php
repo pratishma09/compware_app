@@ -9,13 +9,13 @@
                 <div class="border border-blue rounded mt-2 flex justify-around w-full">
 
                     <input type="email" name="email" id="email" class="py-3 px-2 outline-none bg-gray-100 w-full" placeholder="Email*">
-                    <i class="fa-solid fa-envelope py-3 pl-16 lg:pt-4 pr-4 lg:pl-28"></i>
+                    <i class="fa-solid fa-envelope py-3 lg:pt-4 pr-2"></i>
                 </div>
                 <div class="border border-blue rounded mt-2 flex justify-around w-full">
                     <input type="password" name="password" id="password" class="py-3 w-full px-2 outline-none bg-gray-100"
                         placeholder="Password*">
-                    <i class="fa-solid fa-eye py-3 pl-16 lg:pt-4 pr-4 lg:pl-28" onclick="togglePassword('password')"></i>
-                    <i class="fa-solid fa-eye-slash pl-16 py-3 lg:pt-4 pr-4 lg:pl-28" style="display:none"
+                    <i class="fa-solid fa-eye py-3 pl-16 lg:pt-4 pr-2 lg:pl-28" onclick="togglePassword('password')"></i>
+                    <i class="fa-solid fa-eye-slash py-3 lg:pt-4 pr-2" style="display:none"
                         onclick="togglePassword('password')"></i>
                 </div>
 

@@ -136,7 +136,7 @@ class TestimonialController extends Controller
         try {
             $testimonial = Testimonial::where('id', $id)->first();
             $testimonial->delete();
-            return redirect(route('testimonial.index'))->with('success', 'Testimonials deleted successfully');
+            return back()->with('success', 'Testimonials deleted successfully');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');
         }
