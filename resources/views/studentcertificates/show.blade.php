@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="pt-3 w-full lg:w-3/4 object-cover flex flex-col justify-center items-center">
+            <div class="pt-3 w-full object-cover flex flex-col justify-center items-center">
 
                 <iframe src="{{ route('studentcertificate.pdf', $studentcertificate->id) }}" width="100%" height="600px"
                     frameborder="0" scrolling="no" style="border: none;overflow:hidden; display:block;"

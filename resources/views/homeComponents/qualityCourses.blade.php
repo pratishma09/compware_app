@@ -19,7 +19,7 @@
             </div>
             @endforeach
         </div>
-        <div class="flex animate-loop-scroll group-hover:paused w-full">
+        <div class="flex animate-loop-scroll-reverse group-hover:paused w-full">
             @php
                 $randomCourses = $courses->shuffle();
             @endphp

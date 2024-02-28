@@ -7,11 +7,12 @@ use App\Models\Course;
 use App\Models\Image;
 use App\Models\Studentcertificate;
 use App\Models\Team;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use Exception;
-use Imagick;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Imagick;
 use setasign\Fpdi\Fpdi;
 
 class StudentCertificateController extends Controller
@@ -159,17 +160,16 @@ class StudentCertificateController extends Controller
     }
 
     public function showPDF($id)
-{
-    $studentcertificate = Studentcertificate::findOrFail($id);
-    $pdfContent = $this->generatePDF($studentcertificate);
-    $imageContent = $this->convertPDFToImage($pdfContent);
+    {
+        $studentcertificate = Studentcertificate::findOrFail($id);
+        $pdfContent = $this->generatePDF($studentcertificate);
+        $imageContent = $this->convertPDFToImage($pdfContent);
 
-    return response($imageContent, 200, [
-        'Content-Type' => 'image/png',
-        'Content-Disposition' => 'inline; filename="certificate.png"',
-    ]);
-}
-
+        return response($imageContent, 200, [
+            'Content-Type' => 'image/png',
+            'Content-Disposition' => 'inline; filename="certificate.png"',
+        ]);
+    }
 
     private function generatePDF($studentcertificate)
     {
@@ -184,12 +184,25 @@ class StudentCertificateController extends Controller
             if (!str_ends_with($filename, '.png')) {
                 $filename .= '.png';
             }
-            $signatureImagePath = public_path("assets/{$filename}");
+
+            if (filter_var($filename, FILTER_VALIDATE_URL)) {
+                $imageData = Http::get($filename)->body();
+                $imagePath = 'temp/' . uniqid() . '.png';
+                Storage::put($imagePath, $imageData);
+                $signatureImagePath = storage_path('app/' . $imagePath);
+            } else {
+                $signatureImagePath = public_path("assets/{$filename}");
+            }
             $pdf->SetFont('Arial', '', 18);
             $pdf->SetTextColor(0, 0, 0);
-            $pdf->SetXY(117, 72);
+            $nameWidth = $pdf->GetStringWidth(strtoupper($studentcertificate->name));
+            $courseNameWidth = $pdf->GetStringWidth(strtoupper($studentcertificate->course->course_name));
+
+            $nameX = 117 + (60 - $nameWidth) / 2; 
+            $courseNameX = 100 + (60 - $courseNameWidth) / 2; 
+            $pdf->SetXY($nameX, 72);
             $pdf->Cell(0, 0, strtoupper($studentcertificate->name));
-            $pdf->SetXY(125, 110);
+            $pdf->SetXY($courseNameX, 110);
             $pdf->Cell(0, 0, strtoupper($studentcertificate->course->course_name));
             $pdf->SetXY(103, 120);
             $pdf->SetFont('Arial', '', 14);
@@ -215,33 +228,34 @@ class StudentCertificateController extends Controller
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
+            dd($e);
             return back()->with('error', 'Something went wrong!');
         }
     }
     private function convertPDFToImage($pdfContent)
-{
-    try {
-        $imagick = new Imagick();
-        $imagick->readImageBlob($pdfContent);
+    {
+        try {
+            $imagick = new Imagick();
+            $imagick->readImageBlob($pdfContent);
 
-        foreach ($imagick as $key => $page) {
-            
-            $page->setImageFormat('png');
+            foreach ($imagick as $key => $page) {
+
+                $page->setImageFormat('png');
+            }
+
+            $imagick = $imagick->appendImages(true);
+
+            $imageContent = $imagick->getImageBlob();
+
+            $imagick->clear();
+            $imagick->destroy();
+
+            return $imageContent;
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
         }
-
-        $imagick = $imagick->appendImages(true);
-
-        $imageContent = $imagick->getImageBlob();
-
-        $imagick->clear();
-        $imagick->destroy();
-
-        return $imageContent;
-    } catch (Exception $e) {
-        return back()->with('error', 'Something went wrong!');
     }
-}
-public function downloadImage($id)
+    public function downloadImage($id)
     {
         $studentcertificate = StudentCertificate::findOrFail($id);
         $pdfContent = $this->generatePDF($studentcertificate);
