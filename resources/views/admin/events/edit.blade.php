@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-10 mt-5">
+<div class="ml-28 mt-5">
     <p class="2xl">Edit an Event</p>
     
     <form method="post" action="{{ route('event.update', $event->id) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-10 mt-5">
+<div class="ml-28 mt-5">
     <h2 class="text-2xl">Edit Eventgallery</h2>
     
     <form action="{{ route('admin.eventgalleries.update', ['id' => $eventgallery->id]) }}" method="post" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

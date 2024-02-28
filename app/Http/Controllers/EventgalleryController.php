@@ -208,8 +208,7 @@ class EventgalleryController extends Controller
             $eventgallery = Eventgallery::all();
             return view('admin.eventgalleries.list', compact('eventgallery'));
         } catch (Exception $e) {
-            // Log or handle the exception as needed
-            return back()->with('error', 'Something went wrong!');
+            return back()->with('error',$e);
         }
     }
     public function showImages($id)

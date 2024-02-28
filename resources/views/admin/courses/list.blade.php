@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('admin')
-<div class="container mx-auto ml-10 min-w-96 lg:max-w-screen-lg">
+<div class="container mx-auto ml-28 min-w-96 lg:max-w-screen-lg">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.courses.create') }}">Add Course</a></button>
     <div class="overflow-x-auto">
     <table class="max-w-screen divide-y divide-gray-200">

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-    <div class="container mx-auto ml-10 min-w-96 lg:max-w-screen-lg">
+    <div class="container mx-auto ml-28 min-w-96 lg:max-w-screen-lg">
         <div class="overflow-x-auto">
             <table class="max-w-screen divide-y divide-gray-200">
                 <thead class="bg-gray-50">

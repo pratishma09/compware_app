@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-10 mt-5">
+<div class="ml-28 mt-5">
     <h1 class="text-2xl">Edit a Student</h1>
     
     <form method="post" action="{{ route('studentcertificates.update', ['id' => $studentcertificates->id]) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
@@ -37,7 +37,7 @@
         </div>
         <div class="mb-4">
             <label for="verificationId" class="block text-sm font-medium text-gray-700">Verification Id</label>
-            <input type="text" name="verificationId" id="verificationId" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->name ?? '' }}">
+            <input type="text" name="verificationId" id="verificationId" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->verificationId ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="course_id" class="block text-sm font-medium text-gray-700">Course</label>

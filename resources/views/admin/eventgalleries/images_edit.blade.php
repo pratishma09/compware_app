@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="container mx-auto ml-10 w-11/12">
+<div class="container mx-auto ml-28 w-11/12">
     <h1>Images for: {{ $gallery->gallery_name }}</h1>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">

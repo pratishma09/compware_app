@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-20 mt-5">
+<div class="ml-28 mt-5">
     <p class="text-2xl">Create a Student</p>
     
     <form method="post" action="{{ route('studentcertificate.store') }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
@@ -39,7 +39,7 @@
         
         <div class="mb-4">
             <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
-            <input type="text" id="duration" name="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10">
+            <input type="number" id="duration" name="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10">
         </div>
         
         <div class="mb-4">

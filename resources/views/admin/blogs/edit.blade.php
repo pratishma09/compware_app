@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-    <div class="ml-10 mt-5">
+    <div class="ml-28 mt-5">
         <h1>Edit the Blog Post</h1>
         
         <form method="post" action="{{ route('blog.update', ['id' => $blog->id]) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
