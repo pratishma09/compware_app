@@ -2,15 +2,6 @@
 @section('title', 'Blogs Today')
 
 @section('content')
-    <div>
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $errors }}</li>
-                @endforeach
-            </ul>
-        @endif
-    </div>
 
     <h1 class="text-5xl font-normal text-center py-8 text-blue pt-20">Contact Us</h1>
     <div class="flex flex-col lg:flex-row lg:px-48 w-screen">
@@ -31,8 +22,11 @@
                 <p class="pl-5">training@deerwalkcompware.com</p>
             </div>
             <p class="pt-14">Find Us At</p>
-            <div class="flex pb-14">
-                <i class="fa-solid fa-facebook pt-1"></i>
+            <div class="flex space-x-3 mt-5 pb-14">
+                <img src={{ asset('static/contact/linkedin.svg')}} >
+                <img src={{ asset('static/contact/facebook.svg')}} >
+                <img src={{ asset('static/contact/instagram.svg')}} >
+                <img src={{ asset('static/contact/youtube.svg')}} >
             </div>
         </div>
         <div class="pl-14 lg:w-1/2 shadow-2xl rounded-2xl">

@@ -16,7 +16,12 @@
             @foreach($testimonials as $testimonial)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $testimonial->id }}</td>
-                <td><img src="{{ asset('assets/' . $testimonial->testimonial_image) }}" class="w-20" alt="{{ $testimonial->testimonial_image }}">
+                <td>
+                    @if(strpos($testimonial->testimonial_image, 'http') === 0)
+                        <img src="{{ $testimonial->testimonial_image }}" class="w-20" alt="{{ $testimonial->testimonial_image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $testimonial->testimonial_image) }}" class="w-20" alt="{{ $testimonial->testimonial_image }}">
+                    @endif
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $testimonial->testimonial_name }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">{{ $testimonial->testimonial_desc }}</td>

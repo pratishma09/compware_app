@@ -17,8 +17,11 @@
         </div>
         <div class="flex flex-col items-center lg:items-start lg:flex-row">
             <div class="bg-white shadow-xl h-1/3 w-60 lg:w-1/4 py-2 mr-5">
-                <img class="h-10 rounded-full" src="{{ asset('assets/' . $studentcertificate->image) }}"
-                    alt="studentcertificate">
+                @if (Str::startsWith($studentcertificate->image, 'http'))
+                    <img class="h-10 w-10 rounded-full" src="{{ $studentcertificate->image }}" alt="studentcertificate">
+                @else
+                    <img class="h-10 w-10 rounded-full" src="{{ asset('assets/' . $studentcertificate->image) }}" alt="studentcertificate">
+                @endif
                 <p class="uppercase text-center w-full py-2 border-b-2 border-gray-400">{{ $studentcertificate->name }}</p>
 
                 <div class="flex justify-between items-center px-2 mt-2">

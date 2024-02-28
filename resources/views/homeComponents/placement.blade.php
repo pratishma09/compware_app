@@ -38,7 +38,11 @@
             <div class="flex items-center flex-col gap-2 justify-center w-16 lg:w-48 mr-10 row-one rounded-lg">
                 @foreach ($placements->shuffle() as $placement)
                     <div class="shadow-xl rounded-lg bg-white">
-                        <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @if (Str::startsWith($placement->placement_image, 'http'))
+                            <img class="rounded-lg" src="{{ $placement->placement_image }}" />
+                        @else
+                            <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @endif
                         <p class="text-gray-500 text-xs text-center pb-3">{{ $placement->placement_name }}</p>
                     </div>
                 @endforeach
@@ -46,7 +50,11 @@
             <div class="flex items-center flex-col gap-2 justify-center w-16 lg:w-48 mr-10 row-two rounded-lg">
                 @foreach ($placements->shuffle() as $placement)
                     <div class="shadow-xl rounded-lg bg-white">
-                        <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @if (Str::startsWith($placement->placement_image, 'http'))
+                            <img class="rounded-lg" src="{{ $placement->placement_image }}" />
+                        @else
+                            <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @endif
                         <p class="text-gray-500 text-xs text-center pb-3">{{ $placement->placement_name }}</p>
                     </div>
                 @endforeach
@@ -55,7 +63,11 @@
             <div class="flex items-center flex-col gap-2 justify-center w-16 lg:w-48 mr-10 rounded-lg row-three">
                 @foreach ($placements->shuffle() as $placement)
                     <div class="shadow-xl rounded-lg bg-white">
-                        <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @if (Str::startsWith($placement->placement_image, 'http'))
+                            <img class="rounded-lg" src="{{ $placement->placement_image }}" />
+                        @else
+                            <img class="rounded-lg" src="assets/{{ $placement->placement_image }}" />
+                        @endif
                         <p class="text-gray-500 text-xs text-center pb-3">{{ $placement->placement_name }}</p>
                     </div>
                 @endforeach

@@ -1,5 +1,5 @@
     
-    <div class="bottom-0 left-0 flex flex-col items-center w-full bg-blue  text-white p-10">
+    <div class="bottom-0 left-0 flex flex-col items-center w-screen bg-blue text-white p-10">
         <div class="flex flex-col lg:flex-row justify-around mx-10">
             <div>
                 <img src="../static/footerlogo.png" class="mb-4 text-center w-36">

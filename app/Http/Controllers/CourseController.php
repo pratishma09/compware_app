@@ -62,20 +62,9 @@ class CourseController extends Controller
             $teams = Team::all();
             $coursecategories = Coursecategory::all();
             $courses=Course::all();
-            if($request->ajax()){
-                $categories = $request->input('categories');
-                if (!empty($categories)) {
-                    $courses=Course::all();
-                    $courses->whereHas('categories', function ($q) use ($categories) {
-                        $q->whereIn('id', $categories);
-                    });
-                    $courses=$courses->query();
-                    dd($courses);
-                }
-            }
             return view('courses.index')->with(compact('courses', 'coursecategories', 'teams'));
         } catch (Exception $e) {
-            dd($e);
+            
             return back()->with('error', 'Something went wrong!');
         }
         
@@ -241,17 +230,9 @@ class CourseController extends Controller
         if($search){
             $courses = Course::where('course_name', 'like', "%$search%")->get();
         }
-        if($request->ajax()){
-            $categories = $request->input('categories');
-            if (!empty($categories)) {
-                $courses=Course::all();
-                $courses->whereHas('categories', function ($q) use ($categories) {
-                    $q->whereIn('id', $categories);
-                });
-                $courses=$courses->query();
-            }
+        else{
+            $courses=Course::all();
         }
-        
         return view('courses.index', compact('courses', 'coursecategories', 'teams'));
     } catch (Exception $e) {
         return back()->with('error', 'Something went wrong!');

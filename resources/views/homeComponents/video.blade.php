@@ -1,11 +1,11 @@
-<div class="h-1/2 lg:h-screen w-screen relative text-white bg-black bg-opacity-60 pb-10 mt-16">
+<div class="lg:h-screen w-screen relative text-white bg-black bg-opacity-60 pb-20 mt-16">
     <video autoplay muted loop class="absolute inset-0 object-cover w-full h-full" style="z-index: -1;">
         <source src="{{ asset('static/website.mp4') }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <div class="flex flex-col justify-center items-center relative">
-        <p class="text-3xl pt-5 lg:pt-10">Explore Nepal's Leading</p>
+        <p class="text-3xl pt-5 lg:pt-32">Explore Nepal's Leading</p>
         <p class="text-3xl pt-3">Training Center</p>
         <p class="lg:w-2/5  text-center pt-10 mb-16">
             Welcome to Deerwalk Training Center, where we are dedicated to providing premiere IT and Technical skills to

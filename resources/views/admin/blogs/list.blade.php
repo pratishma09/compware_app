@@ -17,7 +17,13 @@
             @foreach($blogs as $blog)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $blog->id }}</td>
-                <td><img src="{{ asset('assets/' . $blog->blogs_image) }}" class="w-20" alt="{{ $blog->blogs_image }}"></td>
+                <td>
+                    @if(strpos($blog->blogs_image, 'http') === 0)
+                        <img src="{{ $blog->blogs_image }}" class="w-20" alt="{{ $blog->blogs_image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $blog->blogs_image) }}" class="w-20" alt="{{ $blog->blogs_image }}">
+                    @endif
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $blog->blogs_name }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">
                     @if(strlen($blog->blogs_desc) > 100)

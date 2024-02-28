@@ -16,7 +16,13 @@
             @foreach($clients as $client)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $client->id }}</td>
-                <td><img src="{{ asset('assets/' . $client->client_image) }}" class="w-20" alt="{{ $client->client_image }}"></td>
+                <td>
+                    @if(strpos($client->client_image, 'http') === 0)
+                        <img src="{{ $client->client_image }}" class="w-20" alt="{{ $client->client_name }}">
+                    @else
+                        <img src="{{ asset('assets/' . $client->client_image) }}" class="w-20" alt="{{ $client->client_name }}">
+                    @endif
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $client->client_name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div class="flex justify-around w-28">

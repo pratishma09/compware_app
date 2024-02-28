@@ -8,6 +8,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventgalleryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PasswordUpdateController;
 use App\Http\Controllers\PlacementController;
@@ -31,12 +32,12 @@ Route::get('/', function () {
     if (auth()->check()) {
         return redirect('/dashboard');
     } else {
-        return view('auth.login');
+        return redirect()->route('home.index');
     }
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.change'); // Adjust the view name as needed
+    return view('admin.change');
 })->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
@@ -124,21 +125,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/event/{id}/destroy', [EventController::class, 'destroy'])->name('event.destroy');
 });
 
-Route::get('/home', function () {
-    $courseController = new CourseController();
-    $clientController = new ClientController();
-    $placementController = new PlacementController();
-    $enrollController = new EnrollController();
-    $testimonialController = new TestimonialController();
-
-    $courses = $courseController->home();
-    $clients = $clientController->search();
-    $placements = $placementController->index();
-    $enrolls = $enrollController->index();
-    $testimonials = $testimonialController->index();
-
-    return view('home', compact('courses', 'clients', 'placements', 'enrolls', 'testimonials'));
-});
+Route::get('/home',[HomeController::class,'index'])->name('home.index');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{blogs_slug}', [BlogController::class, 'show'])->name('blog.show');

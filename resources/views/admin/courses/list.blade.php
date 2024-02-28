@@ -24,7 +24,11 @@
             @foreach($courses as $course)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $course->id }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $course->course_name }}</td>
+                <td class="px-6 py-4 whitespace-wrap max-w-xs">@if(strlen($course->course_name) > 100)
+                    {{ substr($course->course_name, 0, 100) }} ...
+                @else
+                    {{ $course->course_name }}
+                @endif</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $course->course_schedule }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">
                     @if(strlen($course->course_desc) > 100)
@@ -33,7 +37,13 @@
                         {{ $course->course_desc }}
                     @endif
                 </td>
-                <td><img src="{{ asset('assets/' . $course->course_logo) }}" class="w-20" alt="{{ $course->course_logo }}"></td>
+                <td>
+                    @if(strpos($course->course_logo, 'http') === 0)
+                        <img src="{{ $course->course_logo }}" class="w-20" alt="{{ $course->course_name }}">
+                    @else
+                        <img src="{{ asset('assets/' . $course->course_logo) }}" class="w-20" alt="{{ $course->course_name }}">
+                    @endif
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $course->course_fee }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $course->course_startdate }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $course->course_enddate }}</td>

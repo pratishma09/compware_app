@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('contact');
             $table->date('startdate');
             $table->date('enddate');
-            $table->string('duration');
+            $table->integer('duration');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->unsignedBigInteger('team_id');

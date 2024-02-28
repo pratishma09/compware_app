@@ -25,7 +25,7 @@
         </div>
         <div class="mb-4">
             <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
-            <input type="text" name="duration" id="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->duration ?? '' }}">
+            <input type="number" name="duration" id="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->duration ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="trainer_title" class="block text-sm font-medium text-gray-700">Trainer Title</label>
@@ -34,6 +34,10 @@
         <div class="mb-4">
             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->email ?? '' }}">
+        </div>
+        <div class="mb-4">
+            <label for="verificationId" class="block text-sm font-medium text-gray-700">Verification Id</label>
+            <input type="text" name="verificationId" id="verificationId" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->name ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="course_id" class="block text-sm font-medium text-gray-700">Course</label>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('blogs_author');
             $table->longText('blogs_desc');
             $table->string('blogs_image');
+            $table->date('blogs_date');
             $table->string('blogs_slug')->unique('blogs_slug');
             $table->timestamps();
         });

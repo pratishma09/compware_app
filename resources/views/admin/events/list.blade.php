@@ -19,9 +19,15 @@
             @foreach($events as $event)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $event->id }}</td>
-                <td><img src="{{ asset('assets/' . $event->event_image) }}" class="w-20" alt="{{ $event->event_image }}">
+                <td>
+                    @if(strpos($event->event_image, 'http') === 0)
+                        <img src="{{ $event->event_image }}" class="w-20" alt="{{ $event->event_name }}">
+                    @else
+                        <img src="{{ asset('assets/' . $event->event_image) }}" class="w-20" alt="{{ $event->event_name }}">
+                    @endif
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $event->event_name }}</td>
+
+                <td class="px-6 py-4 whitespace-wrap">{{ $event->event_name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $event->event_role }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $event->event_ep }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">

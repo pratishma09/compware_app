@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <div id="app">
+    <div id="w-screen">
         <main>
             @include('components.navbar')
             @include('homeComponents.video')
