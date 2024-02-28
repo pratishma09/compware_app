@@ -19,6 +19,11 @@
             </div>
 
             <div class="mb-4">
+                <label for="blogs_date" class="block font-medium text-gray-700">Date</label>
+                <input type="date" id="blogs_date" name="blogs_date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $blog->blogs_date ?? '' }}">
+            </div>
+
+            <div class="mb-4">
                 <label for="blogs_slug" class="block font-medium text-gray-700">Blog Slug</label>
                 <input type="text" id="blogs_slug" name="blogs_slug" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $blog->blogs_slug ?? '' }}">
             </div>

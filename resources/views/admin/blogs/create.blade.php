@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-    <div class="ml-10 mt-5">
+    <div class="ml-40 mt-5">
         <h1 class="2xl">Create a Blog Post</h1>
         
         <form method="post" action="{{ route('blog.store') }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
@@ -15,6 +15,11 @@
             <div class="mb-4">
                 <label for="blogs_name" class="block text-sm font-medium text-gray-700">Blog Name</label>
                 <input type="text" id="blogs_name" name="blogs_name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10">
+            </div>
+
+            <div class="mb-4">
+                <label for="blogs_date" class="block text-sm font-medium text-gray-700">Blog Date</label>
+                <input type="date" id="blogs_date" name="blogs_date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none h-10">
             </div>
 
             <div class="mb-4">

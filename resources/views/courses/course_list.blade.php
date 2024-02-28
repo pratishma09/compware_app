@@ -6,7 +6,11 @@
                 <div
                     class="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-md border border-gray-200 mt-4 w-100 mx-2">
                     <div class="flex flex-col items-center justify-center w-auto md:w-1/2">
-                        <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="{{ asset('assets/'. $course->course_logo) }}" />
+                        @if (filter_var($course->course_logo, FILTER_VALIDATE_URL))
+                            <img class="object-cover rounded pt-3 pb-3 h-32" src="{{ $course->course_logo }}" />
+                        @else
+                            <img class="object-cover rounded pt-3 pb-3 h-32" src="{{ asset('assets/' . $course->course_logo) }}" />
+                        @endif
                         <p class="text-blue">Schedule</p>
                         <p>Morning</p>
                         <p>Evening</p>

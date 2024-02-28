@@ -4,13 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
-
-    <!-- Scripts -->
-
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <script async src="https://www.google.com/recaptcha/api.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
@@ -19,7 +12,7 @@
 
 </head>
 
-<body class="roboto">
+<body class="roboto w-screen overflow-x-hidden">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
@@ -29,7 +22,7 @@
     <div id="app">
         <main class="flex">
             @include('admin.component.dashboard')
-            <div class="w-screen">
+            <div class="ml-48 lg:ml-40 w-5/6">
                 @include('admin.component.logout')
                 @yield('admin')
             </div>

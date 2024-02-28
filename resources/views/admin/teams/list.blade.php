@@ -19,7 +19,13 @@
             @foreach($teams as $team)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $team->id }}</td>
-                <td><img src="{{ asset('assets/' . $team->team_image) }}" class="w-20" alt="{{ $team->team_image }}"></td>
+                <td>
+                    @if(strpos($team->team_image, 'http') === 0)
+                        <img src="{{ $team->team_image }}" class="w-20" alt="{{ $team->team_image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $team->team_image) }}" class="w-20" alt="{{ $team->team_image }}">
+                    @endif
+                </td>                               
                 <td class="px-6 py-4 whitespace-nowrap">{{ $team->team_name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $team->team_post }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $team->team_role }}</td>

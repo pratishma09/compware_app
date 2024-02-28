@@ -14,6 +14,11 @@
             @foreach ($gallery->images as $image)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
+                    @if(strpos($image->image, 'http') === 0)
+                        <img src="{{ $image->image }}" class="w-20" alt="{{ $image->image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $image->image) }}" class="w-20" alt="{{ $image->image }}">
+                    @endif
                     <img src="{{ asset('assets/' . $image->image) }}" alt="{{ $image->image }}" class="h-20">
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">

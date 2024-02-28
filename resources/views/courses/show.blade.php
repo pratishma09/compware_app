@@ -9,7 +9,11 @@
         <div class="bg-white p-6 rounded shadow-md">
             <div v-for="card in cards" class="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-md border border-gray-200 mt-4 w-100 mx-2">
                 <div class="flex flex-col items-center justify-center w-auto md:w-1/2">
-                    <img class="object-cover rounded pt-3 pb-3 h-32" src="{{ asset('assets/' . $course->course_logo) }}" />
+                    @if (filter_var($course->course_logo, FILTER_VALIDATE_URL))
+                            <img class="object-cover rounded pt-3 pb-3 h-32" src="{{ $course->course_logo }}" />
+                        @else
+                            <img class="object-cover rounded pt-3 pb-3 h-32" src="{{ asset('assets/' . $course->course_logo) }}" />
+                        @endif
                 </div>
                 <div class="w-full py-4 px-6 text-gray-800 flex flex-col justify-between font-roboto">
                     <h3 class="font-medium text-2xl leading-tight">{{ $course->course_name }}</h3>
@@ -105,8 +109,14 @@
                     <div class="pl-6">
                         <a href="{{ route('course.show', $recentcourse->course_slug) }}">
                             <div class="h-48 w-auto">
-                        <img src="{{ asset('assets/' . $recentcourse->course_logo) }}" alt="{{ $recentcourse->course_name }}" class="mt-2 rounded-lg h-36 w-full object-cover object-center inset-0">
-                    </div>
+                                @php
+                                    $imageUrl = asset('assets/' . $recentcourse->course_logo);
+                                    if (filter_var($recentcourse->course_logo, FILTER_VALIDATE_URL) && (strpos($recentcourse->course_logo, 'http://') === 0 || strpos($recentcourse->course_logo, 'https://') === 0)) {
+                                        $imageUrl = $recentcourse->course_logo;
+                                    }
+                                @endphp
+                                <img src="{{ $imageUrl }}" alt="{{ $recentcourse->course_name }}" class="mt-2 rounded-lg h-36 w-full object-cover object-center inset-0">
+                            </div>
                         <p class="text-blue pt-2 pb-4 text-center">{{$recentcourse->course_name}}</p>
                         </a>
                     </div>

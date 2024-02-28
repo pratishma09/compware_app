@@ -1,4 +1,4 @@
-<div class="flex justify-between bg-blue mx-10 mt-5 py-5 rounded-lg px-4">
+<div class="flex justify-between bg-blue ml-28 mt-5 py-3 rounded-lg px-4 w-11/12">
     <p class="text-white text-md py-2 px-2">Dashboard</p>
     <div class="flex flex-end">
         <p class="text-white text-md py-2">Admin</p>

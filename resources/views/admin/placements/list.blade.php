@@ -16,7 +16,14 @@
             @foreach($placements as $placement)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $placement->id }}</td>
-                <td><img src="{{ asset('assets/' . $placement->placement_image) }}" class="w-20" alt="{{ $placement->placement_image }}"></td>
+
+                <td>
+                    @if(strpos($placement->placement_image, 'http') === 0)
+                        <img src="{{ $placement->placement_image }}" class="w-20" alt="{{ $placement->placement_image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $placement->placement_image) }}" class="w-20" alt="{{ $placement->placement_image }}">
+                    @endif
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $placement->placement_name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div class="flex justify-around w-28">

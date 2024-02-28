@@ -15,6 +15,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trainer Title</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verification Id</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
@@ -23,13 +24,21 @@
                 @foreach($studentcertificates as $certificate)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->id }}</td>
-                    <td><img src="{{ asset('assets/' . $certificate->image) }}" class="w-20" alt="{{ $certificate->image }}"></td>
+                    
+                    <td>
+                        @if(strpos($certificate->image, 'http') === 0)
+                        <img src="{{ $certificate->image }}" class="w-20" alt="{{ $certificate->name }}">
+                    @else
+                        <img src="{{ asset('assets/' . $certificate->image) }}" class="w-20" alt="{{ $certificate->name }}">
+                    @endif
+                </td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->course->course_name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->startdate }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->enddate }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->duration }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->trainer_title }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->verificationId }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->email }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div class="flex justify-around w-28">

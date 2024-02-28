@@ -7,10 +7,14 @@
                 $randomCourses = $courses->shuffle();
             @endphp
             @foreach($randomCourses as $course)
-            <div class=" hover:border-blue hover:border-2 mr-5 max-w-screen-xl min-w-max">
-                <a href="{{ route('course.show', [$course->course_slug]) }}">
-                    <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
-                    <p class="text-xl text-blue capitalize text-center">{{$course->course_name}}</p>
+            <div class="hover:border-blue hover:border-2 mr-5 max-w-screen-xl min-w-max">
+                <a href="{{ route('course.show', [$course->course_slug]) }}" class="w-60 flex flex-col">
+                    @if (Str::startsWith($course->course_logo, 'http'))
+                        <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="{{ $course->course_logo }}" />
+                    @else
+                        <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
+                    @endif
+                    <p class="text-sm text-blue capitalize text-center whitespace-normal break-words">{{$course->course_name}}</p>
                 </a>
             </div>
             @endforeach
@@ -20,10 +24,14 @@
                 $randomCourses = $courses->shuffle();
             @endphp
             @foreach($randomCourses as $course)
-            <div class=" hover:border-blue hover:border-2 mr-5 max-w-screen-xl min-w-max">
-                <a href="{{ route('course.show', [$course->course_slug]) }}">
-                    <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
-                    <p class="text-xl text-blue capitalize text-center">{{$course->course_name}}</p>
+            <div class="hover:border-blue hover:border-2 mr-5 max-w-screen-xl min-w-max">
+                <a href="{{ route('course.show', [$course->course_slug]) }}" class="w-60 flex flex-col">
+                    @if (Str::startsWith($course->course_logo, 'http'))
+                        <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="{{ $course->course_logo }}" />
+                    @else
+                        <img class="object-cover h-52 rounded pt-3 pb-3 w-60" src="assets/{{ $course->course_logo }}" />
+                    @endif
+                    <p class="text-sm text-blue capitalize text-center whitespace-normal break-words">{{$course->course_name}}</p>
                 </a>
             </div>
             @endforeach

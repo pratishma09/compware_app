@@ -19,10 +19,13 @@
                 
                 <td>
                     <a href="{{ route('admin.eventgalleries.images_edit', $gallery->id) }}">
-                        
                     
                     @if ($gallery->images->isNotEmpty())
-                    <img src="{{ asset('assets/'. $gallery->images[0]->image) }}" alt="{{ $gallery->images[0]->image }}" class="h-20">
+                    @if(strpos($gallery->images[0]->image, 'http') === 0)
+                        <img src="{{ $gallery->images[0]->image }}" class="w-20" alt="{{ $gallery->images[0]->image }}">
+                    @else
+                        <img src="{{ asset('assets/' . $gallery->images[0]->image) }}" class="w-20" alt="{{ $gallery->images[0]->image }}">
+                    @endif
                 @endif
             </a>
                 </td>

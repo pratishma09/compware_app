@@ -14,6 +14,7 @@ class Blog extends Model
         'blogs_author',
         'blogs_desc',
         'blogs_image',
+        'blogs_date'
       ];
       protected static function boot()
       {
