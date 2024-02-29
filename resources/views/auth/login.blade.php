@@ -14,7 +14,7 @@
                 <div class="border border-blue rounded mt-2 flex justify-around w-full">
                     <input type="password" name="password" id="password" class="py-3 w-full px-2 outline-none bg-gray-100"
                         placeholder="Password*">
-                    <i class="fa-solid fa-eye py-3 pl-16 lg:pt-4 pr-2 lg:pl-28" onclick="togglePassword('password')"></i>
+                    <i class="fa-solid fa-eye py-3 lg:pt-4 pr-2" onclick="togglePassword('password')"></i>
                     <i class="fa-solid fa-eye-slash py-3 lg:pt-4 pr-2" style="display:none"
                         onclick="togglePassword('password')"></i>
                 </div>
