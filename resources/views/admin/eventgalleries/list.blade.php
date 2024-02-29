@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="container mx-auto ml-28 w-11/12">
+<div class="container mx-auto">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.eventgalleries.create') }}">Add Event Gallery</a></button>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -33,7 +33,7 @@
                     <a href="{{ route('admin.eventgalleries.images_edit', $gallery->id) }}">{{ $gallery->gallery_name }}
                     </a></td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div class="flex justify-around w-28">
+                    <div class="flex justify-around w-28 pr-20">
                         <button class="bg-blue rounded py-1">
                             <a href="{{ route('admin.eventgalleries.edit', $gallery->id) }}" class="text-white px-5">Add</a>
                         </button>

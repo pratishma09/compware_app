@@ -1,9 +1,9 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="container mx-auto ml-28 w-11/12">
+<div class="container mx-auto">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.events.create') }}">Add Event</a></button>
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="max-w-screen divide-y divide-gray-200 overflow-x-auto">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -31,21 +31,21 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $event->event_role }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $event->event_ep }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">
-                    @if(strlen($event->event_desc) > 200)
-                    {{ substr($event->event_desc, 0, 200) }} ...
+                    @if(strlen($event->event_desc) > 100)
+                    {{ substr($event->event_desc, 0, 100) }} ...
                 @else
                     {{ $event->event_desc }}
                 @endif
             </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div class="flex justify-around w-28">
+                    <div class="flex justify-around pr-20">
                         <button class=" bg-blue rounded py-1">
                             <a href="{{ route('admin.events.edit', $event->id) }}" class="text-white px-5">Edit</a>
                         </button>
                         <form action="{{ route('event.destroy', $event->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-white bg-red-900 ml-3 py-1 px-2 rounded">Delete</button>
+                            <button type="submit" class="text-white bg-red-900 ml-3 py-1 px-2 rounded mr-20">Delete</button>
                         </form>
                     </div>
                 </td>

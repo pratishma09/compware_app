@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="mt-5">
     <h1 class="2xl">Create a Course Category</h1>
     
     <form method="post" action="{{route('coursecategory.store')}}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

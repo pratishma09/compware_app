@@ -1,4 +1,4 @@
-<div class="fixed w-40 lg:w-1/6 overflow-y-auto bg-blue lg:inset-0">
+<div class="fixed top-0 left-0 h-screen w-60 overflow-y-auto bg-blue lg:inset-0">
     <div class="flex items-center justify-center mt-8">
         <div>
             <span class="text-2xl font-semibold text-white">Dashboard</span>

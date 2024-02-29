@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="container mx-auto ml-28 w-11/12">
+<div class="container mx-auto">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.clients.create') }}">Add Client</a></button>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">

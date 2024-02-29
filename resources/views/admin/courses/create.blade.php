@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class=" mt-5">
     <button class="bg-blue text-medium text-white px-5 py-2 rounded-md shadow-md">Create Course</button>
     
     <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data" class="mt-5">

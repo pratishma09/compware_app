@@ -2,7 +2,7 @@
 @section('title', 'Edit Placement')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="mt-5">
     <h1 class="text-2xl">Edit Placement</h1>
     
     <form method="post" action="{{ route('placements.update', ['id' => $placements->id]) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

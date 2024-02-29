@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-24 mt-5">
+<div class="mt-5">
     <p class="2xl">Edit Testimonial</p>
     
     <form method="post" action="{{ route('admin.testimonials.edit', $testimonials->id) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

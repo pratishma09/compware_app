@@ -22,7 +22,7 @@
     <div id="app">
         <main class="flex">
             @include('admin.component.dashboard')
-            <div class="ml-48 lg:ml-40 w-5/6">
+            <div class="w-full ml-64">
                 @include('admin.component.logout')
                 @yield('admin')
             </div>

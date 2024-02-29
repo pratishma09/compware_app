@@ -1,9 +1,9 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="container mx-auto ml-20 w-11/12 lg:max-w-screen-lg">
+<div class="container mx-auto">
     <div class="overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="min-w-full divide-y divide-gray-200 overflow-x-auto">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -15,7 +15,7 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-white divide-y divide-gray-200 w-11/12">
             @foreach($enrolls as $enroll)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->id }}</td>
@@ -24,16 +24,16 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_phone }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_email }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_schedule }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->course->course_name }}</td>
+                <td class="px-6 py-4 whitespace-wrap">{{ $enroll->course->course_name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div class="flex justify-around w-28">
+                    <div class="flex justify-around">
                         {{-- <button class="bg-blue rounded py-1">
                             <a href="{{ route('admin.enroll.edit', $enrollment->id) }}" class="text-white px-5">Edit</a>
                         </button> --}}
                         <form action="{{ route('enrolls.destroy', $enroll->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-white bg-red-900 ml-3 py-1 px-2 rounded">Delete</button>
+                            <button type="submit" class="text-white bg-red-900 ml-3 py-1 px-2 rounded mr-20">Delete</button>
                         </form>
                     </div>
                 </td>

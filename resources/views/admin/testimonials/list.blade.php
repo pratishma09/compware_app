@@ -1,8 +1,8 @@
 @extends('admin.layout')
 @section('admin')
-<div class="container mx-auto ml-28 w-11/12">
+<div class="container mx-auto">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.testimonials.create') }}">Add Testimonial</a></button>
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="min-w-full divide-y divide-gray-200 overflow-x-auto">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -26,7 +26,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $testimonial->testimonial_name }}</td>
                 <td class="px-6 py-4 whitespace-wrap max-w-xs">{{ $testimonial->testimonial_desc }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div class="flex justify-around w-28">
+                    <div class="flex justify-around w-28 pr-20">
                         <button class=" bg-blue rounded py-1">
                             <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" class="text-white px-5">Edit</a>
                         </button>

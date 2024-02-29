@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-    <div class="container mx-auto ml-28 min-w-96 lg:max-w-screen-lg">
+    <div class="container mx-auto">
         <div class="overflow-x-auto">
             <table class="max-w-screen divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -31,7 +31,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->course->course_name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $certificate->team->team_name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <div class="flex justify-around w-28">
+                            <div class="flex justify-around w-28 pr-20">
                                 {{-- <button class="bg-blue rounded py-1">
                                     <a href="{{ route('admin.requestcertificates.edit', $certificate->id) }}" class="text-white px-5">Edit</a>
                                 </button> --}}
