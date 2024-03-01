@@ -9,7 +9,7 @@
         @method('PUT')
         
         <div class="mb-4">
-            <label for="event_image" class="block text-sm font-medium text-gray-700">Photo</label>
+            <label for="event_image" class="block text-sm font-medium text-gray-700">Photo:{{$event->event_image}}</label>
             <input type="file" id="event_image" name="event_image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-2 sm:text-sm outline-none" value="{{ $event->event_image ?? '' }}">
         </div>
         

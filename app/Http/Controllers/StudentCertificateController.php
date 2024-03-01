@@ -28,7 +28,7 @@ class StudentCertificateController extends Controller
         $studentcertificates = Studentcertificate::all();
         $courses = Course::all();
         $teams = Team::all();
-        return view('studentcertificates.index')->with(compact('studentcertificates', 'courses', 'teams'));
+        return view('user.studentcertificates.index')->with(compact('studentcertificates', 'courses', 'teams'));
     }
 
     /**
@@ -64,7 +64,7 @@ class StudentCertificateController extends Controller
             }
             $studentcertificate = Studentcertificate::create($data);
 
-            return redirect(route('admin.studentcertificates.list'))->with('success', 'StudentCertificate created successfully!');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'Student Certificate created successfully!');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
@@ -83,7 +83,7 @@ class StudentCertificateController extends Controller
         try {
             $studentcertificate = Studentcertificate::where('verificationid', $verificationId)->firstOrFail();
             $this->generatePDF($studentcertificate);
-            return view('studentcertificates.show', ['studentcertificate' => $studentcertificate]);
+            return view('user.studentcertificates.show', ['studentcertificate' => $studentcertificate]);
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
@@ -133,7 +133,7 @@ class StudentCertificateController extends Controller
                 $request->file('image')->move(public_path('assets'), $filename);
                 $studentcertificate->update(['image' => $filename]);
             }
-            return redirect(route('admin.studentcertificates.list'))->with('success', 'studentcertificate updated successfully');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'Student Certificate updated successfully');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
@@ -153,7 +153,7 @@ class StudentCertificateController extends Controller
         try {
             $studentcertificate = Studentcertificate::where('id', $id)->first();
             $studentcertificate->delete();
-            return redirect(route('admin.studentcertificates.list'))->with('success', 'Studentcertificates deleted successfully');
+            return redirect(route('admin.studentcertificates.list'))->with('success', 'Student Certificate deleted successfully');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');
         }

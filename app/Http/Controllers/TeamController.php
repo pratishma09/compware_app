@@ -18,7 +18,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams=Team::all();
-        return view('teams.index')->with(compact('teams'));
+        return view('user.teams.index')->with(compact('teams'));
     }
 
     /**
@@ -103,15 +103,10 @@ class TeamController extends Controller
         try {
             $team = Team::findOrFail($id);
             $team->update($request->all());
-    
-            // Check if a new image is provided
             if ($request->hasFile('team_image')) {
-                // Delete the existing image if it exists
                 if ($team->team_image && file_exists(public_path('assets/' . $team->team_image))) {
                     unlink(public_path('assets/' . $team->team_image));
                 }
-    
-                // Upload and save the new image
                 $filenameI = 'team_image_' . uniqid() . '_' . time() . '.' . $request->file('team_image')->getClientOriginalExtension();
                 $request->file('team_image')->move(public_path('assets'), $filenameI);
                 $team->update(['team_image' => $filenameI]);
@@ -124,7 +119,6 @@ class TeamController extends Controller
                 $request->file('team_signature')->move(public_path('assets'), $filenameS);            
             $team->update(['team_signature' => $filenameS]);
             }
-            // Update other fields
             return redirect(route('admin.teams.list'))->with('success', 'Team updated successfully');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');

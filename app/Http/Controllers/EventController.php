@@ -21,7 +21,7 @@ class EventController extends Controller
     {
         //
         $events = Event::all();
-        return view('events.index')->with(compact('events'));
+        return view('user.events.index')->with(compact('events'));
     }
 
     /**
@@ -100,14 +100,11 @@ class EventController extends Controller
             $event = Event::findOrFail($id);
             $event->update($request->all());
 
-            // Check if a new image is provided
             if ($request->hasFile('event_image')) {
-                // Delete the existing image if it exists
                 if ($event->blogs_image && file_exists(public_path('assets/' . $event->event_image))) {
                     unlink(public_path('assets/' . $event->event_image));
                 }
 
-                // Upload and save the new image
                 $filename = 'event_image_' . uniqid() . '_' .time() . '.' . $request->file('event_image')->getClientOriginalExtension();
                 $request->file('event_image')->move(public_path('assets'), $filename);
                 $event->update(['event_image' => $filename]);

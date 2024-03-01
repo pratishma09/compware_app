@@ -18,12 +18,12 @@
         </div>
         
         <div class="mb-4">
-            <label for="course_logo" class="block text-sm font-medium text-gray-700">Logo</label>
+            <label for="course_logo" class="block text-sm font-medium text-gray-700">Logo: {{$course->course_logo}}</label>
             <input type="file" id="course_logo" name="course_logo" class="mt-1 block w-full border border-gray-300 px-2 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         
         <div class="mb-4">
-            <label for="course_pdf" class="block text-sm font-medium text-gray-700">PDF</label>
+            <label for="course_pdf" class="block text-sm font-medium text-gray-700">PDF: {{$course->course_pdf}}</label>
             <input type="file" id="course_pdf" name="course_pdf" class="mt-1 block w-full border border-gray-300 px-2 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         

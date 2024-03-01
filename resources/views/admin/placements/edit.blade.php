@@ -10,7 +10,7 @@
         @method('put')
 
         <div class="mb-4">
-            <label for="placement_image" class="block text-sm font-medium text-gray-700">Photo</label>
+            <label for="placement_image" class="block text-sm font-medium text-gray-700">Photo: {{$placements->placement_image}} </label>
             <input type="file" id="placement_image" name="placement_image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none">
         </div>
 

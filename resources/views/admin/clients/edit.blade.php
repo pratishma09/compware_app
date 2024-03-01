@@ -8,7 +8,7 @@
         @csrf
         @method('PUT')
         <div class="mb-4">
-            <label for="client_image" class="block text-sm font-medium text-gray-700">Photo</label>
+            <label for="client_image" class="block text-sm font-medium text-gray-700">Photo: {{$clients->client_image}}</label>
             <input type="file" name="client_image" id="client_image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none" value="{{ $clients->client_image ?? '' }}">
         </div>
         <div class="mb-4">

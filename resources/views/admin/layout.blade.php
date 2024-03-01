@@ -4,33 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script async src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
     <title>Dashboard</title>
     @vite('resources/css/app.css')
-
 </head>
 
-<body class="roboto w-screen overflow-x-hidden">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
-        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-    <div id="app">
-        <main class="flex">
-            @include('admin.component.dashboard')
-            <div class="w-full ml-64">
-                @include('admin.component.logout')
-                @yield('admin')
-            </div>
-        </main>
+<body class="roboto overflow-y-hidden">
+    <div class="flex">
+        @include('admin.component.dashboard')
+        <div class="flex-1 mx-5">
+            @include('admin.component.logout')
+            @yield('admin')
+        </div>
     </div>
     @include('sweetalert::alert')
-    @yield('scripts')
-    @stack('scripts')
 </body>
+
+<script>
+    function submitLogoutForm() {
+        document.getElementById('logoutForm').submit();
+    }
+</script>
 
 </html>

@@ -36,7 +36,7 @@ class StudentcertificateRequest extends FormRequest
             ],
             'startdate'=>'required|date',
             'enddate'=>'required|date|after:startdate',
-            'duration'=>'required|string',
+            'duration'=>'required|integer',
             'trainer_title'=>'required|string',
             'course_id' => 'required|exists:courses,id',
             'team_id' => 'required|exists:teams,id'
