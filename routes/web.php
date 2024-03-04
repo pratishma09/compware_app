@@ -36,11 +36,14 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.change');
-})->middleware('auth');
+// Route::get('/dashboard', function () {
+//     return view('admin.change');
+// })->middleware('auth');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','prevent-back-history'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.change');
+    })->name('admin.change');
     Route::get('/admin/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('custom.logout');
     Route::get('/password/update', [PasswordUpdateController::class, 'show'])->name('password.update');

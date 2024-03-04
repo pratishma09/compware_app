@@ -188,7 +188,7 @@ class CourseController extends Controller
                 $request->file('course_pdf')->move(public_path('assets'), $filenameS);
                 $course->update(['course_pdf' => $filenameS]);
             }
-            return redirect(route('admin.courses.list'))->with('success', 'Courses updated successfully');
+            return redirect(route('admin.courses.list'))->with('success', 'Course updated successfully');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Database error!');
         } catch (Exception $e) {
@@ -208,7 +208,7 @@ class CourseController extends Controller
         try {
             $course = Course::where('id', $id)->first();
             $course->delete();
-            return redirect(route('admin.courses.list'))->with('success', 'Courses deleted successfully');
+            return redirect(route('admin.courses.list'))->with('success', 'Course deleted successfully');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');
         }
