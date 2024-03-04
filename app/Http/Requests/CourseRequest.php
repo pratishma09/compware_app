@@ -46,4 +46,10 @@ class CourseRequest extends FormRequest
             'coursecategory_id' => 'required|exists:coursecategories,id',
         ];
     }
+    public function messages()
+    {
+        return [
+            'course_desc.required' => 'The course description field is required.',
+        ];
+    }
 }
