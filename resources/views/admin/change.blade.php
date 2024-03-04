@@ -1,8 +1,8 @@
 @extends('admin.layout')
 
 @section('admin')
-    <div class="w-full my-10">
-        <div class="lg:w-1/3 m-10 lg:m-auto my-10 py-10 shadow-gray shadow-xl px-10">
+<div class="w-full mt-20">
+        <div class="lg:w-1/3 w-72 m-10 lg:m-auto my-10 py-10 shadow-gray shadow-xl px-10">
             <p class="text-center text-2xl text-blue mb-5">Change password</p>
 
             @if(session('status') == 'password-updated')

@@ -22,7 +22,7 @@ class ContactController extends Controller
         //
         $contacts=Contact::all();
         $courses =Course::all();
-        return view('contacts.index')->with(compact('contacts', 'courses'));
+        return view('user.contacts.index')->with(compact('contacts', 'courses'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ContactController extends Controller
         //
         $contacts=Contact::all();
         $courses =Course::all();
-        return view('contacts.create')->with(compact('contacts', 'courses'));
+        return view('user.contacts.create')->with(compact('contacts', 'courses'));
     }
 
     /**
@@ -51,7 +51,7 @@ class ContactController extends Controller
             $data=$request->validated();
             $contact = Contact::create($data);
 
-            return redirect(route('contact.create'))->with('success', 'Contact made successfully!');
+            return redirect(route('user.contact.create'))->with('success', 'Contact made successfully!');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Database error!');

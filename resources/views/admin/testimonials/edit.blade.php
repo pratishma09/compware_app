@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-24 mt-5">
+<div class="mt-5">
     <p class="2xl">Edit Testimonial</p>
     
     <form method="post" action="{{ route('admin.testimonials.edit', $testimonials->id) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
@@ -28,7 +28,7 @@
         </div>
         
         <div class="mb-4">
-            <label for="testimonial_image" class="block text-sm font-medium text-gray-700">Photo</label>
+            <label for="testimonial_image" class="block text-sm font-medium text-gray-700">Photo: {{$testimonials->testimonial_image}}</label>
             
             <input type="file" id="testimonial_image" name="testimonial_image" class="mt-1 block w-full border border-gray-300 px-2 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             

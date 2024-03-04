@@ -24,7 +24,7 @@ class RequestCertificateController extends Controller
         $requestcertificates = Requestcertificate::all();
         $courses = Course::all();
         $teams = Team::all();
-        return view('requestcertificates.index')->with(compact('requestcertificates','courses','teams'));
+        return view('user.requestcertificates.index')->with(compact('requestcertificates','courses','teams'));
     }
 
     /**
@@ -38,7 +38,7 @@ class RequestCertificateController extends Controller
         $requestcertificates = Requestcertificate::all();
         $courses = Course::all();
         $teams = Team::all();
-        return view('requestcertificates.create')->with(compact('requestcertificates','courses','teams'));
+        return view('user.requestcertificates.create')->with(compact('requestcertificates','courses','teams'));
     }
 
     /**
@@ -87,7 +87,7 @@ class RequestCertificateController extends Controller
         $requestcertificates=Requestcertificate::where('id', $id)->first();
         $courses=Course::all();
         $teams=Team::all();
-        return view('requestcertificates.edit')->with(compact('requestcertificates', 'courses','teams'));
+        return view('user.requestcertificates.edit')->with(compact('requestcertificates', 'courses','teams'));
     }
 
     /**

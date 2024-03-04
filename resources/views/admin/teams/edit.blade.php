@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="mt-5">
     <h1 class="2xl">Edit the Team Post</h1>
     
     <form method="post" action="update" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
@@ -9,12 +9,12 @@
         @method('put')
 
         <div class="mb-4">
-            <label for="team_image" class="block text-sm font-medium text-gray-700">Photo</label>
+            <label for="team_image" class="block text-sm font-medium text-gray-700">Photo: {{$team->team_image}}</label>
             <input type="file" id="team_image" name="team_image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none" value="{{ $team->team_image ?? '' }}">
         </div>
 
         <div class="mb-4">
-            <label for="team_signature" class="block text-sm font-medium text-gray-700">Signature</label>
+            <label for="team_signature" class="block text-sm font-medium text-gray-700">Signature: {{$team->team_signature}}</label>
             <input type="file" id="team_signature" name="team_signature" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 sm:text-sm outline-none" value="{{ $team->team_signature ?? '' }}">
         </div>
 

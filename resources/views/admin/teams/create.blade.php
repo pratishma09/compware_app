@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="mt-5">
     <p class="2xl">Create a Team Post</p>
     
     <form method="post" action="{{ route('team.store') }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

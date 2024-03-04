@@ -21,7 +21,7 @@ class CourseCategoryController extends Controller
     {
         //
         $coursecategories=Coursecategory::all();
-        return view('coursecategories.index')->with(compact('coursecategories'));
+        return view('user.coursecategories.index')->with(compact('coursecategories'));
     }
 
     /**

@@ -14,7 +14,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::paginate(1);
-        return view('blogs.index')->with(compact('blogs'));
+        return view('user.blogs.index')->with(compact('blogs'));
     }
 
     public function create()
@@ -33,12 +33,11 @@ class BlogController extends Controller
                 $request->file('blogs_image')->move(public_path('assets'), $filename);
                 $data['blogs_image'] = $filename;
             }
-
-
             $blog = Blog::create($data);
 
             return redirect(route('admin.blogs.list'))->with('success', 'Blog created successfully!');
         } catch (Exception $e) {
+            dd($e);
             return back()->with('error', 'Something went wrong!');
         }
     }
@@ -55,12 +54,11 @@ class BlogController extends Controller
         $blogs = Blog::latest()->take(3)->get();
 
         try {
-            return view('blogs.show', ['blog' => $blog, 'blogs' => $blogs]);
+            return view('user.blogs.show', ['blog' => $blog, 'blogs' => $blogs]);
         } catch (ModelNotFoundException $e) {
 
             return back()->with('error', 'Database error!');
         } catch (Exception $e) {
-            // Handle other exceptions
             return back()->with('error', 'Something went wrong!');
         }
     }

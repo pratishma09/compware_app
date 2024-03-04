@@ -33,7 +33,7 @@ class RequestCertificateRequest extends FormRequest
             'startdate'=>'required|date',
             'enddate'=>'required|date|after:startdate',
             'contact'=>'required|string',
-            'duration'=>'required|string',
+            'duration'=>'required|integer',
             'course_id' => 'required|exists:courses,id',
             'team_id' => 'required|exists:teams,id'
         ];

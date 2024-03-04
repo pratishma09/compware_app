@@ -20,7 +20,7 @@ class ClientController extends Controller
     {
         //
         $clients=Client::all();
-        return view('clients.index')->with(compact('clients'));
+        return view('user.clients.index')->with(compact('clients'));
     }
 
     /**
@@ -100,14 +100,10 @@ class ClientController extends Controller
             $client = Client::findOrFail($id);
             $client->update($request->all());
 
-            // Check if a new image is provided
             if ($request->hasFile('client_image')) {
-                // Delete the existing image if it exists
                 if ($client->client_image && file_exists(public_path('assets/' . $client->client_image))) {
                     unlink(public_path('assets/' . $client->client_image));
                 }
-
-                // Upload and save the new image
                 $filename = 'client_image_'.uniqid().'_'.time() . '.' . $request->file('client_image')->getClientOriginalExtension();
                 $request->file('client_image')->move(public_path('assets'), $filename);
                 $client->update(['client_image' => $filename]);

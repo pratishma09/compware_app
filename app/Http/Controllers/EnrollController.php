@@ -23,7 +23,7 @@ class EnrollController extends Controller
         //
         $enrolls = Enroll::all();
         $courses = Course::all();
-        return view('enrolls.index', compact('enrolls','courses'));
+        return view('user.enrolls.index', compact('enrolls','courses'));
     }
 
     /**
@@ -36,7 +36,7 @@ class EnrollController extends Controller
         //
         $enrolls = Enroll::all();
         $courses = Course::all();
-        return view('enrolls.create')->with(compact('enrolls','courses'));
+        return view('user.enrolls.create')->with(compact('enrolls','courses'));
     }
 
     /**
@@ -51,7 +51,7 @@ class EnrollController extends Controller
         try{
             $data=$request->validated();
             $enroll = Enroll::create($data);
-            return redirect(route('course.index'))->with('success', 'Enrolled successfully!');
+            return redirect(route('user.course.index'))->with('success', 'Enrolled successfully!');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Not found!');
@@ -84,7 +84,7 @@ class EnrollController extends Controller
         //
         $enrolls=Enroll::where('id',$id)->first();
         $courses=Course::all();
-        return view('enrolls.edit')->with(compact('enrolls','courses'));
+        return view('user.enrolls.edit')->with(compact('enrolls','courses'));
     }
 
     /**

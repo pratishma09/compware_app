@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="mt-5">
     <h1 class="2xl">Edit the Course Category</h1>
     
     <form method="post" action="{{ route('coursecategory.update', ['id' => $coursecategories->id]) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

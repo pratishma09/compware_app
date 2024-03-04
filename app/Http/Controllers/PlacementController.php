@@ -100,14 +100,11 @@ class PlacementController extends Controller
             $placement = Placement::findOrFail($id);
             $placement->update($request->all());
 
-            // Check if a new image is provided
             if ($request->hasFile('placement_image')) {
-                // Delete the existing image if it exists
                 if ($placement->placement_image && file_exists(public_path('assets/' . $placement->placement_image))) {
                     unlink(public_path('assets/' . $placement->placement_image));
                 }
 
-                // Upload and save the new image
                 $filename = 'placement_image_'.uniqid().'_'.time() . '.' . $request->file('placement_image')->getClientOriginalExtension();
                 $request->file('placement_image')->move(public_path('assets'), $filename);
                 $placement->update(['placement_image' => $filename]);

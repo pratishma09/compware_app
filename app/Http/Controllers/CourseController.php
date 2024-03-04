@@ -62,7 +62,7 @@ class CourseController extends Controller
             $teams = Team::all();
             $coursecategories = Coursecategory::all();
             $courses=Course::all();
-            return view('courses.index')->with(compact('courses', 'coursecategories', 'teams'));
+            return view('user.courses.index')->with(compact('courses', 'coursecategories', 'teams'));
         } catch (Exception $e) {
             
             return back()->with('error', 'Something went wrong!');
@@ -128,7 +128,7 @@ class CourseController extends Controller
         $course = Course::where('course_slug', $slug)->firstOrFail();
         $courses = Course::latest()->take(3)->get();
         try {
-            return view('courses.show', ['courses' => $courses, 'course' => $course])->with(compact('course', 'courses'));
+            return view('user.courses.show', ['courses' => $courses, 'course' => $course])->with(compact('course', 'courses'));
         } catch (ModelNotFoundException $e) {
 
             return back()->with('error', 'Not found!');
@@ -233,7 +233,7 @@ class CourseController extends Controller
         else{
             $courses=Course::all();
         }
-        return view('courses.index', compact('courses', 'coursecategories', 'teams'));
+        return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
     } catch (Exception $e) {
         return back()->with('error', 'Something went wrong!');
     }
@@ -254,7 +254,7 @@ public function coursecategories(Request $request){
             });
         }
         $courses = $courses->get();
-        return view('courses.index', compact('courses', 'coursecategories', 'teams'));
+        return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
     } catch (Exception $e) {
         dd($e);
         return back()->with('error', 'Something went wrong!');

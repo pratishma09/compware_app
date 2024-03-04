@@ -14,6 +14,7 @@ class BlogRequest extends FormRequest
      */
     public function authorize()
     {
+        // Check if a token is available
         return true;
     }
 
@@ -22,14 +23,18 @@ class BlogRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(): array
     {
         $id = $this->route('id');
         return [
-            'blogs_name'=>['required','string',Rule::unique('blogs', 'blogs_name')->ignore($id, 'id'),
-        ],
-            'blogs_desc'=>'required',
-            'blogs_author'=>'required',
+            'blogs_name' => [
+                'required',
+                'string',
+                Rule::unique('blogs', 'blogs_name')->ignore($id, 'id'),
+            ],
+            'blogs_date'=>'required',
+            'blogs_desc' => 'required',
+            'blogs_author' => 'required',
             'blogs_image' => [
                 $this->isMethod('post') ? 'required' : 'sometimes',
                 'mimes:jpg,jpeg,png',
