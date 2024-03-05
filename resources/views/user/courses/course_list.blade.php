@@ -32,11 +32,10 @@
                         </div>
                     </div>
                 </div>
-            </div><!--/ card-->
+            </div>
             <div id="popups-{{ $course->id }}"
                 class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
                 <div class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md h-4/5 overflow-y-scroll relative">
-                    <!-- Close Button Icon using Blade UI Kit's x-icon component -->
 
                     <button type="button"
                         class="text-blue hover:underline cursor-pointer absolute top-2 right-2 close-popup-btn"
@@ -121,7 +120,7 @@
                 const popupId = button.getAttribute('data-popups-id');
                 const popup = document.getElementById(`popups-${popupId}`);
                 openPopupId = popupId;
-                document.body.style.overflow = 'hidden'; // Disable scrolling on the body
+                document.body.style.overflow = 'hidden'; 
                 popup.classList.remove('hidden');
             });
         });
@@ -132,7 +131,6 @@
             });
         });
 
-        // Close the popup when clicking outside of it
         document.addEventListener('click', (event) => {
             if (event.target.classList.contains('popup-overlay') && openPopupId !== null) {
                 closePopup();
@@ -143,22 +141,16 @@
             if (openPopupId !== null) {
                 const popup = document.getElementById(`popups-${openPopupId}`);
                 openPopupId = null;
-                document.body.style.overflow = ''; // Enable scrolling on the body
+                document.body.style.overflow = '';
                 popup.classList.add('hidden');
             }
         }
 
-        // Add this block to handle form submission
         const enrollForms = document.querySelectorAll('.enroll-form');
 
         enrollForms.forEach(form => {
             form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                // Handle the enrollment process as needed
-                // You can use AJAX to submit the form data if required
-
-                // Close the popup after enrollment
+                event.preventDefault(); 
                 closePopup();
             });
         });

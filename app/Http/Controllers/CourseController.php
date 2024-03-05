@@ -261,8 +261,6 @@ public function coursecategories(Request $request){
     }
 }
 
-
-
     public function adminShow()
     {
         $courses = Course::all();

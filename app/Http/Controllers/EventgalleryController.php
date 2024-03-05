@@ -38,7 +38,7 @@ class EventgalleryController extends Controller
 
     public function create()
     {
-        return view('admin.eventgalleries.create')->with('success', 'Eventgallery created successfully');
+        return view('admin.eventgalleries.create')->with('success', 'Event Gallery created successfully');
     }
 
     /**
@@ -64,7 +64,7 @@ class EventgalleryController extends Controller
                     ]);
                 }
             }
-            return redirect(route('admin.eventgalleries.list'))->with('success', 'Eventgallery created successfully!');
+            return redirect(route('admin.eventgalleries.list'))->with('success', 'Event Gallery created successfully!');
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Eventgallery not found'], 404);
         } catch (Exception $e) {
@@ -78,7 +78,7 @@ class EventgalleryController extends Controller
             $images = $eventgallery->images;
             return view('user.eventgalleries.images', compact('eventgallery', 'images'));
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Eventgallery not found'], 404);
+            return response()->json(['error' => 'Event Gallery not found'], 404);
         } catch (Exception $e) {
             return response()->json(['error' => 'Internal server error'], 500);
         }
@@ -96,7 +96,7 @@ class EventgalleryController extends Controller
             $eventgallery = Eventgallery::findOrFail($id);
             return view('admin.eventgalleries.edit', compact('eventgallery'));
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Eventgallery not found'], 404);
+            return response()->json(['error' => 'Event Gallery not found'], 404);
         } catch (Exception $e) {
             return response()->json(['error' => 'Internal server error'], 500);
         }
@@ -130,7 +130,7 @@ class EventgalleryController extends Controller
                 }
             }
 
-            return redirect(route('admin.eventgalleries.list'))->with('success', 'Eventgallery updated successfully!');
+            return redirect(route('admin.eventgalleries.list'))->with('success', 'Event Gallery updated successfully!');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
@@ -183,10 +183,11 @@ class EventgalleryController extends Controller
                 $image->delete();
             }
             $eventgallery->delete();
-            return redirect(route('admin.eventgallery.list'))->with('success', 'Eventgallery deleted successfully!');
+            return redirect(route('admin.eventgalleries.list'))->with('success', 'Event Gallery deleted successfully!');
         } catch (ModelNotFoundException $e) {
             return back()->with('error', 'Not found!');
         } catch (Exception $e) {
+            dd($e);
             return back()->with('error', 'Something went wrong!');
         }
     }

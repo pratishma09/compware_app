@@ -18,15 +18,16 @@
                     </div>
                 </form>
             </div>
-            <div class="flex items-center justify-center">
-                <select class="js-example-basic-multiple w-96 " multiple="multiple" data-placeholder="Select category">
+            <div class="flex items-center justify-center" id="categoryFilter">
+                <select class="js-example-basic-single w-96" data-placeholder="Select category">
+                    <option selected disabled>Select category</option>
                     @foreach ($coursecategories as $coursecategory)
                         <option value="{{ $coursecategory->id }}">{{ $coursecategory->coursecategory_name }}</option>
                     @endforeach
                 </select>
             </div>
             <div id="courseList">
-                @include('courses.course_list')
+                @include('user.courses.course_list')
             </div>
         </div>
     </div>
