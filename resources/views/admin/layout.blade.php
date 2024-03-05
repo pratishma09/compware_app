@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="roboto overflow-y-hidden">
+<body class="roboto">
     <div class="flex">
         @include('admin.component.dashboard')
         <div class="flex-1 mx-5">
