@@ -13,35 +13,35 @@
         </div>
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Student Name</label>
-            <input type="text" name="name" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->name ?? '' }}">
+            <input type="text" name="name" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->name ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="startdate" class="block text-sm font-medium text-gray-700">Start Date</label>
-            <input type="date" name="startdate" id="startdate" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->startdate ?? '' }}">
+            <input type="date" name="startdate" id="startdate" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->startdate ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="enddate" class="block text-sm font-medium text-gray-700">End Date</label>
-            <input type="date" name="enddate" id="enddate" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->enddate ?? '' }}">
+            <input type="date" name="enddate" id="enddate" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->enddate ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
-            <input type="number" name="duration" id="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->duration ?? '' }}">
+            <input type="number" name="duration" id="duration" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->duration ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="trainer_title" class="block text-sm font-medium text-gray-700">Trainer Title</label>
-            <input type="text" name="trainer_title" id="trainer_title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->trainer_title ?? '' }}">
+            <input type="text" name="trainer_title" id="trainer_title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->trainer_title ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->email ?? '' }}">
+            <input type="email" name="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->email ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="verificationId" class="block text-sm font-medium text-gray-700">Verification Id</label>
-            <input type="text" name="verificationId" id="verificationId" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10" value="{{ $studentcertificates->verificationId ?? '' }}">
+            <input type="text" name="verificationId" id="verificationId" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2" value="{{ $studentcertificates->verificationId ?? '' }}">
         </div>
         <div class="mb-4">
             <label for="course_id" class="block text-sm font-medium text-gray-700">Course</label>
-            <select name="course_id" id="course_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10">
+            <select name="course_id" id="course_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2">
                 @foreach ($courses as $course)
                 <option value="{{ $course->id }}" {{ $studentcertificates->course_id == $course->id ? 'selected' : '' }}>{{ $course->course_name }}</option>
                 @endforeach
@@ -49,7 +49,7 @@
         </div>
         <div class="mb-4">
             <label for="team_id" class="block text-sm font-medium text-gray-700">Team</label>
-            <select name="team_id" id="team_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10">
+            <select name="team_id" id="team_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none h-10 px-2">
                 @foreach ($teams as $team)
                 <option value="{{ $team->id }}" {{ $studentcertificates->team_id == $team->id ? 'selected' : '' }}>{{ $team->team_name }}</option>
                 @endforeach

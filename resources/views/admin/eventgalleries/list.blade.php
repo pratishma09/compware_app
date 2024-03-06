@@ -32,7 +32,7 @@
                         <a href="{{ route('admin.eventgalleries.images_edit', $gallery->id) }}">{{ $gallery->gallery_name }}</a>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div class="flex justify-around">
+                        <div class="flex justify-around w-28">
                             <button class="bg-blue rounded py-1">
                                 <a href="{{ route('admin.eventgalleries.edit', $gallery->id) }}" class="text-white px-5">Add</a>
                             </button>

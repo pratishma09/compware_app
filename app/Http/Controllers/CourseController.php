@@ -125,10 +125,11 @@ class CourseController extends Controller
     public function show($slug)
     {
         //
-        $course = Course::where('course_slug', $slug)->firstOrFail();
-        $courses = Course::latest()->take(3)->get();
+        $courses=Course::all();
+        $coursess = Course::where('course_slug', $slug)->firstOrFail();
+        $course = Course::latest()->take(3)->get();
         try {
-            return view('user.courses.show', ['courses' => $courses, 'course' => $course])->with(compact('course', 'courses'));
+            return view('user.courses.show', ['courses' => $courses, 'coursess' => $coursess, 'course'=>$course])->with(compact('course', 'courses','coursess'));
         } catch (ModelNotFoundException $e) {
 
             return back()->with('error', 'Not found!');
