@@ -54,12 +54,13 @@ class RequestCertificateController extends Controller
             
             $data=$request->validated();
             $requestcertificate = Requestcertificate::create($data);
-            return redirect(route('home'))->with('success', 'Requested successfully!');
+            return redirect(route('home.index'))->with('success', 'Requested Successfully!');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
+            dd($e);
             return back()->with('error', 'Something went wrong!');
         }
     }

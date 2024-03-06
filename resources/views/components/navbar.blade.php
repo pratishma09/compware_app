@@ -346,7 +346,7 @@
 
                 <div class="mt-4">
                     <label for="duration" class="block text-gray-700 text-sm font-bold mb-2">Duration:</label>
-                    <input type="text" name="duration" id="duration"
+                    <input type="number" name="duration" id="duration"
                         class="border border-blue rounded w-full py-2 px-3">
                 </div>
 
@@ -357,13 +357,13 @@
                 </div>
 
                 <div class="mt-4">
-                    <label for="startdate" class="block text-gray-700 text-sm font-bold mb-2">Startdate:</label>
+                    <label for="startdate" class="block text-gray-700 text-sm font-bold mb-2">Start Date:</label>
                     <input type="date" name="startdate" id="startdate"
                         class="border border-blue rounded w-full py-2 px-3">
                 </div>
 
                 <div class="mt-4">
-                    <label for="enddate" class="block text-gray-700 text-sm font-bold mb-2">Enddate:</label>
+                    <label for="enddate" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
                     <input type="date" name="enddate" id="enddate"
                         class="border border-blue rounded w-full py-2 px-3">
                 </div>

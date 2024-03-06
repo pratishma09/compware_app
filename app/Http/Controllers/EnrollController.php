@@ -51,13 +51,13 @@ class EnrollController extends Controller
         try{
             $data=$request->validated();
             $enroll = Enroll::create($data);
-            return redirect(route('user.course.index'))->with('success', 'Enrolled successfully!');
+            return redirect(route('course.index'))->with('success', 'Enrolled successfully!');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Not found!');
         }
         catch(Exception $e){
-            return back()->with('error', 'Something went wrong!');
+            return back()->with('error', $e->getMessage());
         }
         
     }
