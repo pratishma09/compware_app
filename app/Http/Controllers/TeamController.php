@@ -7,6 +7,7 @@ use App\Models\Team;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 class TeamController extends Controller
 {
@@ -139,14 +140,22 @@ class TeamController extends Controller
         $team->delete();
         return redirect(route('admin.teams.list'))->with('success','Team deleted successfully');
         }
+        catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1451) {
+                return back()->with('error', 'Cannot delete the team because it has related records.');
+            }
+            return back()->with('error', 'Something went wrong!');
+        }
         catch(Exception $e){
             return back()->with('error', 'Something went wrong!');
         }
     }
 
     public function adminShow()
-    {
-        $teams=Team::all();
-        return view('admin.teams.list')->with(compact('teams'));
-    }
+{
+    $teams = Team::paginate(10);
+    return view('admin.teams.list', compact('teams'));
+}
+
 }

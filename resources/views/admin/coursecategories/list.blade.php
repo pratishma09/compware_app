@@ -13,12 +13,15 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
+                @php
+                    $serialNumber = 1;
+                @endphp
                 @foreach($coursecategories as $category)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $category->id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $serialNumber++ }}</td>
                     <td class="px-6 py-4 whitespace-wrap max-w-xs">{{ $category->coursecategory_name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div class="flex justify-around w-28">
+                        <div class="flex justify-around w-28 pr-20">
                             <button class="bg-blue rounded py-1">
                                 <a href="{{ route('admin.coursecategory.edit', $category->id) }}" class="text-white px-5">Edit</a>
                             </button>
@@ -33,6 +36,8 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
+    {{ $coursecategories->links() }}
 </div>
 @endsection

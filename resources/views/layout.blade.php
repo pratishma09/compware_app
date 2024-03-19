@@ -17,7 +17,7 @@
     <div id="app">
         <main class="">
             @yield('layout')
-            @include('events.components.footer')
+            @include('user.events.components.footer')
         </main>
     </div>
     <script>

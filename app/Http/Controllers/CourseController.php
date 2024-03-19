@@ -9,6 +9,7 @@ use App\Models\Team;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CourseController extends Controller
 {
@@ -61,13 +62,13 @@ class CourseController extends Controller
         try {
             $teams = Team::all();
             $coursecategories = Coursecategory::all();
-            $courses=Course::all();
+            $courses = Course::all();
             return view('user.courses.index')->with(compact('courses', 'coursecategories', 'teams'));
         } catch (Exception $e) {
-            
+
             return back()->with('error', 'Something went wrong!');
         }
-        
+
     }
 
     /**
@@ -125,11 +126,11 @@ class CourseController extends Controller
     public function show($slug)
     {
         //
-        $courses=Course::all();
+        $courses = Course::all();
         $coursess = Course::where('course_slug', $slug)->firstOrFail();
         $course = Course::latest()->take(3)->get();
         try {
-            return view('user.courses.show', ['courses' => $courses, 'coursess' => $coursess, 'course'=>$course])->with(compact('course', 'courses','coursess'));
+            return view('user.courses.show', ['courses' => $courses, 'coursess' => $coursess, 'course' => $course])->with(compact('course', 'courses', 'coursess'));
         } catch (ModelNotFoundException $e) {
 
             return back()->with('error', 'Not found!');
@@ -205,11 +206,16 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
         try {
-            $course = Course::where('id', $id)->first();
+            $course = Course::findOrFail($id);
             $course->delete();
             return redirect(route('admin.courses.list'))->with('success', 'Course deleted successfully');
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1451) {
+                return back()->with('error', 'Cannot delete the course because it has related records.');
+            }
+            return back()->with('error', 'Something went wrong!');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');
         }
@@ -222,49 +228,49 @@ class CourseController extends Controller
     }
 
     public function search(Request $request)
-{
-    try {
-        $teams = Team::all();
-        $coursecategories = Coursecategory::all();
+    {
+        try {
+            $teams = Team::all();
+            $coursecategories = Coursecategory::all();
 
-        $search = $request->input('search');
-        if($search){
-            $courses = Course::where('course_name', 'like', "%$search%")->get();
+            $search = $request->input('search');
+            if ($search) {
+                $courses = Course::where('course_name', 'like', "%$search%")->get();
+            } else {
+                $courses = Course::all();
+            }
+            return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
         }
-        else{
-            $courses=Course::all();
-        }
-        return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
-    } catch (Exception $e) {
-        return back()->with('error', 'Something went wrong!');
     }
-}
-public function coursecategories(Request $request){
-    try {
-        $teams = Team::all();
-        $coursecategories = Coursecategory::all();
+    public function coursecategories(Request $request)
+    {
+        try {
+            $teams = Team::all();
+            $coursecategories = Coursecategory::all();
 
-        $selectedCategories = $request->input('categories', []);
+            $selectedCategories = $request->input('categories', []);
 
-        $courses = Course::query();
-        if (!empty($selectedCategories)) {
-            $courses->where(function ($query) use ($selectedCategories) {
-                foreach ($selectedCategories as $category) {
-                    $query->orWhere('coursecategory_id', $category->id);
-                }
-            });
+            $courses = Course::query();
+            if (!empty($selectedCategories)) {
+                $courses->where(function ($query) use ($selectedCategories) {
+                    foreach ($selectedCategories as $category) {
+                        $query->orWhere('coursecategory_id', $category->id);
+                    }
+                });
+            }
+            $courses = $courses->get();
+            return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
+        } catch (Exception $e) {
+            dd($e);
+            return back()->with('error', 'Something went wrong!');
         }
-        $courses = $courses->get();
-        return view('user.courses.index', compact('courses', 'coursecategories', 'teams'));
-    } catch (Exception $e) {
-        dd($e);
-        return back()->with('error', 'Something went wrong!');
     }
-}
 
     public function adminShow()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(10);
         $teams = Team::all();
         $coursecategories = Coursecategory::all();
         return view('admin.courses.list')->with(compact('courses', 'teams', 'coursecategories'));

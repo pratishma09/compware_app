@@ -104,7 +104,7 @@ class RequestCertificateController extends Controller
         try{
             $requestcertificate = Requestcertificate::findOrFail($id);
             $requestcertificate->update($request->all());
-            return redirect(route('admin.requestcertificates.list'))->with('success', 'requestcertificate updated successfully');
+            return redirect(route('admin.requestcertificates.list'))->with('success', 'Request certificate updated successfully');
         }
         catch(ModelNotFoundException $e){
             return back()->with('error', 'Not found!');
@@ -126,7 +126,7 @@ class RequestCertificateController extends Controller
         try {
             $requestcertificate = Requestcertificate::where('id', $id)->first();
             $requestcertificate->delete();
-            return redirect(route('admin.requestcertificates.list'))->with('success', 'requestcertificates deleted successfully');
+            return redirect(route('admin.requestcertificates.list'))->with('success', 'Request certificate deleted successfully');
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong!');
         }
@@ -135,7 +135,7 @@ class RequestCertificateController extends Controller
     public function adminShow()
     {
         //
-        $requestcertificates = Requestcertificate::all();
+        $requestcertificates = Requestcertificate::paginate(10);
         $courses = Course::all();
         $teams = Team::all();
         return view('admin.requestcertificates.list')->with(compact('requestcertificates','courses','teams'));

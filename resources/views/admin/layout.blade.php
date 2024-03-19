@@ -9,7 +9,7 @@
 </head>
 
 <body class="roboto">
-    <div class="flex">
+    <div class="flex h-full">
         @include('admin.component.dashboard')
         <div class="flex-1 mx-5">
             @include('admin.component.logout')
@@ -17,6 +17,7 @@
         </div>
     </div>
     @include('sweetalert::alert')
+    @yield('scripts')
 </body>
 
 <script>

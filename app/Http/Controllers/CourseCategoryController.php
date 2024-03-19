@@ -129,7 +129,7 @@ class CourseCategoryController extends Controller
     public function adminShow()
     {
         //
-        $coursecategories=Coursecategory::all();
+        $coursecategories=Coursecategory::paginate(10);
         return view('admin.coursecategories.list')->with(compact('coursecategories'));
     }
 }

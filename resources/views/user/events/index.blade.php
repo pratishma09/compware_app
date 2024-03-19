@@ -1,6 +1,6 @@
 @extends('layout')
 @section('layout')
-@include('events.components.epI.bg')
+@include('user.events.components.epI.bg')
     <div class="pl-20">
         <h1 class="text-2xl font-medium py-8">Panelist</h1>
 
@@ -102,7 +102,7 @@
             @endforeach
         </div>
     </div>
-    @include('events.components.epI.question')
+    @include('user.events.components.epI.question')
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

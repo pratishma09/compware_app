@@ -4,9 +4,9 @@
 <div class="mt-5">
     <p class="2xl">Edit Testimonial</p>
     
-    <form method="post" action="{{ route('admin.testimonials.edit', $testimonials->id) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
+    <form method="post" action="{{ route('testimonials.update', $testimonials->id) }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">
         @csrf
-        @method('PUT') {{-- Assuming you're using resourceful controller with RESTful conventions --}}
+        @method('PUT') 
         
         <div class="mb-4">
             <label for="testimonial_name" class="block text-sm font-medium text-gray-700">Name</label>
@@ -29,11 +29,8 @@
         
         <div class="mb-4">
             <label for="testimonial_image" class="block text-sm font-medium text-gray-700">Photo: {{$testimonials->testimonial_image}}</label>
-            
             <input type="file" id="testimonial_image" name="testimonial_image" class="mt-1 block w-full border border-gray-300 px-2 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            
         </div>
-        
         <button type="submit" class="mx-auto py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
     </form>
 </div>

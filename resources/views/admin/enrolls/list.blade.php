@@ -2,8 +2,8 @@
 
 @section('admin')
 <div class="container mx-auto">
-    <div class="overflow-x-auto" style="max-height: 500px; overflow-y: auto;">
-        <table class="w-full divide-y divide-gray-200">
+    <div class="overflow-x-auto" style="max-height: 600px; overflow-y: auto;">
+        <table class="divide-y divide-gray-200 table-fixed">
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -16,16 +16,19 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
+                @php
+                    $serialNumber = 1;
+                @endphp
                 @foreach($enrolls as $enroll)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->id }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_phone }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $enroll->enroll_schedule }}</td>
-                    <td class="px-6 py-4 whitespace-wrap">{{ $enroll->course->course_name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $serialNumber++ }}</td>
+                    <td class="px-6 py-4 ">{{ $enroll->enroll_name }}</td>
+                    <td class="px-6 py-4 ">{{ $enroll->enroll_phone }}</td>
+                    <td class="px-6 py-4 ">{{ $enroll->enroll_email }}</td>
+                    <td class="px-6 py-4 ">{{ $enroll->enroll_schedule }}</td>
+                    <td class="px-6 py-4 ">{{ $enroll->course->course_name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div class="flex justify-around">
+                        <div class="flex justify-around w-28 pr-20">
                             {{-- <button class="bg-blue rounded py-1">
                                 <a href="{{ route('admin.enroll.edit', $enroll->id) }}" class="text-white px-5">Edit</a>
                             </button> --}}
@@ -40,6 +43,9 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
+   
 </div>
+{{ $enrolls->links() }}
 @endsection

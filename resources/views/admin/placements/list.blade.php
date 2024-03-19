@@ -3,7 +3,7 @@
 @section('admin')
 <div class="container mx-auto">
     <button class="text-white bg-blue rounded my-2 py-1 px-2"><a href="{{ route('admin.placements.create') }}">Add Placement</a></button>
-    <div class="overflow-x-auto" style="max-height: 500px; overflow-y: auto;">
+    <div class="overflow-x-auto" style="max-height: 600px; overflow-y: auto;">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -14,9 +14,12 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
+                @php
+                    $serialNumber = 1;
+                @endphp
                 @foreach($placements as $placement)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $placement->id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $serialNumber++ }}</td>
                     <td>
                         @if(strpos($placement->placement_image, 'http') === 0)
                             <img src="{{ $placement->placement_image }}" class="w-20" alt="{{ $placement->placement_image }}">
@@ -41,6 +44,8 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
+    {{ $placements->links() }}
 </div>
 @endsection

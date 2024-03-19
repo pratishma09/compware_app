@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->id();
-            $table->string('enroll_name')->unique('enrolls','enroll_name');
+            $table->string('enroll_name');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->string('enroll_email');

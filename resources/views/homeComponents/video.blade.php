@@ -5,7 +5,7 @@
     </video>
 
     <div class="flex flex-col justify-center items-center relative">
-        <p class="text-3xl pt-5 lg:pt-24">Explore Nepal's Leading</p>
+        <p class="text-3xl pt-10 lg:pt-24">Explore Nepal's Leading</p>
         <p class="text-3xl pt-3">Training Center</p>
         <p class="lg:w-2/5 md:w-2/5 text-center pt-10 mb-16">
             Welcome to Deerwalk Training Center, where we are dedicated to providing premiere IT and Technical skills to

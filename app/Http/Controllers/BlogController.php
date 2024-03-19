@@ -98,7 +98,7 @@ class BlogController extends Controller
 
     public function adminShow()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(10);
         return view('admin.blogs.list')->with(compact('blogs'));
     }
 }

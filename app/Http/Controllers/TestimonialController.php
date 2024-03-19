@@ -143,7 +143,7 @@ class TestimonialController extends Controller
     }
 
     public function adminShow(){
-        $testimonials=Testimonial::all();
+        $testimonials=Testimonial::paginate(10);
         return view('admin.testimonials.list')->with(compact('testimonials'));
     }
 }
