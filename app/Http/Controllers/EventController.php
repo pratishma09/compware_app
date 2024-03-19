@@ -143,7 +143,7 @@ class EventController extends Controller
     public function adminShow()
     {
         //
-        $events = Event::all();
+        $events = Event::paginate(10);
         return view('admin.events.list')->with(compact('events'));
     }
 }

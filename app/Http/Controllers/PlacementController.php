@@ -142,7 +142,7 @@ class PlacementController extends Controller
     }
 
     public function adminShow(){
-            $placements=Placement::all();
+            $placements=Placement::paginate(10);
             return view('admin.placements.list')->with(compact('placements'));
     }
 }

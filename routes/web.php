@@ -51,7 +51,7 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
     Route::get('/course/create', [CourseController::class, 'create'])->name('course.create');
     Route::get('/dashboard/testimonials', [TestimonialController::class, 'adminShow'])->name('admin.testimonials.list');
     Route::get('/testimonial/{id}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
-    Route::put('/testimonial/{id}/update', [TestimonialController::class, 'update'])->name('testimonial.update');
+    Route::put('/testimonial/{id}/update', [TestimonialController::class, 'update'])->name('testimonials.update');
     Route::get('/testimonial/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
     Route::delete('/testimonial/{id}/destroy', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
     Route::get('/dashboard/courses', [CourseController::class, 'adminShow'])->name('admin.courses.list');
@@ -143,7 +143,7 @@ Route::get('/eventgallery', [EventgalleryController::class, 'index'])->name('eve
 Route::get('/eventgallery/{eventgallery_slug}', [EventgalleryController::class, 'images'])->name('eventgallery.images');
 
 Route::get('/event/episode-I', [EventController::class, 'index'])->name('event.index');
-Route::view('/event/episode-II','events.ep');
+Route::view('/event/episode-II','user.events.ep');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
@@ -160,7 +160,7 @@ Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll.index');
 Route::get('/enroll/create', [EnrollController::class, 'create'])->name('enroll.create');
 Route::post('/enroll', [EnrollController::class, 'store'])->name('enroll.store');
 
-Route::view('/terms', 'terms.terms')->name('terms');
+Route::view('/terms', 'user.terms.terms')->name('terms');
 
 Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial.index');
 

@@ -118,7 +118,7 @@ class EnrollController extends Controller
     }
 
     public function adminShow(){
-        $enrolls = Enroll::all();
+        $enrolls = Enroll::paginate(10);
         $courses = Course::all();
         return view('admin.enrolls.list', compact('enrolls','courses'));
     }

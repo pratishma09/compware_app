@@ -117,7 +117,7 @@ class ContactController extends Controller
     public function adminShow()
     {
         //
-        $contacts=Contact::all();
+        $contacts=Contact::paginate(10);
         $courses =Course::all();
         return view('admin.contacts.list')->with(compact('contacts', 'courses'));
     }

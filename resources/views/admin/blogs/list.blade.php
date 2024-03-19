@@ -15,9 +15,12 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
+                @php
+                    $serialNumber = 1;
+                @endphp
                 @foreach($blogs as $blog)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $blog->id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $serialNumber++ }}</td>
                     <td>
                         @if(strpos($blog->blogs_image, 'http') === 0)
                             <img src="{{ $blog->blogs_image }}" class="w-20" alt="{{ $blog->blogs_image }}">
@@ -34,7 +37,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div class="flex justify-around w-28">
+                        <div class="flex justify-around w-28 pr-20">
                             <button class=" bg-blue rounded py-1">
                                 <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="text-white px-5">Edit</a>
                             </button>
@@ -49,6 +52,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $blogs->links() }}
     </div>
 </div>
 @endsection

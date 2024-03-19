@@ -193,7 +193,7 @@ class EventgalleryController extends Controller
     }
     public function adminShow()
     {
-            $eventgallery = Eventgallery::all();
+            $eventgallery = Eventgallery::paginate(10);
             return view('admin.eventgalleries.list', compact('eventgallery'));
     }
     public function showImages($id)

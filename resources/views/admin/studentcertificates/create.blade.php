@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('admin')
-<div class="ml-28 mt-5">
+<div class="ml-10 mt-5">
     <p class="text-2xl">Create a Student</p>
     
     <form method="post" action="{{ route('studentcertificate.store') }}" enctype="multipart/form-data" class="mx-auto bg-white py-6 rounded-lg w-full">

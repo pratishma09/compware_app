@@ -22,10 +22,11 @@
             <div class="relative group">
                 <a class="text-blue hover:bg-slate-200 p-2">About</a>
                 <div
-                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a href="/team" class="block hover:bg-slate-200">Our Team</a>
-                    <a href="/blog" class="block hover:bg-slate-200">Blogs</a>
-                    <a href="/eventgallery" class="block hover:bg-slate-200">Gallery</a>
+                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block py-2">
+                    <a href="/team" class="block hover:bg-slate-200 pl-2 py-2">
+                        Our Team</a>
+                    <a href="/blog" class="block hover:bg-slate-200 pl-2 py-2">Blogs</a>
+                    <a href="/eventgallery" class="block hover:bg-slate-200 pl-2 py-2">Gallery</a>
                 </div>
             </div>
 
@@ -34,17 +35,17 @@
             <div class="relative group">
                 <a class="text-blue hover:bg-slate-200 p-2">Event</a>
                 <div
-                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a href="/event/episode-I" class="block mt-4 hover:bg-slate-200">Episode I</a>
-                    <a href="/event/episode-II" class="block hover:bg-slate-200">Episode II</a>
+                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 rounded-b-md py-2 bg-white space-y-2 group-hover:block group-focus:block">
+                    <a href="/event/episode-I" class="block mt-4 hover:bg-slate-200 pl-2 py-2">Episode I</a>
+                    <a href="/event/episode-II" class="block hover:bg-slate-200 pl-2 py-2">Episode II</a>
                 </div>
             </div>
             <div class="relative group">
                 <a class="text-blue hover:bg-slate-200 p-2">Certificate</a>
                 <div
-                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 p-5 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
-                    <a class="block mt-4 hover:bg-slate-200"><button class="request">Request</button></a>
-                    <a class="block hover:bg-slate-200"><button class="verify">Verify</button></a>
+                    class="absolute hidden text-gray-400 capitalize font-normal w-44 mt-2 py-2 rounded-b-md bg-white space-y-2 group-hover:block group-focus:block">
+                    <a class="block mt-4 hover:bg-slate-200 pl-2 py-2"><button class="request">Request</button></a>
+                    <a class="block hover:bg-slate-200 pl-2 py-2"><button class="verify">Verify</button></a>
                 </div>
             </div>
 
@@ -396,7 +397,7 @@
 
 <div id="popups"
     class="z-50 hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-hidden popup-overlay">
-    <div class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md overflow-y-scroll relative">
+    <div class="backdrop-filter backdrop-blur-md bg-white p-8 rounded-md relative">
 
         <button type="button" class="text-blue hover:underline cursor-pointer absolute top-2 right-2"
             id="closeButn">

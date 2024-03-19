@@ -2,7 +2,7 @@
 @section('title', 'studentcertificates Today')
 
 @section('content')
-    <div class="container lg:ml-10 py-8 w-screen lg:max-w-screen-lg">
+    <div class="container lg:ml-10 py-8 w-screen">
         <div class="flex justify-between items-center pt-20">
             <h1 class="text-5xl mb-4 text-blue">Congratulations {{ $studentcertificate->name }} !</h1>
             <div class="hidden lg:flex">
@@ -15,8 +15,8 @@
                 </a>
             </div>
         </div>
-        <div class="flex flex-col items-center lg:items-start lg:flex-row">
-            <div class="bg-white shadow-xl h-1/3 w-60 lg:w-1/4 py-2 mr-5">
+        <div class="flex flex-col lg:items-start lg:flex-row">
+            <div class=" bg-white shadow-xl h-1/3 lg:w-1/3 py-2 mr-5">
                 @if (Str::startsWith($studentcertificate->image, 'http'))
                     <img class="h-10 w-10 rounded-full" src="{{ $studentcertificate->image }}" alt="studentcertificate">
                 @else
@@ -25,7 +25,7 @@
                 <p class="uppercase text-center w-full py-2 border-b-2 border-gray-400">{{ $studentcertificate->name }}</p>
 
                 <div class="flex justify-between items-center px-2 mt-2">
-                    <p class="font-medium text-lg">Course</p>
+                    <p class="font-medium text-lg ">Course</p>
                     <p class="uppercase">{{ $studentcertificate->course->course_name }}</p>
                 </div>
                 <div class="flex justify-between items-center px-2">
@@ -49,10 +49,10 @@
                 </div>
             </div>
 
-            <div class="pt-3 w-full object-cover flex flex-col justify-center items-center">
+            <div class="pt-3 w-full object-cover flex-1 flex flex-col justify-center items-center">
 
                 <iframe src="{{ route('studentcertificate.pdf', $studentcertificate->id) }}" width="100%" height="600px"
-                    frameborder="0" scrolling="no" style="border: none;overflow:hidden; display:block;"
+                    frameborder="0" scrolling="no" style="border: none; display:block;"
                     class="lg:w-full"></iframe>
             
                 <div class="text-center">

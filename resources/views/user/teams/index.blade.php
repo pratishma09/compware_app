@@ -14,15 +14,15 @@
                             @if (filter_var($team->team_image, FILTER_VALIDATE_URL))
                                 <div class="bg-gray-100 h-32">
                                     <a href="{{ $team->team_image }}" target="_blank">
-                                        <img class="h-40 w-64 absolute" src="{{ $team->team_image }}" />
+                                        <img class="h-54 w-64 absolute" src="{{ $team->team_image }}" />
                                     </a>
                                 </div>
                             @else
                                 <div class="bg-gray-100 h-32">
-                                    <img class="h-40 w-64 absolute" src="assets/{{ $team->team_image }}" />
+                                    <img class="h-54 w-64 absolute" src="assets/{{ $team->team_image }}" />
                                 </div>
                             @endif
-                            <div class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 rounded-t-md group-hover:bg-gray-400 focus:bg-gray-400"></div>
+                            <div class="bg-blue rounded-t-xl h-28 w-64 md:w-60 sm:w-60 group-hover:bg-gray-400 focus:bg-gray-400"></div>
                         </div>
                         <div class="text-center w-60 h-20 pt-2">
                             <h3 class="text-blue">{{ $team->team_name }}</h3>

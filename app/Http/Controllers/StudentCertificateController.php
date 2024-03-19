@@ -198,19 +198,19 @@ class StudentCertificateController extends Controller
             $nameWidth = $pdf->GetStringWidth(strtoupper($studentcertificate->name));
             $courseNameWidth = $pdf->GetStringWidth(strtoupper($studentcertificate->course->course_name));
 
-            $nameX = 117 + (60 - $nameWidth) / 2; 
-            $courseNameX = 100 + (60 - $courseNameWidth) / 2; 
-            $pdf->SetXY($nameX, 72);
+            $nameX = 117 + (60 - $nameWidth) / 2;
+            $courseNameX = 114 + (60 - $courseNameWidth) / 2;
+            $pdf->SetXY($nameX, 74);
             $pdf->Cell(0, 0, strtoupper($studentcertificate->name));
             $pdf->SetXY($courseNameX, 110);
             $pdf->Cell(0, 0, strtoupper($studentcertificate->course->course_name));
-            $pdf->SetXY(103, 120);
+            $pdf->SetXY(104, 120);
             $pdf->SetFont('Arial', '', 14);
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Cell(0, 12, $studentcertificate->duration);
-            $pdf->SetXY(120, 140);
+            $pdf->SetXY(117, 140);
             $pdf->Cell(0, 2, $studentcertificate->startdate);
-            $pdf->SetXY(170, 140);
+            $pdf->SetXY(175, 140);
             $pdf->Cell(0, 2, $studentcertificate->enddate);
             $pdf->SetXY(130, 160);
             $pdf->Cell(0, 2, $studentcertificate->verificationId);
@@ -218,10 +218,13 @@ class StudentCertificateController extends Controller
             $pdf->SetFont('Arial', '', 12);
             $pdf->SetTextColor(0, 0, 0);
             $pdf->SetXY(210, 189);
-            $pdf->Cell(0, 0, $studentcertificate->team->team_name . ",");
+            $pdf->Cell(0, 0, $studentcertificate->team->team_name);
 
-            $pdf->SetXY(240, 189);
-            $pdf->Cell(0, 0, $studentcertificate->trainer_title);
+            // $trainerTitleWidth = $pdf->GetStringWidth($studentcertificate->trainer_title);
+            // $trainerTitleX = $pdf->GetX(); 
+            // $trainerTitleY = $pdf->GetY(); 
+            // $pdf->SetXY($trainerTitleX, $trainerTitleY);
+            // $pdf->Cell(0, 0, $studentcertificate->trainer_title);
 
             return $pdf->Output('', 'S');
 
@@ -279,7 +282,7 @@ class StudentCertificateController extends Controller
     public function adminShow()
     {
         //
-        $studentcertificates = Studentcertificate::all();
+        $studentcertificates = Studentcertificate::paginate(10);
         $courses = Course::all();
         $teams = Team::all();
         return view('admin.studentcertificates.list')->with(compact('studentcertificates', 'courses', 'teams'));
