@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="flex flex-col lg:items-start lg:flex-row">
-            <div class=" bg-white shadow-xl h-1/3 lg:w-1/3 py-2 mr-5">
+            <div class=" bg-white shadow-xl h-1/3 lg:w-1/4 py-2 mr-5">
                 @if (Str::startsWith($studentcertificate->image, 'http'))
                     <img class="h-10 w-10 rounded-full" src="{{ $studentcertificate->image }}" alt="studentcertificate">
                 @else
@@ -24,29 +24,29 @@
                 @endif
                 <p class="uppercase text-center w-full py-2 border-b-2 border-gray-400">{{ $studentcertificate->name }}</p>
 
-                <div class="flex justify-between items-center px-2 mt-2">
-                    <p class="font-medium text-lg ">Course</p>
-                    <p class="uppercase">{{ $studentcertificate->course->course_name }}</p>
+                <div class="flex space-x-10 items-center px-2 mt-2">
+                    <p class="font-medium text-md mr-1">Course</p>
+                    <p class="uppercase pl-8 text-sm">{{ $studentcertificate->course->course_name }}</p>
                 </div>
-                <div class="flex justify-between items-center px-2">
-                    <p class="font-medium text-lg">Started On</p>
-                    <p class="uppercase">{{ $studentcertificate->startdate }}</p>
+                <div class="flex space-x-1 items-center px-2">
+                    <p class="font-medium text-md pr-5">Started On</p>
+                    <p class="uppercase text-sm pl-5 ">{{ $studentcertificate->startdate }}</p>
                 </div>
-                <div class="flex justify-between items-center px-2">
-                    <p class="font-medium text-lg">Completed On</p>
-                    <p class="uppercase">{{ $studentcertificate->enddate }}</p>
+                <div class="flex items-center px-2">
+                    <p class="font-medium text-md pr-2">Completed On</p>
+                    <p class="uppercase text-sm pl-2">{{ $studentcertificate->enddate }}</p>
                 </div>
-                <div class="flex justify-between items-center px-2">
-                    <p class="font-medium text-lg">Verification Id</p>
-                    <p class="">{{ $studentcertificate->verificationId }}</p>
+                <div class="flex items-center px-2">
+                    <p class="font-medium text-md">Verification Id</p>
+                    <p class="text-sm pl-5">{{ $studentcertificate->verificationId }}</p>
                 </div>
-                <div class="flex justify-between items-center px-2">
-                    <p class="font-medium text-lg">Trainer</p>
-                    <p class="">{{ $studentcertificate->team->team_name }}</p>
+                <div class="flex items-center px-2">
+                    <p class="font-medium text-md mr-2">Trainer</p>
+                    <p class="text-sm pl-14 ml-2">{{ $studentcertificate->team->team_name }}</p>
                 </div>
-                <div class="flex justify-end items-end px-2">
-                    <p class="">{{ $studentcertificate->trainer_title }}</p>
-                </div>
+                
+                    <p class="text-sm ml-28 pl-5">{{ $studentcertificate->trainer_title }}</p>
+                
             </div>
 
             <div class="pt-3 w-full object-cover flex-1 flex flex-col justify-center items-center">

@@ -42,4 +42,8 @@
         padding-right: 5px;
         height: 40px !important;
     }
+
+    .select2-selection__arrow{
+        margin-top: 5px;
+    }
 </style>
